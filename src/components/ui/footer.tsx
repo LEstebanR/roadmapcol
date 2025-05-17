@@ -13,7 +13,7 @@ export default function Footer() {
         />
         <Image src="tiktok-icon.svg" alt="tiktok" width={24} height={24} />
       </div>
-      <Image src="logo.svg" alt="logo" width={100} height={100} />
+      <p>Logo</p>
     </footer>
   );
 }
