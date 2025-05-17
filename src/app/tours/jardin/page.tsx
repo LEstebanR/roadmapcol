@@ -4,15 +4,15 @@ import { Heart, Share } from "lucide-react";
 const TOUR = {
   description: "Descripción del tour",
   tags: ["Paisaje", "Deportes acuaticos", "Gastronomía"],
-  highlights: ["Piedra del Peñol", "Embalse Guatapé", "Recorrido Guatapé"],
+  highlights: ["Paisajes", "Gastronomía", "Pueblos"],
   itinerary: [
     {
       day: 1,
-      description: "Subida a la piedra del peñol",
+      description: "Visita a finca cafetera",
     },
     {
       day: 2,
-      description: "Descanso en el pueblo de Guatapé",
+      description: "Visita a la cueva del explendor",
     },
     {
       day: 3,
