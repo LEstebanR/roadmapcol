@@ -33,7 +33,7 @@ const TOURS = [
 
 export default function Tours() {
   return (
-    <div className="flex flex-col items-center justify-center gap-2">
+    <div className="flex flex-col items-center justify-center gap-2 my-12">
       <h2>Tours</h2>
       <p>Texto llamativo para invitar a ver los tours</p>
       <div className="flex flex-col items-center justify-center gap-2">
