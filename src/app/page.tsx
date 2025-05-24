@@ -1,11 +1,13 @@
 import { CarouselHome } from "@/components/ui/carousel-home";
+import { Title } from "@/components/ui/typography";
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-center gap-2">
-      <h1 className="text-4xl font-bold text-center">Road Map Col</h1>
-      <h2 className="text-center">
-        Not just a tour, but a story worth telling.
+    <div className="flex flex-col items-center justify-center gap-4 w-full">
+      <Title>Road Map Col</Title>
+      <h2 className="text-center text-3xl w-8/12">
+        Not just a tour, but a{" "}
+        <span className="text-primary font-bold">story worth telling</span>{" "}
       </h2>
       <CarouselHome />
     </div>

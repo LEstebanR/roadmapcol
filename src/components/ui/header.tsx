@@ -30,7 +30,7 @@ export default function Header() {
           <DropdownMenu open={open} onOpenChange={setOpen}>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" size="icon">
-                <MenuIcon className="h-6 w-6" />
+                <MenuIcon className="text-primary" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56 bg-white mr-2">
