@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Footer() {
   return (
-    <footer className="w-full flex gap-4 justify-between items-center md:w-1/2 p-4 fixed bottom-0 left bg-white h-20">
+    <footer className="w-full flex gap-4 justify-between items-center md:w-1/2 p-4">
       <div className="flex gap-4">
         <Image src="whatsapp-icon.svg" alt="whatsapp" width={24} height={24} />
         <Image
