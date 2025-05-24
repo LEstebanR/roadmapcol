@@ -27,10 +27,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={` ${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen items-center w-full justify-between`}
+        className={` ${geistSans.variable} ${geistMono.variable} antialiased flex flex-col items-center w-full justify-between`}
       >
         <Header />
-        {children}
+        <div className="mt-20 w-full">{children}</div>
         <Footer />
       </body>
     </html>

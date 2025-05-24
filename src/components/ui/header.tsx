@@ -16,8 +16,8 @@ export default function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="w-full flex gap-12 justify-center items-center md:w-1/2 py-2 px-4 ">
-      <div className="flex gap-2 justify-between w-full items-center ">
+    <header className="w-full gap-12 justify-center items-center  py-2 px-4 fixed top-0 left-0 z-50 bg-white h-20  mx-auto">
+      <div className="flex gap-2 justify-between w-full items-center md:w-1/2 mx-auto">
         <Image src="/logo.png" alt="logo" width={75} height={75} />
         <div className="gap-2 hidden md:flex">
           <Link href="/">Inicio</Link>
@@ -35,13 +35,17 @@ export default function Header() {
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56 bg-white mr-2">
               <DropdownMenuItem onClick={() => setOpen(false)}>
-                <Link href="/">Inicio</Link>
+                <Link href="/" className="w-full">
+                  Inicio
+                </Link>
               </DropdownMenuItem>
               <DropdownMenuItem onClick={() => setOpen(false)}>
-                <Link href="/tours">Tours</Link>
+                <Link href="/tours" className="w-full">
+                  Tours
+                </Link>
               </DropdownMenuItem>
               <DropdownMenuItem onClick={() => setOpen(false)}>
-                <Link href="/personaliza-experiencia">
+                <Link href="/personaliza-experiencia" className="w-full">
                   Personaliza experiencia
                 </Link>
               </DropdownMenuItem>
