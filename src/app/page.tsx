@@ -1,5 +1,5 @@
 import { CarouselHome } from "@/components/ui/carousel-home";
-import { Title } from "@/components/ui/typography";
+import { Title } from "@/components/ui/typography/typography";
 
 export default function Home() {
   return (
