@@ -16,15 +16,30 @@ export default function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="w-full gap-12 justify-center items-center  py-2 px-4 fixed top-0 left-0 z-50 bg-white h-20  mx-auto">
+    <header className="w-full gap-12 justify-center items-center  py-2 px-4 fixed top-0 left-0 z-50  h-20  mx-auto">
       <div className="flex gap-2 justify-between w-full items-center md:w-1/2 mx-auto">
-        <Image src="/logo.png" alt="logo" width={75} height={75} />
+        <Image src="/logo-3.png" alt="logo" width={50} height={50} />
         <div className="gap-2 hidden md:flex">
-          <Link href="/">Inicio</Link>
+          <Link
+            href="/"
+            className="hover:text-primary transition-colors duration-300"
+          >
+            Inicio
+          </Link>
           <div className="bg-primary mx-2 h-[30px] w-[0.5px] rotate-[20deg]"></div>
-          <Link href="/tours">Tours</Link>
+          <Link
+            href="/tours"
+            className="hover:text-primary transition-colors duration-300"
+          >
+            Tours
+          </Link>
           <div className="bg-primary mx-2 h-[30px] w-[0.5px] rotate-[20deg]"></div>
-          <Link href="/personaliza-experiencia">Personaliza experiencia</Link>
+          <Link
+            href="/personaliza-experiencia"
+            className="hover:text-primary transition-colors duration-300"
+          >
+            Personaliza experiencia
+          </Link>
         </div>
         <div className="md:hidden">
           <DropdownMenu open={open} onOpenChange={setOpen}>
@@ -40,7 +55,7 @@ export default function Header() {
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem onClick={() => setOpen(false)}>
-                <Link href="/tours" className="w-full">
+                <Link href="/tours" className="w-full ">
                   Tours
                 </Link>
               </DropdownMenuItem>

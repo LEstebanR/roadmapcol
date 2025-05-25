@@ -11,3 +11,11 @@ export function Title({ children }: { children: React.ReactNode }) {
     </h1>
   );
 }
+
+export function TitleCard({ children }: { children: React.ReactNode }) {
+  return (
+    <p className={`text-6xl text-secondary ${oneBrush.className}`}>
+      {children}
+    </p>
+  );
+}

@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={` ${geistSans.variable} ${geistMono.variable} antialiased flex flex-col items-center w-full justify-between`}
+        className={` ${geistSans.variable} ${geistMono.variable} antialiased flex flex-col items-center w-full justify-between bg-[url('/landscape.png')] bg-cover bg-center bg-no-repeat bg-fixed `}
       >
         <Header />
         <div className="mt-20 w-full">{children}</div>
