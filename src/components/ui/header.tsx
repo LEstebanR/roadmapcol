@@ -11,14 +11,15 @@ import {
 import { Button } from "@/components/ui/button";
 import { MenuIcon } from "lucide-react";
 import { useState } from "react";
+import { images } from "@/lib/images";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="w-full gap-12 justify-center items-center  py-2 px-4 fixed top-0 left-0 z-50  h-20  mx-auto">
+    <header className="w-full gap-12 justify-center items-center  p-4 h-16 mx-auto">
       <div className="flex gap-2 justify-between w-full items-center md:w-1/2 mx-auto">
-        <Image src="/logo-3.png" alt="logo" width={50} height={50} />
+        <Image src={images.logo} alt="logo" width={75} height={75} />
         <div className="gap-2 hidden md:flex">
           <Link
             href="/"

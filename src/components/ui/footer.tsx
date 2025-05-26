@@ -1,3 +1,4 @@
+import { images } from "@/lib/images";
 import Image from "next/image";
 
 export default function Footer() {
@@ -13,7 +14,7 @@ export default function Footer() {
         />
         <Image src="tiktok-icon.svg" alt="tiktok" width={24} height={24} />
       </div>
-      <Image src="/logo-3.png" alt="logo" width={50} height={50} />
+      <Image src={images.logo} alt="logo" width={50} height={50} />
     </footer>
   );
 }

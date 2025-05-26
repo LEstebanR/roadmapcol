@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/components/ui/header";
 import Footer from "@/components/ui/footer";
 import { Geist, Geist_Mono } from "next/font/google";
+import { images } from "@/lib/images";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,10 +28,11 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={` ${geistSans.variable} ${geistMono.variable} antialiased flex flex-col items-center w-full justify-between bg-[url('/landscape.png')] bg-cover bg-center bg-no-repeat bg-fixed `}
+        className={` ${geistSans.variable} ${geistMono.variable} antialiased flex flex-col items-center w-full justify-between bg-center bg-cover bg-no-repeat bg-fixed`}
+        style={{ backgroundImage: `url(${images.backgroundMain})` }}
       >
         <Header />
-        <div className="mt-20 w-full">{children}</div>
+        <div className=" w-full">{children}</div>
         <Footer />
       </body>
     </html>
