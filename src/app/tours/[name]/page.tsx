@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { useParams } from "next/navigation";
@@ -17,10 +16,19 @@ export default function TourPage() {
   const tour = TOURS.find((tour) => tour.href === `/tours/${name}`);
   const [selectedActivities, setSelectedActivities] = useState<string[]>([]);
 
-  const handleActivityToggle = (
-    activityTitle: string,
-    activityPrice: number
-  ) => {
+  if (!tour) {
+    return (
+      <div className="my-14 flex flex-col items-center justify-center gap-12 md:w-6/12 mx-auto">
+        <h1 className="text-2xl font-bold">Tour no encontrado</h1>
+        <Link href="/tours" className="flex items-center gap-2 text-sky-500">
+          <ArrowLeft className="w-4 h-4" />
+          Volver a tours
+        </Link>
+      </div>
+    );
+  }
+
+  const handleActivityToggle = (activityTitle: string) => {
     setSelectedActivities((prev) => {
       if (prev.includes(activityTitle)) {
         return prev.filter((title) => title !== activityTitle);
@@ -31,13 +39,13 @@ export default function TourPage() {
 
   const getSelectedActivityPrice = (activityTitle: string) => {
     return (
-      tour?.activities.find((activity) => activity.title === activityTitle)
+      tour.activities.find((activity) => activity.title === activityTitle)
         ?.price || 0
     );
   };
 
   const totalPrice =
-    (tour?.price || 0) +
+    tour.price +
     selectedActivities.reduce(
       (acc, title) => acc + getSelectedActivityPrice(title),
       0
@@ -55,8 +63,8 @@ export default function TourPage() {
       <Card className="md:w-full w-11/12 pt-0 rounded-lg flex flex-col mx-auto border border-black">
         <CardHeader className="px-0 pt-0">
           <Image
-            src={tour?.image}
-            alt={tour?.place}
+            src={tour.image}
+            alt={tour.place}
             width={500}
             height={500}
             className="w-full h-[200px] object-cover rounded-t-lg"
@@ -66,18 +74,18 @@ export default function TourPage() {
           <div className="flex gap-4 items-center flex-wrap">
             <div className="flex gap-1 items-center text-muted-foreground">
               <MapPin />
-              <p>{tour?.place}</p>
+              <p>{tour.place}</p>
             </div>
             <div className="flex gap-1 items-center text-muted-foreground">
               <Clock />
-              <p>{tour?.duration}</p>
+              <p>{tour.duration}</p>
             </div>
           </div>
-          <h2 className="text-2xl font-bold">{tour?.title}</h2>
-          <p className="text-muted-foreground">{tour?.description}</p>
+          <h2 className="text-2xl font-bold">{tour.title}</h2>
+          <p className="text-muted-foreground">{tour.description}</p>
           <h3 className="text-xl font-bold">Destacados:</h3>
           <ul className="list-disc list-inside grid md:grid-cols-2 gap-2">
-            {tour?.highlights.map((highlight) => (
+            {tour.highlights.map((highlight) => (
               <li key={highlight}>{highlight}</li>
             ))}
           </ul>
@@ -87,7 +95,7 @@ export default function TourPage() {
         Actividades disponibles:
       </h2>
       <div className="flex flex-col gap-4">
-        {tour?.activities.map((activity) => (
+        {tour.activities.map((activity) => (
           <Card
             key={activity.title}
             className="flex md:flex-row flex-col py-0 border border-black md:w-full w-11/12 mx-auto"
@@ -121,9 +129,7 @@ export default function TourPage() {
                 <div className="flex items-center gap-2">
                   <Checkbox
                     checked={selectedActivities.includes(activity.title)}
-                    onCheckedChange={() =>
-                      handleActivityToggle(activity.title, activity.price)
-                    }
+                    onCheckedChange={() => handleActivityToggle(activity.title)}
                   />
                   <Label>Añadir a mi experiencia</Label>
                 </div>
@@ -139,7 +145,7 @@ export default function TourPage() {
             <div className="flex justify-between items-center">
               <p className="text-muted-foreground">Precio base:</p>
               <p className="text-lg font-bold">
-                ${Number(tour?.price).toLocaleString()}
+                ${Number(tour.price).toLocaleString()}
               </p>
             </div>
             {selectedActivities.length > 0 && (
