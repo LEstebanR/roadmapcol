@@ -1,21 +1,25 @@
-import { Gift, Info, MapPin } from "lucide-react";
+import { Gift, Home, Hotel, Info, Map, MapPin } from "lucide-react";
 
 export const HEADER_LINKS = [
   {
     label: "Inicio",
     href: "/",
+    icon: <Home />,
   },
   {
     label: "Tours",
     href: "/tours",
+    icon: <Map />,
   },
   {
     label: "Alojamiento",
     href: "/alojamiento",
+    icon: <Hotel />,
   },
   {
     label: "Personaliza tu experiencia",
     href: "/personalizado",
+    icon: <MapPin />,
   },
 ];
 
@@ -45,6 +49,19 @@ export const LANDING_LINKS = [
       "https://res.cloudinary.com/lesteban/image/upload/v1748229430/roadmap/tourism_nsahmt.avif",
     href: "/tours",
     button: "Conoce más",
+  },
+  {
+    chip: "Info",
+    chipIcon: <Info />,
+    chipColor: "bg-blue-200",
+    title: "Alojamientos",
+    subtitle: "Alojamientos en Colombia",
+    description:
+      "Descubre los mejores alojamientos en Colombia, desde casas coloniales hasta ecolodges en la selva.",
+    image:
+      "https://res.cloudinary.com/lesteban/image/upload/v1748815350/roadmap/finca_bdyr0s.avif",
+    href: "/alojamiento",
+    button: "Ver alojamientos",
   },
   {
     chip: "Tour",
@@ -191,6 +208,73 @@ export const TOURS = [
         includes: ["Transporte", "Almuerzo en la isla", "Guía turística"],
         price: 150000,
       },
+    ],
+  },
+];
+
+export const ACCOMMODATIONS = [
+  {
+    title: "Casa Colonial",
+    place: "Cartagena",
+    description:
+      "Una casa colonial en el centro histórico de Cartagena, con vista a la ciudad amurallada.",
+    type: "Finca",
+    image:
+      "https://res.cloudinary.com/lesteban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1748815350/roadmap/finca_bdyr0s.avif",
+    price: 120000,
+    href: "/alojamiento/casa-colonial",
+    highlights: [
+      "Vista a la ciudad amurallada",
+      "Cerca de la playa",
+      "Cerca de los restaurantes",
+    ],
+  },
+  {
+    title: "Casa Colonial",
+    place: "Cartagena",
+    description:
+      "Una casa colonial en el centro histórico de Cartagena, con vista a la ciudad amurallada.",
+    type: "Finca",
+    image:
+      "https://res.cloudinary.com/lesteban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1748815350/roadmap/finca_bdyr0s.avif",
+    price: 120000,
+    href: "/alojamiento/casa-colonial",
+    highlights: [
+      "Vista a la ciudad amurallada",
+      "Cerca de la playa",
+      "Cerca de los restaurantes",
+    ],
+  },
+  {
+    title: "Casa Colonial",
+    place: "Cartagena",
+    description:
+      "Una casa colonial en el centro histórico de Cartagena, con vista a la ciudad amurallada.",
+    type: "Finca",
+    image:
+      "https://res.cloudinary.com/lesteban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1748815350/roadmap/finca_bdyr0s.avif",
+    price: 120000,
+    href: "/alojamiento/casa-colonial",
+    highlights: [
+      "Vista a la ciudad amurallada",
+      "Cerca de la playa",
+      "Cerca de los restaurantes",
+    ],
+  },
+  {
+    title: "Casa Colonial",
+    place: "Cartagena",
+    description:
+      "Una casa colonial en el centro histórico de Cartagena, con vista a la ciudad amurallada.",
+    type: "Finca",
+    image:
+      "https://res.cloudinary.com/lesteban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1748815350/roadmap/finca_bdyr0s.avif",
+    price: 120000,
+    href: "/alojamiento/casa-colonial",
+    highlights: [
+      "Vista a la ciudad amurallada",
+      "Cerca de la playa",
+      "Cerca de los restaurantes",
     ],
   },
 ];

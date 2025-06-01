@@ -30,7 +30,7 @@ export default function Header() {
         <Link href="/">
           <Image src={images.logo} alt="logo" width={60} height={60} />
         </Link>
-        <div className="flex gap-6 hidden md:flex">
+        <div className=" gap-6 hidden md:flex">
           {HEADER_LINKS.map((link) => (
             <Link
               key={link.href}
@@ -59,7 +59,13 @@ export default function Header() {
                 key={link.href}
                 onClick={() => setIsOpen(false)}
               >
-                <Link href={link.href}>{link.label}</Link>
+                <Link
+                  href={link.href}
+                  className="flex items-center gap-2 text-sm font-medium hover:underline hover:text-primary transition-all duration-300"
+                >
+                  {link.icon}
+                  {link.label}
+                </Link>
               </DropdownMenuItem>
             ))}
             <DropdownMenuSeparator />
