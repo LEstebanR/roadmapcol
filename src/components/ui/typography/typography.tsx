@@ -6,7 +6,7 @@ const oneBrush = localFont({
 
 export function Title({ children }: { children: React.ReactNode }) {
   return (
-    <h1 className={`text-8xl md:text-9xl text-center ${oneBrush.className}`}>
+    <h1 className={`text-6xl md:text-9xl text-center ${oneBrush.className}`}>
       {children}
     </h1>
   );
@@ -14,7 +14,7 @@ export function Title({ children }: { children: React.ReactNode }) {
 
 export function TitleCard({ children }: { children: React.ReactNode }) {
   return (
-    <p className={`text-6xl text-secondary ${oneBrush.className}`}>
+    <p className={`text-6xl text-primary text-shadow-lg ${oneBrush.className}`}>
       {children}
     </p>
   );

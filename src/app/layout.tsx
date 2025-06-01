@@ -3,7 +3,6 @@ import "./globals.css";
 import Header from "@/components/ui/header";
 import Footer from "@/components/ui/footer";
 import { Geist, Geist_Mono } from "next/font/google";
-import { images } from "@/lib/images";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,8 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={` ${geistSans.variable} ${geistMono.variable} antialiased flex flex-col items-center w-full justify-between bg-center bg-cover bg-no-repeat bg-fixed`}
-        style={{ backgroundImage: `url(${images.backgroundMain})` }}
+        className={` ${geistSans.variable} ${geistMono.variable} antialiased grid min-h-dvh grid-rows-[auto_1fr_auto] w-full `}
       >
         <Header />
         <div className=" w-full">{children}</div>

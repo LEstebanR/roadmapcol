@@ -9,77 +9,77 @@ import {
   CarouselPrevious,
   type CarouselApi,
 } from "@/components/ui/carousel";
-import { Card, CardContent } from "@/components/ui/card";
-import { CarouselPagination } from "./carousel-pagination";
-import Autoplay from "embla-carousel-autoplay";
+import { LANDING_LINKS } from "@/lib/data";
+import { Card, CardContent, CardHeader } from "./card";
+import { Badge } from "./badge";
 import { TitleCard } from "@/components/ui/typography/typography";
-
-const ITEMS = [
-  {
-    title: "About us",
-    description:
-      "Your local friend in Colombia 🇨🇴\n\nwe don’t just take travelers from place to place… we guide them toward unforgettable experiences",
-    image: "/tourism.avif",
-  },
-  {
-    title: "Promociones",
-    description: "Promociones",
-    image: "/landscape.png",
-  },
-  {
-    title: "Recomendaciones",
-    description: "Recomendaciones",
-    image: "/landscape.png",
-  },
-];
+import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
+import Autoplay from "embla-carousel-autoplay";
 
 export function CarouselHome() {
+  const router = useRouter();
   const [api, setApi] = React.useState<CarouselApi>();
-  const [current, setCurrent] = React.useState(0);
-  const [count, setCount] = React.useState(0);
+  const autoplay = React.useRef(
+    Autoplay({
+      delay: 4000,
+      stopOnInteraction: false,
+    })
+  );
 
-  React.useEffect(() => {
-    if (!api) {
-      return;
-    }
+  const handlePrevious = () => {
+    api?.scrollPrev();
+    autoplay.current?.reset();
+  };
 
-    setCount(api.scrollSnapList().length);
-    setCurrent(api.selectedScrollSnap());
-
-    api.on("select", () => {
-      setCurrent(api.selectedScrollSnap());
-    });
-  }, [api]);
+  const handleNext = () => {
+    api?.scrollNext();
+    autoplay.current?.reset();
+  };
 
   return (
-    <div className="mx-auto w-10/12 md:max-w-[1200px] px-4 ">
-      <Carousel
-        setApi={setApi}
-        className="w-full"
-        plugins={[
-          Autoplay({
-            delay: 2000,
-          }),
-        ]}
-      >
-        <CarouselContent>
-          {ITEMS.map((item, index) => (
-            <CarouselItem key={index}>
-              <Card className="overflow-hidden h-[500px] md:h-[600px] w-full py-0 bg-[url('/tourism.avif')] bg-cover bg-center bg-no-repeat bg-fixed">
-                <CardContent className="relative h-full p-0">
-                  <div className="relative z-10 flex flex-col items-start justify-end text-white h-full p-6 ">
-                    <TitleCard>{item.title}</TitleCard>
-                    <p className="text-xl max-w-xl ">{item.description}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-        <CarouselPrevious className="hidden md:block" />
-        <CarouselNext className="hidden md:block" />
-      </Carousel>
-      <CarouselPagination currentSlide={current} totalSlides={count} />
-    </div>
+    <Carousel
+      setApi={setApi}
+      opts={{
+        align: "start",
+        loop: true,
+      }}
+      plugins={[autoplay.current]}
+      className="w-screen flex flex-col items-center justify-center h-[calc(100vh-3.5rem)] mt-14"
+    >
+      <CarouselContent className="w-screen">
+        {LANDING_LINKS.map((item, index) => (
+          <CarouselItem
+            key={index}
+            className="w-full h-[calc(100vh-3.5rem)] bg-cover bg-center bg-no-repeat flex items-center justify-center"
+            style={{ backgroundImage: `url(${item.image})` }}
+          >
+            <Card className="border bg-white/80 w-10/12 md:w-xl">
+              <CardHeader className="flex flex-col items-center justify-center">
+                <Badge className={`${item.chipColor} mx-auto text-black`}>
+                  {item.chipIcon}
+                  {item.chip}
+                </Badge>
+                <TitleCard>{item.title}</TitleCard>
+                <p className="font-bold text-xl text-center">{item.subtitle}</p>
+              </CardHeader>
+              <CardContent className="flex flex-col items-center justify-center gap-4">
+                <p className="text-center">{item.description}</p>
+                <Button
+                  className="mx-auto w-full"
+                  onClick={() => {
+                    router.push(item.href);
+                  }}
+                >
+                  {item.button}
+                </Button>
+              </CardContent>
+            </Card>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      <CarouselPrevious className="absolute left-2" onClick={handlePrevious} />
+      <CarouselNext className="absolute right-2" onClick={handleNext} />
+    </Carousel>
   );
 }

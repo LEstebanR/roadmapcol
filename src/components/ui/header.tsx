@@ -6,69 +6,73 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { MenuIcon } from "lucide-react";
+import { MessageCircle, MenuIcon } from "lucide-react";
 import { useState } from "react";
+import { HEADER_LINKS } from "@/lib/data";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 import { images } from "@/lib/images";
 
 export default function Header() {
-  const [open, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
+  const handleOpen = () => {
+    setIsOpen(!isOpen);
+  };
   return (
-    <header className="w-full gap-12 justify-center items-center  p-4 h-16 mx-auto">
-      <div className="flex gap-2 justify-between w-full items-center md:w-1/2 mx-auto">
-        <Image src={images.logo} alt="logo" width={75} height={75} />
-        <div className="gap-2 hidden md:flex">
-          <Link
-            href="/"
-            className="hover:text-primary transition-colors duration-300"
-          >
-            Inicio
-          </Link>
-          <div className="bg-primary mx-2 h-[30px] w-[0.5px] rotate-[20deg]"></div>
-          <Link
-            href="/tours"
-            className="hover:text-primary transition-colors duration-300"
-          >
-            Tours
-          </Link>
-          <div className="bg-primary mx-2 h-[30px] w-[0.5px] rotate-[20deg]"></div>
-          <Link
-            href="/personaliza-experiencia"
-            className="hover:text-primary transition-colors duration-300"
-          >
-            Personaliza experiencia
-          </Link>
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm mx-auto flex justify-center">
+      <nav className="container flex h-14 items-center justify-between px-4 md:px-8  ">
+        <Link href="/">
+          <Image src={images.logo} alt="logo" width={60} height={60} />
+        </Link>
+        <div className="flex gap-6 hidden md:flex">
+          {HEADER_LINKS.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={cn(
+                "text-sm font-medium hover:underline hover:text-primary transition-all duration-300",
+                pathname === link.href &&
+                  "text-primary underline underline-offset-4"
+              )}
+            >
+              {link.label}
+            </Link>
+          ))}
         </div>
-        <div className="md:hidden">
-          <DropdownMenu open={open} onOpenChange={setOpen}>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon">
-                <MenuIcon className="text-primary" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56 bg-white mr-2">
-              <DropdownMenuItem onClick={() => setOpen(false)}>
-                <Link href="/" className="w-full">
-                  Inicio
-                </Link>
+        <Button className="hidden md:inline-flex items-center gap-2 bg-green-300 text-black hover:bg-green-400">
+          <MessageCircle className="w-4 h-4" />
+          Contáctanos
+        </Button>
+        <DropdownMenu open={isOpen} onOpenChange={handleOpen}>
+          <DropdownMenuTrigger asChild>
+            <MenuIcon className="md:hidden" />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            {HEADER_LINKS.map((link) => (
+              <DropdownMenuItem
+                key={link.href}
+                onClick={() => setIsOpen(false)}
+              >
+                <Link href={link.href}>{link.label}</Link>
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setOpen(false)}>
-                <Link href="/tours" className="w-full ">
-                  Tours
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setOpen(false)}>
-                <Link href="/personaliza-experiencia" className="w-full">
-                  Personaliza experiencia
-                </Link>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
-      </div>
+            ))}
+            <DropdownMenuSeparator />
+            <DropdownMenuItem
+              onClick={() => setIsOpen(false)}
+              className="cursor-pointer"
+            >
+              <MessageCircle className="w-4 h-4" />
+              Contáctanos
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </nav>
     </header>
   );
 }
