@@ -101,16 +101,16 @@ export default function PersonalizaExperiencia() {
 
   useEffect(() => {
     setMessage(`Hola, quiero más información sobre un tour personalizado, estos son mis datos:
-      Nombre: ${data.name}
-      Email: ${data.email}
-      Teléfono: ${data.phone}
-      Destino: ${data.destination}
-      Número de personas: ${data.people}
-      Fecha de inicio: ${data.startDate}
-      Fecha de regreso: ${data.endDate}
-      Presupuesto: ${data.budget}
-      Tipo de alojamiento: ${data.accommodation}
-      Comentarios: ${data.comments}
+      Nombre: ${data?.name}
+      Email: ${data?.email}
+      Teléfono: ${data?.phone}
+      Destino: ${data?.destination}
+      Número de personas: ${data?.people}
+      Fecha de inicio: ${data?.startDate}
+      Fecha de regreso: ${data?.endDate}
+      Presupuesto: ${data?.budget}
+      Tipo de alojamiento: ${data?.accommodation}
+      Comentarios: ${data?.comments}
       Actividades: ${selectedActivities.join(", ")}
       `);
   }, [data, selectedActivities]);
@@ -123,7 +123,7 @@ export default function PersonalizaExperiencia() {
         diseñaremos un itinerario a tu medida.{" "}
       </p>
       <Card className="p-4 w-full">
-        <form className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4">
           <h2 className="text-lg font-bold">Información personal</h2>
           <div className="grid md:grid-cols-2 gap-4">
             <div className="flex flex-col gap-2">
@@ -215,12 +215,13 @@ export default function PersonalizaExperiencia() {
           </div>
           <Label>Comentarios adicionales</Label>
           <Textarea placeholder="Ingresa tus comentarios adicionales" value={data.comments} onChange={(e) => setData({ ...data, comments: e.target.value })} />
-          <Button className="w-full">
-            <Link href={`https://wa.me/${CONTACT.phone}?text=${encodeURIComponent(message)}`} target="_blank">
+          
+          <Link href={`https://wa.me/${CONTACT.phone}?text=${encodeURIComponent(message)}`} target="_blank">
+            <Button className="w-full">
               Enviar solicitud
-            </Link>
-          </Button>
-        </form>
+            </Button>
+          </Link>
+        </div>
       </Card>
     </section>
   );
