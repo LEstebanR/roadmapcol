@@ -2,9 +2,6 @@ import { images } from "@/lib/images";
 import Image from "next/image";
 import {
   Heart,
-  InstagramIcon,
-  FacebookIcon,
-  XIcon,
   MailIcon,
   PhoneIcon,
 } from "lucide-react";

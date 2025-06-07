@@ -4,7 +4,7 @@ import { useParams } from "next/navigation";
 import { CONTACT, TOURS } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { ArrowLeft, Clock, MapPin, Check, MessageCircle } from "lucide-react";
+import { ArrowLeft, Clock, MapPin, Check } from "lucide-react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import Image from "next/image";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -18,6 +18,25 @@ export default function TourPage() {
   const [selectedActivities, setSelectedActivities] = useState<string[]>([]);
   const [message, setMessage] = useState<string>("");
 
+  const getSelectedActivityPrice = (activityTitle: string) => {
+    return (
+      tour?.activities.find((activity) => activity.title === activityTitle)
+        ?.price || 0
+    );
+  };
+
+  const totalPrice =
+    (tour?.price || 0) +
+    selectedActivities.reduce(
+      (acc, title) => acc + getSelectedActivityPrice(title),
+      0
+    );
+
+  useEffect(() => {
+    if (tour) {
+      setMessage(`Hola, me gustaría obtener más información sobre el tour ${tour.title}${selectedActivities.length > 0 ? `, con las actividades: ${selectedActivities.join(", ")}` : ""}. Con un valor aproximado de ${totalPrice}`);
+    }
+  }, [tour, selectedActivities, totalPrice]);
 
   if (!tour) {
     return (
@@ -39,25 +58,6 @@ export default function TourPage() {
       return [...prev, activityTitle];
     });
   };
-
-  const getSelectedActivityPrice = (activityTitle: string) => {
-    return (
-      tour.activities.find((activity) => activity.title === activityTitle)
-        ?.price || 0
-    );
-  };
-
-  const totalPrice =
-    tour.price +
-    selectedActivities.reduce(
-      (acc, title) => acc + getSelectedActivityPrice(title),
-      0
-    );
-
-    useEffect(() => {
-      setMessage(`Hola, me gustaría obtener más información sobre el tour ${tour?.title}${selectedActivities.length > 0 ? `, con las actividades: ${selectedActivities.join(", ")}` : ""}. Con un valor aproximado de ${totalPrice}`);
-    }, [tour, selectedActivities, totalPrice]);
-   
 
   return (
     <div className="my-14 flex flex-col items-center justify-center gap-12 md:w-6/12 mx-auto">

@@ -146,7 +146,11 @@ export default function PersonalizaExperiencia() {
             </div>
             <div className="flex flex-col gap-2">
               <Label>Número de personas</Label>
-              <Input type="number" value={data.people} onChange={(e) => setData({ ...data, people: e.target.value })} />
+              <Input 
+                type="number" 
+                value={data.people} 
+                onChange={(e) => setData({ ...data, people: Number(e.target.value) })} 
+              />
             </div>
           </div>
           <div className="grid md:grid-cols-2 gap-4">

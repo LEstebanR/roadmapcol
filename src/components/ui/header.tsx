@@ -10,7 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { MessageCircle, MenuIcon } from "lucide-react";
+import {  MenuIcon } from "lucide-react";
 import { useState } from "react";
 import { CONTACT, HEADER_LINKS } from "@/lib/data";
 import { usePathname } from "next/navigation";
