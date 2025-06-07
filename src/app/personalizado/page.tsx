@@ -23,9 +23,11 @@ import {
   Sparkles,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { CONTACT } from "@/lib/data";
 
 const ACCOMMODATIONS = [
   {
@@ -64,6 +66,30 @@ const activities = [
 
 export default function PersonalizaExperiencia() {
   const [selectedActivities, setSelectedActivities] = useState<string[]>([]);
+  const [message, setMessage] = useState<string>("");
+  const [data, setData] = useState<{
+    name: string;
+    email: string;
+    phone: string;
+    destination: string;
+    startDate: string;
+    people: number;
+    endDate: string;
+    budget: number;
+    comments: string;
+    accommodation: string;
+  }>({
+    name: "",
+    email: "",
+    phone: "",
+    destination: "",
+    startDate: "",
+    people: 0,
+    endDate: "",
+    budget: 0,
+    comments: "",
+    accommodation: "",
+  });
 
   const toggleActivity = (activityId: string) => {
     setSelectedActivities((prev) =>
@@ -72,6 +98,22 @@ export default function PersonalizaExperiencia() {
         : [...prev, activityId]
     );
   };
+
+  useEffect(() => {
+    setMessage(`Hola, quiero más información sobre un tour personalizado, estos son mis datos:
+      Nombre: ${data.name}
+      Email: ${data.email}
+      Teléfono: ${data.phone}
+      Destino: ${data.destination}
+      Número de personas: ${data.people}
+      Fecha de inicio: ${data.startDate}
+      Fecha de regreso: ${data.endDate}
+      Presupuesto: ${data.budget}
+      Tipo de alojamiento: ${data.accommodation}
+      Comentarios: ${data.comments}
+      Actividades: ${selectedActivities.join(", ")}
+      `);
+  }, [data, selectedActivities]);
 
   return (
     <section className="my-14 flex flex-col gap-4 items-center justify-center md:w-6/12 w-11/12 mx-auto">
@@ -86,41 +128,48 @@ export default function PersonalizaExperiencia() {
           <div className="grid md:grid-cols-2 gap-4">
             <div className="flex flex-col gap-2">
               <Label>Nombre</Label>
-              <Input placeholder="Ingresa tu nombre" />
+              <Input placeholder="Ingresa tu nombre" value={data.name} onChange={(e) => setData({ ...data, name: e.target.value })} />
             </div>
             <div className="flex flex-col gap-2">
               <Label>Email</Label>
-              <Input placeholder="tu@email.com" />
+              <Input placeholder="tu@email.com" value={data.email} onChange={(e) => setData({ ...data, email: e.target.value })} />
             </div>
           </div>
           <Label>Teléfono</Label>
-          <Input placeholder="Ingresa tu teléfono" />
+          <Input placeholder="Ingresa tu teléfono" value={data.phone} onChange={(e) => setData({ ...data, phone: e.target.value })} />
           <hr className="my-4" />
           <h2 className="text-lg font-bold">Detalles del viaje</h2>
           <div className="grid md:grid-cols-2 gap-4">
             <div className="flex flex-col gap-2">
               <Label>Destino principal</Label>
-              <Input placeholder="Ciudad o lugar" />
+              <Input placeholder="Ciudad o lugar" value={data.destination} onChange={(e) => setData({ ...data, destination: e.target.value })} />
             </div>
             <div className="flex flex-col gap-2">
               <Label>Número de personas</Label>
-              <Input type="number" />
+              <Input type="number" value={data.people} onChange={(e) => setData({ ...data, people: e.target.value })} />
             </div>
           </div>
           <div className="grid md:grid-cols-2 gap-4">
             <div className="flex flex-col gap-2">
               <Label>Fecha de inicio</Label>
-              <Input type="date" />
+              <Input type="date" value={data.startDate} onChange={(e) => setData({ ...data, startDate: e.target.value })} />
             </div>
             <div className="flex flex-col gap-2">
               <Label>Fecha de regreso</Label>
-              <Input type="date" />
+              <Input type="date" value={data.endDate} onChange={(e) => setData({ ...data, endDate: e.target.value })} />
             </div>
           </div>
           <Label>Presupuesto aproximado</Label>
-          <Input type="number" />
+          <Input 
+            type="number" 
+            value={data.budget} 
+            onChange={(e) => setData({ ...data, budget: Number(e.target.value) })} 
+          />
           <Label>¿Qué tipo de alojamiento preferido?</Label>
-          <Select>
+          <Select 
+            value={data.accommodation} 
+            onValueChange={(value) => setData({ ...data, accommodation: value })}
+          >
             <SelectTrigger>
               <SelectValue placeholder="Selecciona una opción" />
             </SelectTrigger>
@@ -161,8 +210,12 @@ export default function PersonalizaExperiencia() {
             })}
           </div>
           <Label>Comentarios adicionales</Label>
-          <Textarea placeholder="Ingresa tus comentarios adicionales" />
-          <Button className="w-full">Enviar solicitud</Button>
+          <Textarea placeholder="Ingresa tus comentarios adicionales" value={data.comments} onChange={(e) => setData({ ...data, comments: e.target.value })} />
+          <Button className="w-full">
+            <Link href={`https://wa.me/${CONTACT.phone}?text=${encodeURIComponent(message)}`} target="_blank">
+              Enviar solicitud
+            </Link>
+          </Button>
         </form>
       </Card>
     </section>

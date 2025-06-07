@@ -8,7 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Title } from "@/components/ui/typography/typography";
-import { ACCOMMODATIONS } from "@/lib/data";
+import { ACCOMMODATIONS, CONTACT } from "@/lib/data";
 import { MapPin, Check } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -60,7 +60,7 @@ export default function LeasePage() {
             </CardContent>
             <CardFooter className="flex justify-between">
               <p className="text-lg font-bold">Desde ${accommodation.price}</p>
-              <Link href={accommodation.href}>
+              <Link href={`https://wa.me/${CONTACT.phone}?text=${encodeURIComponent(`Hola, me gustaría obtener más información sobre el alojamiento ${accommodation.title} en ${accommodation.place}`)}`} target="_blank">
                 <Button>Reservar</Button>
               </Link>
             </CardFooter>

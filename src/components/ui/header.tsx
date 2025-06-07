@@ -12,7 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { MessageCircle, MenuIcon } from "lucide-react";
 import { useState } from "react";
-import { HEADER_LINKS } from "@/lib/data";
+import { CONTACT, HEADER_LINKS } from "@/lib/data";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { images } from "@/lib/images";
@@ -45,10 +45,21 @@ export default function Header() {
             </Link>
           ))}
         </div>
+        <Link
+            href={`https://wa.me/${CONTACT.phone}?text=${encodeURIComponent('Hola, vengo de roadmapcol.com y me gustaría obtener más información.')}`}
+            target="_blank"
+          
+          >
         <Button className="hidden md:inline-flex items-center gap-2 bg-green-300 text-black hover:bg-green-400">
-          <MessageCircle className="w-4 h-4" />
-          Contáctanos
-        </Button>
+          <Image
+            src={images.whatsapp}
+            alt="whatsapp"
+            width={20}
+            height={20}
+          />
+            Contáctanos
+          </Button>
+        </Link>
         <DropdownMenu open={isOpen} onOpenChange={handleOpen}>
           <DropdownMenuTrigger asChild>
             <MenuIcon className="md:hidden" />
@@ -73,8 +84,19 @@ export default function Header() {
               onClick={() => setIsOpen(false)}
               className="cursor-pointer"
             >
-              <MessageCircle className="w-4 h-4" />
-              Contáctanos
+              <Link
+                href={`https://wa.me/${CONTACT.phone}?text=${encodeURIComponent('Hola, vengo de roadmapcol.com y me gustaría obtener más información.')}`}
+                target="_blank"
+                className="flex items-center gap-2 text-sm font-medium hover:underline hover:text-primary transition-all duration-300"
+              >
+                <Image
+                  src={images.whatsapp}
+                  alt="whatsapp"
+                  width={20}
+                  height={20}
+                />
+                Contáctanos
+              </Link>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

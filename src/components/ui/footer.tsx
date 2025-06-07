@@ -9,6 +9,7 @@ import {
   PhoneIcon,
 } from "lucide-react";
 import Link from "next/link";
+import { CONTACT } from "@/lib/data";
 
 export default function Footer() {
   return (
@@ -61,20 +62,20 @@ export default function Footer() {
 
           <div className="flex flex-col gap-4 ">
             <p className="text-white text-2xl font-bold">Contacto</p>
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-2">
               <Link
                 href="mailto:info@roadmapcol.com"
                 className="text-slate-300 hover:text-white transition-all duration-300 hover:underline underline-offset-4 flex items-center gap-2"
               >
                 <MailIcon />
-                info@roadmapcol.com
+                {CONTACT.email}
               </Link>
               <Link
                 href="tel:+573178252525"
                 className="text-slate-300 hover:text-white transition-all duration-300 hover:underline underline-offset-4 flex items-center gap-2"
               >
                 <PhoneIcon />
-                +57 317 825 2525
+                {CONTACT.phone}
               </Link>
               <div className="flex gap-4 text-white">
                 <Link
@@ -82,32 +83,23 @@ export default function Footer() {
                   target="_blank"
                   className="cursor-pointer"
                 >
-                  <InstagramIcon />
+                  <Image
+                    src={images.instagram}
+                    alt="instagram"
+                    width={30}
+                    height={30}
+                  />
                 </Link>
                 <Link
-                  href="https://www.facebook.com/roadmapcol/"
-                  target="_blank"
-                  className="cursor-pointer"
-                >
-                  <FacebookIcon />
-                </Link>
-                <Link
-                  href="https://x.com/roadmapcol"
-                  target="_blank"
-                  className="cursor-pointer"
-                >
-                  <XIcon />
-                </Link>
-                <Link
-                  href="https://www.youtube.com/@roadmapcol"
+                  href={CONTACT.tiktok}
                   target="_blank"
                   className="cursor-pointer"
                 >
                   <Image
-                    src="/tiktok-icon.svg"
-                    alt="youtube"
-                    width={20}
-                    height={20}
+                    src={images.tiktok}
+                    alt="tiktok"
+                    width={25}
+                    height={25}
                   />
                 </Link>
               </div>
