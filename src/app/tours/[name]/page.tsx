@@ -163,7 +163,7 @@ export default function TourPage() {
             <div className="flex justify-between items-center">
               <p className="text-muted-foreground">Precio base:</p>
               <p className="text-lg font-bold">
-                ${Number(tour.price).toLocaleString()}
+                ${Number(tour.price).toLocaleString()} / persona
               </p>
             </div>
             {selectedActivities.length > 0 && (

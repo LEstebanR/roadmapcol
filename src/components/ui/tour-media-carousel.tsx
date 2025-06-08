@@ -56,7 +56,6 @@ export function TourMediaCarousel({ items, className }: TourMediaCarouselProps) 
                   poster={item.thumbnail}
                   controls
                   autoPlay
-                  muted
                   loop
                   className="w-full h-[400px] object-cover"
                 >
