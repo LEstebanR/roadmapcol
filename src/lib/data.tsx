@@ -80,6 +80,17 @@ export const LANDING_LINKS = [
     button: "See tour",
   },
   {
+    chip: "Tour",
+    chipIcon: <MapPin />,
+    chipColor: "bg-orange-200",
+    title: "City tour - Comuna 13",
+    subtitle: "City tour",
+    description: "Get to know the most representative places of the city of medellin, learn about its culture, gastronomy and history in a tour designed for you to live the city like a local.",
+    image: "https://res.cloudinary.com/lesteban/image/upload/v1749422811/roadmapcol/comuna13/IMG_2476_xoptdu.webp",
+    href: "/tours/comuna13",
+    button: "See tour",
+  },
+  {
     chip: "Info",
     chipIcon: <Info />,
     chipColor: "bg-blue-200",
