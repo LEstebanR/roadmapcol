@@ -67,13 +67,13 @@ export const LANDING_LINKS = [
     chip: "Tour",
     chipIcon: <MapPin />,
     chipColor: "bg-orange-200",
-    title: "Eje cafetero",
-    subtitle: "Montañas y café",
+    title: "El salto del Buey - Canopy",
+    subtitle: "Montañas y aventura",
     description:
-      "Descubre la magia del Eje Cafetero, una región llena de montañas y café. Disfruta de la naturaleza y la cultura colombiana.",
+      "Descubre la magia de la montaña de Antioquia, una región llena de montañas y aventura. Disfruta de la naturaleza y la cultura colombiana.",
     image:
-      "https://res.cloudinary.com/lesteban/image/upload/v1748743427/roadmap/ejecafetero_rjzbse.avif",
-    href: "/tours/eje-cafetero",
+      "https://res.cloudinary.com/lesteban/image/upload/v1749350820/roadmapcol/saltodelbuey/DJI_20241127_125105_379_i0fqid.jpg",
+    href: "/tours/salto-del-buey",
     button: "Ver tour",
   },
   {
@@ -300,6 +300,7 @@ export const ACCOMMODATIONS = [
     ],
   },
 ];
+
 export const CONTACT = {
   phone: "+573127064293",
   instagram: "https://www.instagram.com/roadmapcol/",
