@@ -57,6 +57,7 @@ export function TourMediaCarousel({ items, className }: TourMediaCarouselProps) 
                   controls
                   autoPlay
                   loop
+                  playsInline
                   className="w-full h-[400px] object-cover"
                 >
                   <source src={item.url} type="video/mp4" />
