@@ -46,7 +46,7 @@ export default function Header() {
           ))}
         </div>
         <Link
-            href={`https://wa.me/${CONTACT.phone}?text=${encodeURIComponent('Hola, vengo de roadmapcol.com y me gustaría obtener más información.')}`}
+            href={`https://wa.me/${CONTACT.phone}?text=${encodeURIComponent('Hello, I am from roadmapcol.com and I would like to get more information.')}`}
             target="_blank"
           
           >
@@ -57,7 +57,7 @@ export default function Header() {
             width={20}
             height={20}
           />
-            Contáctanos
+            Contact us
           </Button>
         </Link>
         <DropdownMenu open={isOpen} onOpenChange={handleOpen}>
@@ -95,7 +95,7 @@ export default function Header() {
                   width={20}
                   height={20}
                 />
-                Contáctanos
+                Contact us
               </Link>
             </DropdownMenuItem>
           </DropdownMenuContent>

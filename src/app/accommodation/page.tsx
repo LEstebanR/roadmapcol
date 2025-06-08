@@ -16,11 +16,9 @@ import Link from "next/link";
 export default function LeasePage() {
   return (
     <div className="my-14 flex flex-col justify-center items-center mx-auto md:w-6/12 w-11/12">
-      <Title>Alojamientos </Title>
+      <Title>Accommodation </Title>
       <p className="text-muted-foreground text-center">
-        Descubre nuestra selección de alojamientos únicos en los destinos más
-        hermosos de Colombia, desde casas coloniales hasta ecolodges en la
-        selva.{" "}
+        Discover our selection of unique accommodations in the most beautiful destinations in Colombia, from colonial houses to ecolodges in the jungle.{" "}
       </p>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full mt-10">
         {ACCOMMODATIONS.map((accommodation, index) => (
@@ -47,7 +45,7 @@ export default function LeasePage() {
               </div>
               <CardDescription className="flex flex-col gap-2 text-black">
                 <p>{accommodation.description}</p>
-                <p className="font-bold text-lg">Características:</p>
+                  <p className="font-bold text-lg">Highlights:</p>
                 <ul>
                   {accommodation.highlights.map((highlight) => (
                     <li key={highlight} className="flex items-center gap-2">
@@ -59,9 +57,9 @@ export default function LeasePage() {
               </CardDescription>
             </CardContent>
             <CardFooter className="flex justify-between">
-              <p className="text-lg font-bold">Desde ${accommodation.price}</p>
-              <Link href={`https://wa.me/${CONTACT.phone}?text=${encodeURIComponent(`Hola, me gustaría obtener más información sobre el alojamiento ${accommodation.title} en ${accommodation.place}`)}`} target="_blank">
-                <Button>Reservar</Button>
+              <p className="text-lg font-bold">From ${accommodation.price}</p>
+              <Link href={`https://wa.me/${CONTACT.phone}?text=${encodeURIComponent(`Hello, I would like to get more information about the accommodation ${accommodation.title} in ${accommodation.place}`)}`} target="_blank">
+                <Button>Reserve</Button>
               </Link>
             </CardFooter>
           </Card>

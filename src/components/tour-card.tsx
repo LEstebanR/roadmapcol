@@ -45,7 +45,7 @@ export function TourCard({
           </div>
           <Button className="bg-secondary text-black" asChild>
             <Link href={tour.href}>
-              Ver detalles
+              See details
               <ArrowRight className="w-4 h-4 hover:rotate-45 transition-all duration-300" />
             </Link>
           </Button>

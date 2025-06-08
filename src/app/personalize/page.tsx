@@ -53,15 +53,15 @@ const ACCOMMODATIONS = [
 ];
 
 const activities = [
-  { id: "aventura", label: "Aventura", icon: Mountain },
-  { id: "cultura", label: "Cultura", icon: Landmark },
-  { id: "naturaleza", label: "Naturaleza", icon: Trees },
-  { id: "gastronomia", label: "Gastronomía", icon: Utensils },
-  { id: "playa", label: "Playa", icon: Waves },
-  { id: "historia", label: "Historia", icon: History },
-  { id: "fotografia", label: "Fotografía", icon: Camera },
-  { id: "fauna", label: "Fauna y Flora", icon: Leaf },
-  { id: "relajacion", label: "Relajación", icon: Sparkles },
+  { id: "aventura", label: "Adventure", icon: Mountain },
+  { id: "cultura", label: "Culture", icon: Landmark },
+  { id: "naturaleza", label: "Nature", icon: Trees },
+  { id: "gastronomia", label: "Gastronomy", icon: Utensils },
+  { id: "playa", label: "Beach", icon: Waves },
+  { id: "historia", label: "History", icon: History },
+  { id: "fotografia", label: "Photography", icon: Camera },
+  { id: "fauna", label: "Fauna and Flora", icon: Leaf },
+  { id: "relajacion", label: "Relaxation", icon: Sparkles },
 ];
 
 export default function PersonalizaExperiencia() {
@@ -100,31 +100,30 @@ export default function PersonalizaExperiencia() {
   };
 
   useEffect(() => {
-    setMessage(`Hola, quiero más información sobre un tour personalizado, estos son mis datos:
-      Nombre: ${data?.name}
+    setMessage(`Hello, I want more information about a personalized tour, these are my data:
+      Name: ${data?.name}
       Email: ${data?.email}
-      Teléfono: ${data?.phone}
-      Destino: ${data?.destination}
-      Número de personas: ${data?.people}
-      Fecha de inicio: ${data?.startDate}
-      Fecha de regreso: ${data?.endDate}
-      Presupuesto: ${data?.budget}
-      Tipo de alojamiento: ${data?.accommodation}
-      Comentarios: ${data?.comments}
-      Actividades: ${selectedActivities.join(", ")}
+      Phone: ${data?.phone}
+      Destination: ${data?.destination}
+      Number of people: ${data?.people}
+      Start date: ${data?.startDate}
+      End date: ${data?.endDate}
+      Budget: ${data?.budget}
+      Accommodation: ${data?.accommodation}
+      Comments: ${data?.comments}
+      Activities: ${selectedActivities.join(", ")}
       `);
   }, [data, selectedActivities]);
 
   return (
     <section className="my-14 flex flex-col gap-4 items-center justify-center md:w-6/12 w-11/12 mx-auto">
-      <Title>Tour personalizado</Title>
+      <Title>Personalized tour</Title>
       <p className="text-muted-foreground">
-        ¿No encuentras lo que buscas? Cuéntanos qué tipo de experiencia deseas y
-        diseñaremos un itinerario a tu medida.{" "}
+        Don't find what you're looking for? Tell us what type of experience you want and we will design a itinerary to your measure.{" "}
       </p>
       <Card className="p-4 w-full">
         <div className="flex flex-col gap-4">
-          <h2 className="text-lg font-bold">Información personal</h2>
+          <h2 className="text-lg font-bold">Personal information</h2>
           <div className="grid md:grid-cols-2 gap-4">
             <div className="flex flex-col gap-2">
               <Label>Nombre</Label>
@@ -135,17 +134,17 @@ export default function PersonalizaExperiencia() {
               <Input placeholder="tu@email.com" value={data.email} onChange={(e) => setData({ ...data, email: e.target.value })} />
             </div>
           </div>
-          <Label>Teléfono</Label>
-          <Input placeholder="Ingresa tu teléfono" value={data.phone} onChange={(e) => setData({ ...data, phone: e.target.value })} />
+          <Label>Phone</Label>
+          <Input placeholder="Enter your phone" value={data.phone} onChange={(e) => setData({ ...data, phone: e.target.value })} />
           <hr className="my-4" />
-          <h2 className="text-lg font-bold">Detalles del viaje</h2>
+          <h2 className="text-lg font-bold">Trip details</h2>
           <div className="grid md:grid-cols-2 gap-4">
             <div className="flex flex-col gap-2">
-              <Label>Destino principal</Label>
-              <Input placeholder="Ciudad o lugar" value={data.destination} onChange={(e) => setData({ ...data, destination: e.target.value })} />
+              <Label>Main destination</Label>
+              <Input placeholder="City or place" value={data.destination} onChange={(e) => setData({ ...data, destination: e.target.value })} />
             </div>
             <div className="flex flex-col gap-2">
-              <Label>Número de personas</Label>
+              <Label>Number of people</Label>
               <Input 
                 type="number" 
                 value={data.people} 
@@ -155,27 +154,27 @@ export default function PersonalizaExperiencia() {
           </div>
           <div className="grid md:grid-cols-2 gap-4">
             <div className="flex flex-col gap-2">
-              <Label>Fecha de inicio</Label>
+              <Label>Start date</Label>
               <Input type="date" value={data.startDate} onChange={(e) => setData({ ...data, startDate: e.target.value })} />
             </div>
             <div className="flex flex-col gap-2">
-              <Label>Fecha de regreso</Label>
+              <Label>End date</Label>
               <Input type="date" value={data.endDate} onChange={(e) => setData({ ...data, endDate: e.target.value })} />
             </div>
           </div>
-          <Label>Presupuesto aproximado</Label>
+          <Label>Approximate budget</Label>
           <Input 
             type="number" 
             value={data.budget} 
             onChange={(e) => setData({ ...data, budget: Number(e.target.value) })} 
           />
-          <Label>¿Qué tipo de alojamiento preferido?</Label>
+          <Label>What type of accommodation do you prefer?</Label>
           <Select 
             value={data.accommodation} 
             onValueChange={(value) => setData({ ...data, accommodation: value })}
           >
             <SelectTrigger>
-              <SelectValue placeholder="Selecciona una opción" />
+              <SelectValue placeholder="Select an option" />
             </SelectTrigger>
             <SelectContent>
               {ACCOMMODATIONS.map((accommodation) => (
@@ -188,7 +187,7 @@ export default function PersonalizaExperiencia() {
               ))}
             </SelectContent>
           </Select>
-          <Label>Intereses</Label>
+          <Label>Interests</Label>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 w-full mt-2">
             {activities.map((activity) => {
               const Icon = activity.icon;
@@ -213,12 +212,12 @@ export default function PersonalizaExperiencia() {
               );
             })}
           </div>
-          <Label>Comentarios adicionales</Label>
-          <Textarea placeholder="Ingresa tus comentarios adicionales" value={data.comments} onChange={(e) => setData({ ...data, comments: e.target.value })} />
+          <Label>Additional comments</Label>
+          <Textarea placeholder="Enter your additional comments" value={data.comments} onChange={(e) => setData({ ...data, comments: e.target.value })} />
           
           <Link href={`https://wa.me/${CONTACT.phone}?text=${encodeURIComponent(message)}`} target="_blank">
             <Button className="w-full">
-              Enviar solicitud
+              Send request
             </Button>
           </Link>
         </div>

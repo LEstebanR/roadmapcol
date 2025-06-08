@@ -22,18 +22,17 @@ export default function Footer() {
               className="rounded-sm"
             />
             <p className="text-slate-300">
-              Descubre la magia de Colombia con nuestras experiencias únicas y
-              personalizadas.{" "}
+              Discover the magic of Colombia with our unique and personalized experiences.{" "}
             </p>
           </div>
           <div className="flex flex-col gap-4">
-            <p className="text-white text-2xl font-bold">Enlaces</p>
+            <p className="text-white text-2xl font-bold">Links</p>
             <div className="flex flex-col gap-1">
               <Link
                 href="#services"
                 className="text-slate-300 hover:text-white transition-all duration-300 hover:underline underline-offset-4"
               >
-                Inicio
+                Home
               </Link>
 
               <Link
@@ -46,19 +45,19 @@ export default function Footer() {
                 href="#clients"
                 className="text-slate-300 hover:text-white transition-all duration-300 hover:underline underline-offset-4"
               >
-                Alojamiento
+                Accommodation
               </Link>
               <Link
                 href="#clients"
                 className="text-slate-300 hover:text-white transition-all duration-300 hover:underline underline-offset-4"
               >
-                Personaliza tu experiencia
+                Personalize your experience
               </Link>
             </div>
           </div>
 
           <div className="flex flex-col gap-4 ">
-            <p className="text-white text-2xl font-bold">Contacto</p>
+            <p className="text-white text-2xl font-bold">Contact us</p>
             <div className="flex flex-col gap-2">
               <Link
                 href="mailto:info@roadmapcol.com"
@@ -105,9 +104,9 @@ export default function Footer() {
         </div>
         <div className="z-10 flex flex-wrap items-center justify-center gap-x-1 gap-y-3 sm:gap-x-2 mt-14">
           <div className="flex items-center gap-x-1 text-xs sm:text-base">
-            <span className="text-slate-300">Hecho con</span>
+            <span className="text-slate-300">Made with</span>
             <Heart className="h-4 w-4 text-red-500" />
-            <span className="text-slate-300">por</span>
+            <span className="text-slate-300">by</span>
             <Link
               href="https://github.com/LEstebanR/lesteban"
               className="text-slate-300 hover:text-primary transition-all duration-300 hover:underline underline-offset-4"

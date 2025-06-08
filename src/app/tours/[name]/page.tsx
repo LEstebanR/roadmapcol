@@ -18,13 +18,12 @@ export default function TourPage() {
   const tour = TOURS.find((tour) => tour.href === `/tours/${name}`);
   const [selectedActivities, setSelectedActivities] = useState<string[]>([]);
   const [message, setMessage] = useState<string>("");
-
   const getSelectedActivityPrice = (activityTitle: string) => {
-    return (
-      tour?.activities.find((activity) => activity.title === activityTitle)
-        ?.price || 0
+    const activity = tour?.activities?.find(
+      (activity) => activity.title === activityTitle
     );
-  };
+    return activity?.price ?? 0;
+  }
 
   const totalPrice =
     (tour?.price || 0) +
@@ -35,17 +34,17 @@ export default function TourPage() {
 
   useEffect(() => {
     if (tour) {
-      setMessage(`Hola, me gustaría obtener más información sobre el tour ${tour.title}${selectedActivities.length > 0 ? `, con las actividades: ${selectedActivities.join(", ")}` : ""}. Con un valor aproximado de ${totalPrice}`);
+      setMessage(`Hello, I would like to get more information about the tour ${tour.title}${selectedActivities.length > 0 ? `, with the activities: ${selectedActivities.join(", ")}` : ""}. With an approximate value of ${totalPrice}`);
     }
   }, [tour, selectedActivities, totalPrice]);
 
   if (!tour) {
     return (
       <div className="my-14 flex flex-col items-center justify-center gap-12 md:w-6/12 mx-auto">
-        <h1 className="text-2xl font-bold">Tour no encontrado</h1>
+        <h1 className="text-2xl font-bold">Tour not found</h1>
         <Link href="/tours" className="flex items-center gap-2 text-sky-500">
           <ArrowLeft className="w-4 h-4" />
-          Volver a tours
+          Back to tours
         </Link>
       </div>
     );
@@ -67,7 +66,7 @@ export default function TourPage() {
         className="flex items-center gap-2 self-start text-sky-500"
       >
         <ArrowLeft className="w-4 h-4" />
-        Volver a tours
+        Back to tours
       </Link>
       <Card className="md:w-full w-11/12 pt-0 rounded-lg flex flex-col mx-auto border border-black">
         <CardHeader className="px-0 pt-0">
@@ -107,7 +106,7 @@ export default function TourPage() {
       
       {tour.activities.length > 0 && (
         <h2 className="text-2xl font-bold self-start ml-4">
-          Actividades disponibles:
+          Activities available:
         </h2>
       )}
       <div className="flex flex-col gap-4">
@@ -148,7 +147,7 @@ export default function TourPage() {
                     checked={selectedActivities.includes(activity.title)}
                     onCheckedChange={() => handleActivityToggle(activity.title)}
                   />
-                  <Label>Añadir a mi experiencia</Label>
+                  <Label>Add to my experience</Label>
                 </div>
               </div>
             </div>
@@ -158,7 +157,7 @@ export default function TourPage() {
       </div>
       <Card className="border border-black px-4 md:w-full w-11/12 mx-auto">
         <CardHeader>
-          <h2 className="text-2xl font-bold">Resumen de tu experiencia</h2>
+          <h2 className="text-2xl font-bold">Summary of your experience</h2>
           <div className="flex flex-col gap-4">
             <div className="flex justify-between items-center">
               <p className="text-muted-foreground">Precio base:</p>
@@ -169,7 +168,7 @@ export default function TourPage() {
             {selectedActivities.length > 0 && (
               <>
                 <div className="border-t pt-4">
-                  <p className="font-bold mb-2">Actividades seleccionadas:</p>
+                  <p className="font-bold mb-2">Selected activities:</p>
                   {selectedActivities.map((title) => (
                     <div
                       key={title}
@@ -208,7 +207,7 @@ export default function TourPage() {
               width={20}
               height={20}
             />
-            <p>Consultar por Whatsapp</p>
+            <p>Consult by Whatsapp</p>
           </Link>
         </Button>
       </Card>
