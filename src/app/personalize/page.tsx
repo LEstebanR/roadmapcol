@@ -119,7 +119,7 @@ export default function PersonalizaExperiencia() {
     <section className="my-14 flex flex-col gap-4 items-center justify-center md:w-6/12 w-11/12 mx-auto">
       <Title>Personalized tour</Title>
       <p className="text-muted-foreground">
-        Don't find what you're looking for? Tell us what type of experience you want and we will design a itinerary to your measure.{" "}
+        Don&apos;t find what you&apos;re looking for? Tell us what type of experience you want and we will design a itinerary to your measure.{" "}
       </p>
       <Card className="p-4 w-full">
         <div className="flex flex-col gap-4">
