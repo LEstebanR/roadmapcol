@@ -94,7 +94,7 @@ export const LANDING_LINKS = [
 export const TOURS = [
   {
     place: "La Ceja, Antioquia",
-    title: "El salto del Buey - Canopy (La Ceja, Antioquia)",
+    title: "El salto del Buey - Canopy",
     description:
       "Las montañas de Antioquia esconden paraísos y aventuras que no te puedes perder, visita con nosotros una de las cascadas mas hermosas e imponentes de nuestra región, vuela en el canopy mas alto de antioqua y si eres un poco mas aventurero atrévete a conquistar la montaña escalando a mas de 70 metros de altura ",
     image:

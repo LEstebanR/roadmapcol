@@ -21,12 +21,22 @@ export function TourMediaCarousel({ items, className }: TourMediaCarouselProps) 
   const [selectedIndex, setSelectedIndex] = React.useState(0)
   const [scrollSnaps, setScrollSnaps] = React.useState<number[]>([])
 
-  const scrollPrev = React.useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi])
-  const scrollNext = React.useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi])
+  const scrollPrev = React.useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev()
+  }, [emblaApi])
+
+  const scrollNext = React.useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext()
+  }, [emblaApi])
 
   const onSelect = React.useCallback(() => {
     if (!emblaApi) return
     setSelectedIndex(emblaApi.selectedScrollSnap())
+    // Pause all videos when changing slides
+    const videos = document.querySelectorAll('video')
+    videos.forEach(video => {
+      video.pause()
+    })
   }, [emblaApi])
 
   React.useEffect(() => {
@@ -34,6 +44,9 @@ export function TourMediaCarousel({ items, className }: TourMediaCarouselProps) 
     onSelect()
     setScrollSnaps(emblaApi.scrollSnapList())
     emblaApi.on('select', onSelect)
+    return () => {
+      emblaApi.off('select', onSelect)
+    }
   }, [emblaApi, onSelect])
 
   return (
