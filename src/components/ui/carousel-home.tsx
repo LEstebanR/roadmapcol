@@ -1,6 +1,6 @@
 "use client";
 
-import * as React from "react";
+import * as React from 'react'
 import {
   Carousel,
   CarouselContent,
@@ -8,40 +8,40 @@ import {
   CarouselNext,
   CarouselPrevious,
   type CarouselApi,
-} from "@/components/ui/carousel";
-import { LANDING_LINKS } from "@/lib/data";
-import { Card, CardContent, CardHeader } from "./card";
-import { Badge } from "./badge";
-import { TitleCard } from "@/components/ui/typography/typography";
-import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
-import Autoplay from "embla-carousel-autoplay";
+} from '@/components/ui/carousel'
+import { LANDING_LINKS } from '@/lib/data'
+import { Card, CardContent, CardHeader } from './card'
+import { Badge } from './badge'
+import { TitleCard } from '@/components/ui/typography/typography'
+import { Button } from '@/components/ui/button'
+import { useRouter } from 'next/navigation'
+import Autoplay from 'embla-carousel-autoplay'
 
 export function CarouselHome() {
-  const router = useRouter();
-  const [api, setApi] = React.useState<CarouselApi>();
+  const router = useRouter()
+  const [api, setApi] = React.useState<CarouselApi>()
   const autoplay = React.useRef(
     Autoplay({
       delay: 4000,
       stopOnInteraction: false,
     })
-  );
+  )
 
   const handlePrevious = () => {
-    api?.scrollPrev();
-    autoplay.current?.reset();
-  };
+    api?.scrollPrev()
+    autoplay.current?.reset()
+  }
 
   const handleNext = () => {
-    api?.scrollNext();
-    autoplay.current?.reset();
-  };
+    api?.scrollNext()
+    autoplay.current?.reset()
+  }
 
   return (
     <Carousel
       setApi={setApi}
       opts={{
-        align: "start",
+        align: 'start',
         loop: true,
       }}
       plugins={[autoplay.current]}
@@ -68,7 +68,7 @@ export function CarouselHome() {
                 <Button
                   className="mx-auto w-full"
                   onClick={() => {
-                    router.push(item.href);
+                    router.push(item.href)
                   }}
                 >
                   {item.button}
@@ -81,5 +81,5 @@ export function CarouselHome() {
       <CarouselPrevious className="absolute left-2" onClick={handlePrevious} />
       <CarouselNext className="absolute right-2" onClick={handleNext} />
     </Carousel>
-  );
+  )
 }

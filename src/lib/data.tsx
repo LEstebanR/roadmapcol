@@ -93,64 +93,86 @@ export const LANDING_LINKS = [
 
 export const TOURS = [
   {
-    place: "Eje cafetero",
-    title: "Ruta del Café",
-    duration: "5 días / 4 noches",
+    place: "La Ceja, Antioquia",
+    title: "El salto del Buey - Canopy (La Ceja, Antioquia)",
     description:
-      "Descubre la magia del Eje Cafetero, una región llena de montañas y café. Disfruta de la naturaleza y la cultura colombiana.",
+      "Las montañas de Antioquia esconden paraísos y aventuras que no te puedes perder, visita con nosotros una de las cascadas mas hermosas e imponentes de nuestra región, vuela en el canopy mas alto de antioqua y si eres un poco mas aventurero atrévete a conquistar la montaña escalando a mas de 70 metros de altura ",
     image:
-      "https://res.cloudinary.com/lesteban/image/upload/v1748743427/roadmap/ejecafetero_rjzbse.avif",
-    price: 1000000,
-    href: "/tours/eje-cafetero",
+      "https://res.cloudinary.com/lesteban/image/upload/v1749350820/roadmapcol/saltodelbuey/DJI_20241127_125105_379_i0fqid.jpg",
+    images: [
+      {
+        type: 'video' as const,
+        url: "https://res.cloudinary.com/lesteban/video/upload/v1749350202/roadmapcol/saltodelbuey/IMG_4317_xbgjie.mov",
+        alt: "Vista panorámica del Salto del Buey"
+      },
+      {
+        type: 'image' as const,
+        url: "https://res.cloudinary.com/lesteban/image/upload/v1749350820/roadmapcol/saltodelbuey/DJI_20241127_125105_379_i0fqid.jpg",
+        alt: "Vista panorámica del Salto del Buey"
+      },
+      {
+        type: 'video' as const,
+        url: "https://res.cloudinary.com/lesteban/video/upload/v1749350824/roadmapcol/saltodelbuey/DJI_0270_2_k5phmc.mp4",
+        alt: "Vista panorámica del Salto del Buey"
+      },  
+   
+      {
+        type: 'image' as const,
+        url: "https://res.cloudinary.com/lesteban/image/upload/v1749350821/roadmapcol/saltodelbuey/DJI_20250129_130826_894_iqjowc.jpg",
+        alt: "Vista panorámica del Salto del Buey"
+      },
+      {
+        type: 'image' as const,
+        url: "https://res.cloudinary.com/lesteban/image/upload/v1749350821/roadmapcol/saltodelbuey/DJI_20241127_125440_302_v4biby.jpg",
+        alt: "Vista panorámica del Salto del Buey"
+      },
+      {
+        type: 'image' as const,
+        url: "https://res.cloudinary.com/lesteban/image/upload/v1749350821/roadmapcol/saltodelbuey/DJI_20241231_123801_426_ufpq0n.jpg",
+        alt: "Vista panorámica del Salto del Buey"
+      },
+      {
+        type: 'image' as const,
+        url: "https://res.cloudinary.com/lesteban/image/upload/v1749350819/roadmapcol/saltodelbuey/IMG_4391_qhyamk.png",
+        alt: "Vista panorámica del Salto del Buey"
+      },
+      {
+        type: 'video' as const,
+        url: "https://res.cloudinary.com/lesteban/video/upload/v1749350239/roadmapcol/saltodelbuey/copy_CF5DE597-5748-4D6D-8025-892A124D1FB6_o7sxon.mov",
+        alt: "Vista panorámica del Salto del Buey"
+      },
+      {
+        type: "video" as const,
+        url: "https://res.cloudinary.com/lesteban/video/upload/v1749350206/roadmapcol/saltodelbuey/IMG_3632_qogszv.mov",
+        alt: "Vista panorámica del Salto del Buey"
+      },
+      {
+        type: "video" as const,
+        url: "https://res.cloudinary.com/lesteban/video/upload/v1749350206/roadmapcol/saltodelbuey/IMG_4310_lx7ofw.mov",
+        alt: "Canopy"
+      },
+      {
+        type: "video" as const,
+        url: "https://res.cloudinary.com/lesteban/video/upload/v1749350202/roadmapcol/saltodelbuey/IMG_4317_xbgjie.mov",
+        alt: "Salto del buen"
+      }
+     
+    ],
+    duration: "8 horas",
     highlights: [
-      "Visita a fincas cafeteras tradicionales",
-      "Pueblos patrimonio: Salento y Filandia",
-      "Recorrido por el Valle del Cocora",
-      "Parque Nacional del Café",
+      "Transporte privado ida y regreso",
+      "Acompañamiento guiado",
+      "Ingreso a la reserva",
+      "Vuelo en canopy",
+      "Senderismo",
+      "Visita a la cascada del salto",
+      "Snacks típicos",
     ],
-    activities: [
-      {
-        title: "Visita fincas cafeteras tradicionales",
-        description:
-          "Visita una finca tradicional donde aprenderás todo sobre el cultivo, cosecha y procesamiento del café. Incluye degustación de diferentes variedades y preparaciones.",
-        image:
-          "https://res.cloudinary.com/lesteban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1748748143/roadmap/fincacafetera_ppqmkt.avif",
-        duration: "5 horas",
-        includes: [
-          "Transporte",
-          "Degustación de café",
-          "Almuerzo típico",
-          "Guía turística",
-        ],
-        price: 140000,
-      },
-      {
-        title: "Valle del Cocora y Salento",
-        description:
-          "Explora el majestuoso Valle del Cocora, hogar de las palmas de cera más altas del mundo. Después, visita el pintoresco pueblo de Salento con sus coloridas casas y artesanías.",
-        image:
-          "https://res.cloudinary.com/lesteban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1748748950/roadmap/cocora_ul6dvu.avif",
-        duration: "8 horas",
-        includes: [
-          "Transporte",
-          "Visita al Valle del Cocora",
-          "Visita a Salento",
-          "Guía turística",
-        ],
-        price: 180000,
-      },
-      {
-        title: "Parque Nacional del Café",
-        description:
-          "Descubre el Parque Nacional del Café, un lugar lleno de naturaleza y paisajes impresionantes. Disfruta de la naturaleza y la cultura colombiana.",
-        image:
-          "https://res.cloudinary.com/lesteban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1748749160/roadmap/parquedelcafe_v9w4xi.jpg",
-        duration: "5 horas",
-        includes: ["Transporte", "Entrada al Parque", "Guía turística"],
-        price: 100000,
-      },
-    ],
+    href: "/tours/salto-del-buey",
+    price: 120,
+    activities: [],
   },
+
   {
     place: "Cartagena",
     title: "Cartagena Paraíso Colonial",

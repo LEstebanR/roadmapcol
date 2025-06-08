@@ -11,6 +11,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { useEffect, useState } from "react";
 import { images } from "@/lib/images";
+import { TourMediaCarousel } from '@/components/ui/tour-media-carousel'
 
 export default function TourPage() {
   const { name } = useParams();
@@ -70,13 +71,17 @@ export default function TourPage() {
       </Link>
       <Card className="md:w-full w-11/12 pt-0 rounded-lg flex flex-col mx-auto border border-black">
         <CardHeader className="px-0 pt-0">
-          <Image
-            src={tour.image}
-            alt={tour.place}
-            width={500}
-            height={500}
-            className="w-full h-[200px] object-cover rounded-t-lg"
-          />
+          {tour.images ? (
+            <TourMediaCarousel items={tour.images} />
+          ) : (
+            <Image
+              src={tour.image}
+              alt={tour.place}
+              width={500}
+              height={500}
+              className="w-full h-[200px] object-cover rounded-t-lg"
+            />
+          )}
         </CardHeader>
         <CardContent className="flex flex-col gap-4">
           <div className="flex gap-4 items-center flex-wrap">
@@ -99,11 +104,15 @@ export default function TourPage() {
           </ul>
         </CardContent>
       </Card>
-      <h2 className="text-2xl font-bold self-start ml-4">
-        Actividades disponibles:
-      </h2>
+      
+      {tour.activities.length > 0 && (
+        <h2 className="text-2xl font-bold self-start ml-4">
+          Actividades disponibles:
+        </h2>
+      )}
       <div className="flex flex-col gap-4">
-        {tour.activities.map((activity) => (
+        {tour.activities.length > 0 ? (
+          tour.activities.map((activity) => (
           <Card
             key={activity.title}
             className="flex md:flex-row flex-col py-0 border border-black md:w-full w-11/12 mx-auto"
@@ -144,7 +153,8 @@ export default function TourPage() {
               </div>
             </div>
           </Card>
-        ))}
+        ))
+        ) : null}
       </div>
       <Card className="border border-black px-4 md:w-full w-11/12 mx-auto">
         <CardHeader>
