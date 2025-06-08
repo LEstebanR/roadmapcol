@@ -13,11 +13,38 @@ import { useEffect, useState } from "react";
 import { images } from "@/lib/images";
 import { TourMediaCarousel } from '@/components/ui/tour-media-carousel'
 
+interface Activity {
+  title: string;
+  description: string;
+  image: string;
+  duration: string;
+  includes: string[];
+  price: number;
+}
+
+interface Tour {
+  place: string;
+  title: string;
+  description: string;
+  image: string;
+  images?: Array<{
+    type: 'image' | 'video';
+    url: string;
+    alt: string;
+  }>;
+  duration: string;
+  highlights: string[];
+  href: string;
+  price: number;
+  activities: Activity[];
+}
+
 export default function TourPage() {
   const { name } = useParams();
-  const tour = TOURS.find((tour) => tour.href === `/tours/${name}`);
+  const tour = TOURS.find((tour) => tour.href === `/tours/${name}`) as Tour | undefined;
   const [selectedActivities, setSelectedActivities] = useState<string[]>([]);
   const [message, setMessage] = useState<string>("");
+
   const getSelectedActivityPrice = (activityTitle: string) => {
     const activity = tour?.activities?.find(
       (activity) => activity.title === activityTitle
@@ -131,7 +158,7 @@ export default function TourPage() {
               <p className="text-muted-foreground">{activity.description}</p>
               <p className="font-bold">Incluye:</p>
               <ul className="grid grid-cols-2 gap-2">
-                {activity.includes.map((include) => (
+                {activity.includes.map((include: string) => (
                   <li key={include} className="flex items-center gap-2">
                     <Check className="w-4 h-4 text-green-500" />
                     {include}
@@ -140,7 +167,7 @@ export default function TourPage() {
               </ul>
               <div className="flex justify-between items-center">
                 <p className="text-muted-foreground">
-                  Precio: ${Number(activity.price).toLocaleString()}
+                  Price: ${Number(activity.price).toLocaleString()}
                 </p>
                 <div className="flex items-center gap-2">
                   <Checkbox
