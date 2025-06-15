@@ -15,15 +15,10 @@ import { MenuIcon } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useState } from 'react'
 
 export default function Header() {
-  const [isOpen, setIsOpen] = useState(false)
   const pathname = usePathname()
 
-  const handleOpen = () => {
-    setIsOpen(!isOpen)
-  }
   return (
     <header className="bg-background/80 fixed top-0 right-0 left-0 z-50 mx-auto flex justify-center backdrop-blur-sm">
       <nav className="container flex h-14 items-center justify-between px-4 md:px-8">
@@ -59,35 +54,30 @@ export default function Header() {
             Contact us
           </Button>
         </Link>
-        <DropdownMenu open={isOpen} onOpenChange={handleOpen}>
+        <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <MenuIcon className="md:hidden" />
           </DropdownMenuTrigger>
-          <DropdownMenuContent>
+          <DropdownMenuContent className="mt-3 w-screen rounded-t-none">
             {HEADER_LINKS.map((link) => (
-              <DropdownMenuItem
-                key={link.href}
-                onClick={() => setIsOpen(false)}
-              >
-                <Link
-                  href={link.href}
-                  className="hover:text-primary flex items-center gap-2 text-sm font-medium transition-all duration-300 hover:underline"
-                >
-                  {link.icon}
-                  {link.label}
-                </Link>
-              </DropdownMenuItem>
-            ))}
-            <DropdownMenuSeparator />
-            <DropdownMenuItem
-              onClick={() => setIsOpen(false)}
-              className="cursor-pointer"
-            >
               <Link
-                href={`https://wa.me/${CONTACT.phone}?text=${encodeURIComponent('Hola, vengo de roadmapcol.com y me gustaría obtener más información.')}`}
-                target="_blank"
+                key={link.href}
+                href={link.href}
                 className="hover:text-primary flex items-center gap-2 text-sm font-medium transition-all duration-300 hover:underline"
               >
+                <DropdownMenuItem>
+                  {link.icon}
+                  {link.label}
+                </DropdownMenuItem>
+              </Link>
+            ))}
+            <DropdownMenuSeparator />
+            <Link
+              href={`https://wa.me/${CONTACT.phone}?text=${encodeURIComponent('Hola, vengo de roadmapcol.com y me gustaría obtener más información.')}`}
+              target="_blank"
+              className="hover:text-primary flex items-center gap-2 text-sm font-medium transition-all duration-300 hover:underline"
+            >
+              <DropdownMenuItem className="cursor-pointer">
                 <Image
                   src={images.whatsapp}
                   alt="whatsapp"
@@ -95,8 +85,8 @@ export default function Header() {
                   height={20}
                 />
                 Contact us
-              </Link>
-            </DropdownMenuItem>
+              </DropdownMenuItem>
+            </Link>
           </DropdownMenuContent>
         </DropdownMenu>
       </nav>
