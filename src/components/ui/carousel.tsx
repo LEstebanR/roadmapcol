@@ -1,13 +1,12 @@
-"use client"
+'use client'
 
-import * as React from 'react'
+import { Button } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
 } from 'embla-carousel-react'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
-
-import { cn } from '@/lib/utils'
-import { Button } from '@/components/ui/button'
+import * as React from 'react'
 
 type CarouselApi = UseEmblaCarouselType[1]
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>
@@ -247,8 +246,14 @@ export function MediaCarousel({ items, className }: MediaCarouselProps) {
   const [selectedIndex, setSelectedIndex] = React.useState(0)
   const [scrollSnaps, setScrollSnaps] = React.useState<number[]>([])
 
-  const scrollPrev = React.useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi])
-  const scrollNext = React.useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi])
+  const scrollPrev = React.useCallback(
+    () => emblaApi && emblaApi.scrollPrev(),
+    [emblaApi]
+  )
+  const scrollNext = React.useCallback(
+    () => emblaApi && emblaApi.scrollNext(),
+    [emblaApi]
+  )
 
   const onSelect = React.useCallback(() => {
     if (!emblaApi) return
@@ -267,19 +272,19 @@ export function MediaCarousel({ items, className }: MediaCarouselProps) {
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="flex">
           {items.map((item, index) => (
-            <div key={index} className="relative flex-[0_0_100%] min-w-0">
+            <div key={index} className="relative min-w-0 flex-[0_0_100%]">
               {item.type === 'image' ? (
                 <img
                   src={item.url}
                   alt={item.alt}
-                  className="w-full h-[500px] object-cover"
+                  className="h-[500px] w-full object-cover"
                 />
               ) : (
                 <video
                   src={item.url}
                   poster={item.thumbnail}
                   controls
-                  className="w-full h-[500px] object-cover"
+                  className="h-[500px] w-full object-cover"
                 >
                   <source src={item.url} type="video/mp4" />
                   Tu navegador no soporta el elemento de video.
@@ -292,25 +297,25 @@ export function MediaCarousel({ items, className }: MediaCarouselProps) {
 
       <button
         onClick={scrollPrev}
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-colors"
+        className="absolute top-1/2 left-4 -translate-y-1/2 rounded-full bg-black/50 p-2 text-white transition-colors hover:bg-black/70"
       >
-        <ArrowLeft className="w-6 h-6" />
+        <ArrowLeft className="h-6 w-6" />
       </button>
 
       <button
         onClick={scrollNext}
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-colors"
+        className="absolute top-1/2 right-4 -translate-y-1/2 rounded-full bg-black/50 p-2 text-white transition-colors hover:bg-black/70"
       >
-        <ArrowRight className="w-6 h-6" />
+        <ArrowRight className="h-6 w-6" />
       </button>
 
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+      <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2">
         {scrollSnaps.map((_, index) => (
           <button
             key={index}
             onClick={() => emblaApi?.scrollTo(index)}
             className={cn(
-              'w-2 h-2 rounded-full transition-colors',
+              'h-2 w-2 rounded-full transition-colors',
               index === selectedIndex ? 'bg-white' : 'bg-white/50'
             )}
           />

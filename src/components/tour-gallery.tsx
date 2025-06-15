@@ -13,8 +13,11 @@ interface TourGalleryProps {
 
 export function TourGallery({ images }: TourGalleryProps) {
   return (
-    <div className="w-full max-w-5xl mx-auto">
-      <MediaCarousel items={images} className="rounded-lg overflow-hidden shadow-lg" />
+    <div className="mx-auto w-full max-w-5xl">
+      <MediaCarousel
+        items={images}
+        className="overflow-hidden rounded-lg shadow-lg"
+      />
     </div>
   )
-} 
+}

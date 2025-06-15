@@ -1,10 +1,10 @@
 'use client'
 
-import * as React from 'react'
+import { cn } from '@/lib/utils'
 import useEmblaCarousel from 'embla-carousel-react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { cn } from '@/lib/utils'
 import Image from 'next/image'
+import * as React from 'react'
 
 interface TourMediaCarouselProps {
   items: {
@@ -16,7 +16,10 @@ interface TourMediaCarouselProps {
   className?: string
 }
 
-export function TourMediaCarousel({ items, className }: TourMediaCarouselProps) {
+export function TourMediaCarousel({
+  items,
+  className,
+}: TourMediaCarouselProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true })
   const [selectedIndex, setSelectedIndex] = React.useState(0)
   const [scrollSnaps, setScrollSnaps] = React.useState<number[]>([])
@@ -34,7 +37,7 @@ export function TourMediaCarousel({ items, className }: TourMediaCarouselProps) 
     setSelectedIndex(emblaApi.selectedScrollSnap())
     // Pause all videos when changing slides
     const videos = document.querySelectorAll('video')
-    videos.forEach(video => {
+    videos.forEach((video) => {
       video.pause()
     })
   }, [emblaApi])
@@ -54,14 +57,14 @@ export function TourMediaCarousel({ items, className }: TourMediaCarouselProps) 
       <div className="overflow-hidden rounded-t-lg" ref={emblaRef}>
         <div className="flex">
           {items.map((item, index) => (
-            <div key={index} className="relative flex-[0_0_100%] min-w-0">
+            <div key={index} className="relative min-w-0 flex-[0_0_100%]">
               {item.type === 'image' ? (
                 <Image
                   src={item.url}
                   alt={item.alt}
                   width={500}
                   height={500}
-                  className="w-full h-[400px] object-cover"
+                  className="h-[400px] w-full object-cover"
                 />
               ) : (
                 <video
@@ -70,7 +73,7 @@ export function TourMediaCarousel({ items, className }: TourMediaCarouselProps) 
                   controls
                   autoPlay
                   playsInline
-                  className="w-full h-[400px] object-cover"
+                  className="h-[400px] w-full object-cover"
                 >
                   <source src={item.url} type="video/mp4" />
                   Tu navegador no soporta el elemento de video.
@@ -83,25 +86,25 @@ export function TourMediaCarousel({ items, className }: TourMediaCarouselProps) 
 
       <button
         onClick={scrollPrev}
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-colors"
+        className="absolute top-1/2 left-4 -translate-y-1/2 rounded-full bg-black/50 p-2 text-white transition-colors hover:bg-black/70"
       >
-        <ChevronLeft className="w-6 h-6" />
+        <ChevronLeft className="h-6 w-6" />
       </button>
 
       <button
         onClick={scrollNext}
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-colors"
+        className="absolute top-1/2 right-4 -translate-y-1/2 rounded-full bg-black/50 p-2 text-white transition-colors hover:bg-black/70"
       >
-        <ChevronRight className="w-6 h-6" />
+        <ChevronRight className="h-6 w-6" />
       </button>
 
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+      <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2">
         {scrollSnaps.map((_, index) => (
           <button
             key={index}
             onClick={() => emblaApi?.scrollTo(index)}
             className={cn(
-              'w-2 h-2 rounded-full transition-colors',
+              'h-2 w-2 rounded-full transition-colors',
               index === selectedIndex ? 'bg-white' : 'bg-white/50'
             )}
           />
@@ -109,4 +112,4 @@ export function TourMediaCarousel({ items, className }: TourMediaCarouselProps) 
       </div>
     </div>
   )
-} 
+}

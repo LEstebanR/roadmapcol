@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button'
 import {
   Card,
   CardContent,
@@ -6,26 +6,28 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Title } from "@/components/ui/typography/typography";
-import { ACCOMMODATIONS, CONTACT } from "@/lib/data";
-import { MapPin, Check } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
+} from '@/components/ui/card'
+import { Title } from '@/components/ui/typography/typography'
+import { ACCOMMODATIONS, CONTACT } from '@/lib/data'
+import { Check, MapPin } from 'lucide-react'
+import Image from 'next/image'
+import Link from 'next/link'
 
 export default function LeasePage() {
   return (
-    <div className="my-14 flex flex-col justify-center items-center mx-auto md:w-6/12 w-11/12">
+    <div className="mx-auto my-14 flex w-11/12 flex-col items-center justify-center md:w-6/12">
       <Title>Accommodation </Title>
       <p className="text-muted-foreground text-center">
-        Discover our selection of unique accommodations in the most beautiful destinations in Colombia, from colonial houses to ecolodges in the jungle.{" "}
+        Discover our selection of unique accommodations in the most beautiful
+        destinations in Colombia, from colonial houses to ecolodges in the
+        jungle.{' '}
       </p>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full mt-10">
+      <div className="mt-10 grid w-full grid-cols-1 gap-4 md:grid-cols-2">
         {ACCOMMODATIONS.map((accommodation, index) => (
           <Card
             key={`${accommodation.title}-${index}`}
             className={
-              "border border-black rounded-lg pt-0 hover:scale-102 transition-all duration-300"
+              'rounded-lg border border-black pt-0 transition-all duration-300 hover:scale-102'
             }
           >
             <CardHeader className="p-0">
@@ -34,22 +36,22 @@ export default function LeasePage() {
                 alt={accommodation.title}
                 width={100}
                 height={100}
-                className="w-full object-cover rounded-t-lg"
+                className="w-full rounded-t-lg object-cover"
               />
             </CardHeader>
-            <CardContent className="flex flex-col gap-2 ">
+            <CardContent className="flex flex-col gap-2">
               <CardTitle>{accommodation.title}</CardTitle>
-              <div className="flex gap-2 items-center text-muted-foreground">
+              <div className="text-muted-foreground flex items-center gap-2">
                 <MapPin />
                 <p>{accommodation.place}</p>
               </div>
               <CardDescription className="flex flex-col gap-2 text-black">
                 <p>{accommodation.description}</p>
-                  <p className="font-bold text-lg">Highlights:</p>
+                <p className="text-lg font-bold">Highlights:</p>
                 <ul>
                   {accommodation.highlights.map((highlight) => (
                     <li key={highlight} className="flex items-center gap-2">
-                      <Check className="w-4 h-4 text-green-500" />
+                      <Check className="h-4 w-4 text-green-500" />
                       {highlight}
                     </li>
                   ))}
@@ -58,7 +60,10 @@ export default function LeasePage() {
             </CardContent>
             <CardFooter className="flex justify-between">
               <p className="text-lg font-bold">From ${accommodation.price}</p>
-              <Link href={`https://wa.me/${CONTACT.phone}?text=${encodeURIComponent(`Hello, I would like to get more information about the accommodation ${accommodation.title} in ${accommodation.place}`)}`} target="_blank">
+              <Link
+                href={`https://wa.me/${CONTACT.phone}?text=${encodeURIComponent(`Hello, I would like to get more information about the accommodation ${accommodation.title} in ${accommodation.place}`)}`}
+                target="_blank"
+              >
                 <Button>Reserve</Button>
               </Link>
             </CardFooter>
@@ -66,5 +71,5 @@ export default function LeasePage() {
         ))}
       </div>
     </div>
-  );
+  )
 }
