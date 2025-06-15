@@ -65,7 +65,7 @@ export default function Header() {
                 href={link.href}
                 className="hover:text-primary flex items-center gap-2 text-sm font-medium transition-all duration-300 hover:underline"
               >
-                <DropdownMenuItem>
+                <DropdownMenuItem className="w-full">
                   {link.icon}
                   {link.label}
                 </DropdownMenuItem>
@@ -77,7 +77,7 @@ export default function Header() {
               target="_blank"
               className="hover:text-primary flex items-center gap-2 text-sm font-medium transition-all duration-300 hover:underline"
             >
-              <DropdownMenuItem className="cursor-pointer">
+              <DropdownMenuItem className="w-full cursor-pointer">
                 <Image
                   src={images.whatsapp}
                   alt="whatsapp"
