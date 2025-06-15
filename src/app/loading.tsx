@@ -1,8 +1,8 @@
-import Image from "next/image";
+import Image from 'next/image'
 
 export default function Loading() {
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex h-screen items-center justify-center">
       <Image
         src="/logo.png"
         alt="Loading"
@@ -11,5 +11,5 @@ export default function Loading() {
         className="animate-spin"
       />
     </div>
-  );
+  )
 }

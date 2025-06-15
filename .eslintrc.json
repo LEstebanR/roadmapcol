@@ -28,7 +28,15 @@
   "rules": {
     "prettier/prettier": "error",
     "sort-keys": ["error", "asc", { "caseSensitive": true, "natural": false }],
-    "max-len": ["error", { "code": 80, "ignoreUrls": true, "ignoreStrings": true, "ignoreTemplateLiterals": true }]
+    "max-len": [
+      "error",
+      {
+        "code": 80,
+        "ignoreUrls": true,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true
+      }
+    ]
   },
   "settings": {
     "react": {
