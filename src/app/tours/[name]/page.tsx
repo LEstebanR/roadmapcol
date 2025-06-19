@@ -201,9 +201,9 @@ export default function TourPage() {
           <h2 className="text-2xl font-bold">Summary of your experience</h2>
           <div className="flex flex-col gap-4">
             <div className="flex items-center justify-between">
-              <p className="text-muted-foreground">Precio base:</p>
+              <p className="text-muted-foreground">Base price:</p>
               <p className="text-lg font-bold">
-                ${Number(tour.price).toLocaleString()} / persona
+                ${Number(tour.price).toLocaleString()} / person
               </p>
             </div>
             {selectedActivities.length > 0 && (
