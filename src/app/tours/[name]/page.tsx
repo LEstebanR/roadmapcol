@@ -2,8 +2,6 @@
 
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
-import { Checkbox } from '@/components/ui/checkbox'
-import { Label } from '@/components/ui/label'
 import { TourMediaCarousel } from '@/components/ui/tour-media-carousel'
 import { CONTACT, TOURS } from '@/lib/data'
 import { images } from '@/lib/images'
@@ -53,7 +51,7 @@ export default function TourPage() {
     const activity = tour?.activities?.find(
       (activity) => activity.title === activityTitle
     )
-    return activity?.price ?? 0
+    return Number(activity?.price ?? 0)
   }
 
   const totalPrice =
@@ -181,15 +179,18 @@ export default function TourPage() {
                     <p className="text-muted-foreground text-xl font-bold">
                       Price: ${Number(activity.price).toLocaleString()}
                     </p>
-                    <div className="mt-4 flex items-center gap-2">
-                      <Checkbox
-                        checked={selectedActivities.includes(activity.title)}
-                        onCheckedChange={() =>
-                          handleActivityToggle(activity.title)
-                        }
-                      />
-                      <Label className="text-xl">Add to my experience</Label>
-                    </div>
+                    <Button
+                      variant={
+                        selectedActivities.includes(activity.title)
+                          ? 'outline'
+                          : 'default'
+                      }
+                      onClick={() => handleActivityToggle(activity.title)}
+                    >
+                      {selectedActivities.includes(activity.title)
+                        ? 'Remove from my experience'
+                        : 'Add to my experience'}
+                    </Button>
                   </div>
                 </div>
               </Card>
