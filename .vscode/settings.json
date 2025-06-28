@@ -18,5 +18,13 @@
   },
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "typescript.preferences.includePackageJsonAutoImports": "on",
+  "typescript.suggest.autoImports": true,
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "typescript.workspaceSymbols.scope": "allOpenProjects",
+  "files.associations": {
+    "*.test.ts": "typescript",
+    "*.test.tsx": "typescriptreact"
   }
 }
