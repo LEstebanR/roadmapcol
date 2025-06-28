@@ -232,7 +232,7 @@ export const TOURS = [
           "Looking for an exciting outdoor adventure? Join us for a Via Ferrata climbing experience in the beautiful mountains of La Ceja, Antioquia. This activity is perfect for amateur climbers or anyone looking to try climbing for the first time in a safe and guided environment. Via Ferrata is a type of climbing route equipped with steel cables, ladders, and anchors fixed to the rock, making it accessible even if you have no prior climbing experience. You'll be safely harnessed at all times and guided by experienced instructors as you enjoy stunning views, fresh mountain air, and an unforgettable adrenaline rush. No special skills are required — just a sense of adventure!",
         image:
           'https://res.cloudinary.com/lesteban/image/upload/v1749939136/roadmapcol/saltodelbuey/IMG_6631_niiyrk.jpg',
-        price: '30',
+        price: 30,
       },
       {
         title: 'Hanging Hammocks Experience – Sunset Over the Cañón del Buey',
@@ -240,7 +240,7 @@ export const TOURS = [
           'Relax and take in one of the most breathtaking sunsets in Antioquia — while suspended over a canyon. This unique experience lets you enjoy the peaceful beauty of nature from hanging hammocks set up over the stunning Cañón del Buey. It’s the perfect plan to unwind, connect with nature, and feel the thrill of being literally hanging between the sky and the mountains. No physical effort required — just lay back, breathe deeply, and enjoy the view.',
         image:
           'https://res.cloudinary.com/lesteban/image/upload/v1749939959/roadmapcol/saltodelbuey/hamaca_uayjka.jpg',
-        price: '20',
+        price: 20,
       },
       {
         title: 'Mountain Picnic – Wine & Cheese with a View',
@@ -248,7 +248,7 @@ export const TOURS = [
           'Enjoy a premium picnic experience surrounded by nature, either at the top of the mountain or relaxing in hanging hammocks with a breathtaking view. This plan includes a beautifully arranged cheese board with a selection of matured cheeses and a bottle of wine — the perfect combo for a romantic date, a special celebration, or simply a relaxing moment outdoors. Choose your favorite spot:\n\n🍷 On the mountaintop, with panoramic views of La Ceja\n🧀 In the hammocks, suspended over the Cañón del Buey',
         image:
           'https://res.cloudinary.com/lesteban/image/upload/v1749939959/roadmapcol/saltodelbuey/picnic_waje1a.jpg',
-        price: '100',
+        price: 100,
       },
     ],
   },
@@ -336,7 +336,7 @@ export const TOURS = [
         description:
           'Enjoy wakesurfing and other water sports in the perfect spot for aquatic fun. Includes a speedboat, wakesurf board, gear, and an inflatable donut for extra thrills — all at a great price.',
         duration: '1 hr',
-        price: '80',
+        price: 80,
         image:
           'https://res.cloudinary.com/lesteban/image/upload/v1749941966/roadmapcol/guatape/wakesurf_pwxgkh.jpg',
       },

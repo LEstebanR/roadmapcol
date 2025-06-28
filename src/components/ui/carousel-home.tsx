@@ -48,11 +48,11 @@ export function CarouselHome() {
       plugins={[autoplay.current]}
       className="mt-14 flex h-[calc(100vh-3.5rem)] w-screen flex-col items-center justify-center"
     >
-      <CarouselContent className="w-screen">
+      <CarouselContent className="mx-0 w-screen px-0">
         {LANDING_LINKS.map((item, index) => (
           <CarouselItem
             key={index}
-            className="flex h-[calc(100vh-3.5rem)] w-full items-center justify-center bg-cover bg-center bg-no-repeat"
+            className="flex h-[calc(100vh-3.5rem)] w-full items-center justify-center bg-cover bg-center bg-no-repeat pl-0"
             style={{ backgroundImage: `url(${item.image})` }}
           >
             <Card className="w-10/12 border bg-white/80 md:w-xl">
@@ -80,7 +80,7 @@ export function CarouselHome() {
         ))}
       </CarouselContent>
       <CarouselPrevious className="absolute left-2" onClick={handlePrevious} />
-      <CarouselNext className="absolute right-2" onClick={handleNext} />
+      <CarouselNext className="absolute right-6" onClick={handleNext} />
     </Carousel>
   )
 }
