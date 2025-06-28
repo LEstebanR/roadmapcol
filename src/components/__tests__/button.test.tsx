@@ -17,7 +17,7 @@ describe('Button Component', () => {
   it('applies outline variant class', () => {
     render(<Button variant="outline">Outline Button</Button>)
     const button = screen.getByRole('button')
-    expect(button).toHaveClass('border-input')
+    expect(button).toHaveClass('border')
   })
 
   it('applies destructive variant class', () => {

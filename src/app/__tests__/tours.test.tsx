@@ -32,7 +32,7 @@ vi.mock('@/lib/data', () => ({
 describe('Tours Page', () => {
   it('renders page title', () => {
     render(<ToursPage />)
-    expect(screen.getByText('Tours')).toBeInTheDocument()
+    expect(screen.getByText('Our experiences')).toBeInTheDocument()
   })
 
   it('renders tours list', () => {

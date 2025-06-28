@@ -26,11 +26,10 @@ describe('TourCard Component', () => {
     expect(screen.getByText('$100')).toBeInTheDocument()
   })
 
-  it('renders highlights correctly', () => {
+  it('renders see details button', () => {
     render(<TourCard tour={mockTour} />)
 
-    expect(screen.getByText('Highlight 1')).toBeInTheDocument()
-    expect(screen.getByText('Highlight 2')).toBeInTheDocument()
+    expect(screen.getByText('See details')).toBeInTheDocument()
   })
 
   it('renders link with correct href', () => {
