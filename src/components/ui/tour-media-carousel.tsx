@@ -57,7 +57,10 @@ export function TourMediaCarousel({
       <div className="overflow-hidden rounded-t-lg" ref={emblaRef}>
         <div className="flex">
           {items.map((item, index) => (
-            <div key={index} className="relative min-w-0 flex-[0_0_100%]">
+            <div
+              key={index}
+              className="relative min-w-0 flex-[0_0_100%] overflow-hidden"
+            >
               {item.type === 'image' ? (
                 <Image
                   src={item.url}
@@ -71,7 +74,6 @@ export function TourMediaCarousel({
                   src={item.url}
                   poster={item.thumbnail}
                   controls
-                  autoPlay
                   playsInline
                   className="h-[400px] w-full object-cover"
                 >

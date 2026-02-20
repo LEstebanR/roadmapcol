@@ -4,13 +4,6 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'
 import { Title } from '@/components/ui/typography/typography'
 import { CONTACT } from '@/lib/data'
@@ -28,29 +21,6 @@ import {
 } from 'lucide-react'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-
-const ACCOMMODATIONS = [
-  {
-    name: 'Hotel',
-    value: 'hotel',
-  },
-  {
-    name: 'Hostal',
-    value: 'hostal',
-  },
-  {
-    name: 'Apartamento',
-    value: 'apartamento',
-  },
-  {
-    name: 'Casa',
-    value: 'casa',
-  },
-  {
-    name: 'Ecolodge',
-    value: 'ecolodge',
-  },
-]
 
 const activities = [
   { id: 'aventura', label: 'Adventure', icon: Mountain },
@@ -77,7 +47,6 @@ export default function PersonalizaExperiencia() {
     endDate: string
     budget: number
     comments: string
-    accommodation: string
   }>({
     name: '',
     email: '',
@@ -88,7 +57,6 @@ export default function PersonalizaExperiencia() {
     endDate: '',
     budget: 0,
     comments: '',
-    accommodation: '',
   })
 
   const toggleActivity = (activityId: string) => {
@@ -109,7 +77,6 @@ export default function PersonalizaExperiencia() {
       Start date: ${data?.startDate}
       End date: ${data?.endDate}
       Budget: ${data?.budget}
-      Accommodation: ${data?.accommodation}
       Comments: ${data?.comments}
       Activities: ${selectedActivities.join(', ')}
       `)
@@ -201,27 +168,6 @@ export default function PersonalizaExperiencia() {
               setData({ ...data, budget: Number(e.target.value) })
             }
           />
-          <Label>What type of accommodation do you prefer?</Label>
-          <Select
-            value={data.accommodation}
-            onValueChange={(value) =>
-              setData({ ...data, accommodation: value })
-            }
-          >
-            <SelectTrigger>
-              <SelectValue placeholder="Select an option" />
-            </SelectTrigger>
-            <SelectContent>
-              {ACCOMMODATIONS.map((accommodation) => (
-                <SelectItem
-                  key={accommodation.value}
-                  value={accommodation.value}
-                >
-                  {accommodation.name}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
           <Label>Interests</Label>
           <div className="mt-2 grid w-full grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
             {activities.map((activity) => {
