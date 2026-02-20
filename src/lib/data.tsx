@@ -1,5 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Gift, Home, Hotel, Info, Map, MapPin } from 'lucide-react'
+import { Gift, Home, Info, Map, MapPin } from 'lucide-react'
 
 export const HEADER_LINKS = [
   {
@@ -12,11 +11,6 @@ export const HEADER_LINKS = [
     href: '/tours',
     icon: <Map />,
   },
-  // {
-  //   label: 'Accommodation',
-  //   href: '/accommodation',
-  //   icon: <Hotel />,
-  // },
   {
     label: 'Personalize your experience',
     href: '/personalize',
@@ -60,7 +54,7 @@ export const LANDING_LINKS = [
     description:
       'Discover the magic of the mountain of Antioquia, a region full of mountains and adventure. Enjoy the nature and the Colombian culture.',
     image:
-      'https://res.cloudinary.com/lesteban/image/upload/v1749350820/roadmapcol/saltodelbuey/DJI_20241127_125105_379_i0fqid.jpg',
+      'https://res.cloudinary.com/lesteban/image/upload/v1771547745/roadmapcol/saltodelbuey/canopy__owsi02.jpg',
     href: '/tours/salto-del-buey',
     button: 'See tour',
   },
@@ -76,7 +70,7 @@ export const LANDING_LINKS = [
       'such as the Peñol stone, the Guatape dam and the replica of the old ' +
       'Peñol, this place should be a must on your visit to Medellin.',
     image:
-      'https://res.cloudinary.com/lesteban/image/upload/v1749420263/roadmapcol/guatape/IMG_0028_fmsxte.webp',
+      'https://res.cloudinary.com/lesteban/image/upload/v1749941780/roadmapcol/guatape/guatape_yv0q5f.jpg',
     href: '/tours/guatape',
     button: 'See tour',
   },
@@ -89,7 +83,7 @@ export const LANDING_LINKS = [
     description:
       'Get to know the most representative places of the city of medellin, learn about its culture, gastronomy and history in a tour designed for you to live the city like a local.',
     image:
-      'https://res.cloudinary.com/lesteban/image/upload/v1749422811/roadmapcol/comuna13/IMG_2476_xoptdu.webp',
+      'https://res.cloudinary.com/lesteban/image/upload/v1771548806/roadmapcol/comuna13/comuna13_vbwhk6.jpg',
     href: '/tours/comuna13',
     button: 'See tour',
   },
@@ -102,7 +96,7 @@ export const LANDING_LINKS = [
     description:
       'Soar above the mountains and take in stunning views of Medellín from the sky — an unforgettable experience for thrill-seekers.',
     image:
-      'https://res.cloudinary.com/lesteban/image/upload/v1749943359/roadmapcol/parapente/parapente-1_io49ci.jpg',
+      'https://res.cloudinary.com/lesteban/image/upload/v1771548688/roadmapcol/parapente/parapente_zo57qx.jpg',
     href: '/tours/paragliding',
     button: 'See tour',
   },
@@ -113,10 +107,10 @@ export const LANDING_LINKS = [
     title: 'Orient Tour',
     subtitle: 'Cultural experience',
     description:
-      'Escape the city and explore nearby traditional towns where local culture and customs are still alive. “Puebliar” is a favorite local activity — a way to reconnect with roots and experience authentic Colombian life.',
+      'Escape the city and explore nearby traditional towns where local culture and customs are still alive. "Puebliar" is a favorite local activity — a way to reconnect with roots and experience authentic Colombian life.',
     image:
       'https://res.cloudinary.com/lesteban/image/upload/v1749944605/roadmapcol/oriente/oriente-1_jbhthn.jpg',
-    href: '/tours/paragliding',
+    href: '/tours/orient-tour',
     button: 'See tour',
   },
   {
@@ -128,23 +122,10 @@ export const LANDING_LINKS = [
     description:
       'Jardín is a heritage town in Antioquia, known for its colorful architecture, rich culture, and ecological diversity. It’s a favorite destination for both locals and tourists.',
     image:
-      'https://res.cloudinary.com/lesteban/image/upload/v1749945189/roadmapcol/jardin/jardin-1_gn3jrj.jpg',
+      'https://res.cloudinary.com/lesteban/image/upload/v1771549017/roadmapcol/jardin/jardin_a8u1ox.jpg',
     href: '/tours/jardin',
     button: 'See tour',
   },
-  // {
-  //   chip: 'Info',
-  //   chipIcon: <Info />,
-  //   chipColor: 'bg-blue-200',
-  //   title: 'Accommodation',
-  //   subtitle: 'Accommodation in Colombia',
-  //   description:
-  //     'Discover the best accommodation in Colombia, from colonial houses to ecolodges in the jungle.',
-  //   image:
-  //     'https://res.cloudinary.com/lesteban/image/upload/v1748815350/roadmap/finca_bdyr0s.avif',
-  //   href: '/accommodation',
-  //   button: 'See accommodation',
-  // },
 ]
 
 export const TOURS = [
@@ -154,7 +135,7 @@ export const TOURS = [
     description:
       'The mountains of Antioquia hide paradises and adventures that you can not miss, visit with us one of the most beautiful and impressive waterfalls of our region, fly in the highest canopy of Antioquia and if you are a little more adventurous dare to conquer the mountain climbing to more than 70 meters high. ',
     image:
-      'https://res.cloudinary.com/lesteban/image/upload/v1749350820/roadmapcol/saltodelbuey/DJI_20241127_125105_379_i0fqid.jpg',
+      'https://res.cloudinary.com/lesteban/image/upload/v1771547745/roadmapcol/saltodelbuey/canopy__owsi02.jpg',
     images: [
       {
         type: 'video' as const,
@@ -175,11 +156,6 @@ export const TOURS = [
       {
         type: 'image' as const,
         url: 'https://res.cloudinary.com/lesteban/image/upload/v1749350821/roadmapcol/saltodelbuey/DJI_20250129_130826_894_iqjowc.jpg',
-        alt: 'Vista panorámica del Salto del Buey',
-      },
-      {
-        type: 'image' as const,
-        url: 'https://res.cloudinary.com/lesteban/image/upload/v1749350821/roadmapcol/saltodelbuey/DJI_20241127_125440_302_v4biby.jpg',
         alt: 'Vista panorámica del Salto del Buey',
       },
       {
@@ -220,7 +196,7 @@ export const TOURS = [
       'Reservation entrance',
       'Canopy flight',
       'Hiking',
-      'Visit to the waterfall of the bufe',
+      'Visit to the waterfall El Salto del Buey',
       'Typical snacks',
     ],
     href: '/tours/salto-del-buey',
@@ -262,7 +238,7 @@ export const TOURS = [
       'such as the Peñol stone, the Guatape dam and the replica of the old ' +
       'Peñol, this place should be a must on your visit to Medellin.',
     image:
-      'https://res.cloudinary.com/lesteban/image/upload/v1749420263/roadmapcol/guatape/IMG_0028_fmsxte.webp',
+      'https://res.cloudinary.com/lesteban/image/upload/v1749941780/roadmapcol/guatape/guatape_yv0q5f.jpg',
     price: 80,
     href: '/tours/guatape',
     highlights: [
@@ -325,7 +301,7 @@ export const TOURS = [
       {
         title: 'Helicopter Tour – Guatapé from the Sky',
         description:
-          'See the El Peñol rock and reservoir like never before — from the air. This short helicopter ride offers guaranteed incredible views, photos, and videos of one of Colombia’s most iconic landscapes.',
+          "See the El Peñol rock and reservoir like never before — from the air. This short helicopter ride offers guaranteed incredible views, photos, and videos of one of Colombia's most iconic landscapes. Private flight available for $125 (up to group capacity).",
         duration: '6 min',
         price: 100,
         image:
@@ -362,9 +338,9 @@ export const TOURS = [
     description:
       'Get to know the most representative places of the city of medellin, learn about its culture, gastronomy and history in a tour designed for you to live the city like a local.',
     image:
-      'https://res.cloudinary.com/lesteban/image/upload/v1749422811/roadmapcol/comuna13/IMG_2476_xoptdu.webp',
+      'https://res.cloudinary.com/lesteban/image/upload/v1771548806/roadmapcol/comuna13/comuna13_vbwhk6.jpg',
     duration: '6 hours',
-    price: 120,
+    price: 50,
     href: '/tours/comuna13',
     highlights: [
       'Private transportation to and from',
@@ -415,7 +391,7 @@ export const TOURS = [
     description:
       'Soar above the mountains and take in stunning views of Medellín from the sky — an unforgettable experience for thrill-seekers.',
     duration: '5 hours',
-    price: 100,
+    price: 40,
     href: '/tours/paragliding',
     highlights: [
       'Round-trip private transport',
@@ -423,7 +399,7 @@ export const TOURS = [
       'Traditional local snacks',
     ],
     image:
-      'https://res.cloudinary.com/lesteban/image/upload/v1749943359/roadmapcol/parapente/parapente-1_io49ci.jpg',
+      'https://res.cloudinary.com/lesteban/image/upload/v1771548688/roadmapcol/parapente/parapente_zo57qx.jpg',
     images: [
       {
         type: 'video',
@@ -451,7 +427,16 @@ export const TOURS = [
         alt: 'parapente',
       },
     ],
-    activities: [],
+    activities: [
+      {
+        title: 'Paragliding Flight',
+        description:
+          'Soar above the mountains of Medellín in a tandem paragliding flight with a certified pilot. No experience required — just enjoy the breathtaking views of the city from the sky.',
+        price: 60,
+        image:
+          'https://res.cloudinary.com/lesteban/image/upload/v1749943359/roadmapcol/parapente/parapente-1_io49ci.jpg',
+      },
+    ],
   },
   {
     place: 'Medellín - Orient',
@@ -481,11 +466,6 @@ export const TOURS = [
       },
       {
         type: 'image',
-        url: 'https://res.cloudinary.com/lesteban/image/upload/v1749944602/roadmapcol/oriente/oriente-3_jqeovj.heic',
-        alt: 'parapente',
-      },
-      {
-        type: 'image',
         url: 'https://res.cloudinary.com/lesteban/image/upload/v1749944601/roadmapcol/oriente/oriente-4_kfqzde.jpg',
         alt: 'parapente',
       },
@@ -503,7 +483,7 @@ export const TOURS = [
     description:
       'Jardín is a heritage town in Antioquia, known for its colorful architecture, rich culture, and ecological diversity. It’s a favorite destination for both locals and tourists.',
     duration: '8 hours',
-    price: 70,
+    price: 80,
     href: '/tours/jardin',
     highlights: [
       'Round-trip private transport',
@@ -511,7 +491,7 @@ export const TOURS = [
       'Traditional snacks',
     ],
     image:
-      'https://res.cloudinary.com/lesteban/image/upload/v1749945189/roadmapcol/jardin/jardin-1_gn3jrj.jpg',
+      'https://res.cloudinary.com/lesteban/image/upload/v1771549017/roadmapcol/jardin/jardin_a8u1ox.jpg',
     images: [
       {
         type: 'image',
@@ -549,9 +529,9 @@ export const TOURS = [
           'https://res.cloudinary.com/lesteban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1749945185/roadmapcol/jardin/ardin-5_jf7e6u.jpg',
       },
       {
-        title: 'Cueva del esplendor',
+        title: 'Cueva del Esplendor',
         description:
-          'Visit a local coffee farm and learn the full process from expert growers. Jardín’s climate and geography make its coffee among the best in the region.',
+          "Have you ever seen a waterfall inside a cave? This natural wonder is hidden in the mountains of Jardín. To get there, we'll do a short, low-difficulty hike of about 40 minutes and enjoy typical local snacks along the way. Includes: reserve access, transport in Willys jeeps, and typical snacks.",
         price: 25,
         image:
           'https://res.cloudinary.com/lesteban/image/upload/v1749945438/roadmapcol/jardin/cueva_dxl9u0.jpg',
@@ -566,72 +546,162 @@ export const TOURS = [
       },
     ],
   },
-]
-
-export const ACCOMMODATIONS = [
   {
-    title: 'Casa Colonial',
-    place: 'Cartagena',
+    place: 'Doradal / Hacienda Napoles',
+    title: 'Hacienda Napoles',
     description:
-      'Una casa colonial en el centro histórico de Cartagena, con vista a la ciudad amurallada.',
-    type: 'Finca',
-    image:
-      'https://res.cloudinary.com/lesteban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1748815350/roadmap/finca_bdyr0s.avif',
-    price: 120000,
-    href: '/accommodation/casa-colonial',
+      'Hacienda Napoles theme park is a family-friendly destination where you can enjoy a large water park, zoo, and museums—a journey full of culture and nature at what was one of the most cherished properties of the famous drug lord Pablo Escobar. Minimum 3 people required.',
+    duration: '15 hours',
+    price: 120,
+    href: '/tours/hacienda-napoles',
     highlights: [
-      'Vista a la ciudad amurallada',
-      'Cerca de la playa',
-      'Cerca de los restaurantes',
+      'Private round-trip transportation',
+      'Guided accompaniment',
+      'Typical snacks',
+    ],
+    image:
+      'https://res.cloudinary.com/lesteban/image/upload/v1771549653/roadmapcol/haciendaNapoles/haciendaNapoles_j3t4qi.jpg',
+    images: [
+      {
+        type: 'image' as const,
+        url: 'https://res.cloudinary.com/lesteban/image/upload/f_auto/v1771549854/roadmapcol/haciendaNapoles/IMG_1896_fxhqy0.heic',
+        alt: 'Hacienda Napoles',
+      },
+      {
+        type: 'image' as const,
+        url: 'https://res.cloudinary.com/lesteban/image/upload/f_auto/v1771549852/roadmapcol/haciendaNapoles/IMG_1868_t1u5nr.heic',
+        alt: 'Hacienda Napoles',
+      },
+      {
+        type: 'image' as const,
+        url: 'https://res.cloudinary.com/lesteban/image/upload/f_auto/v1771549851/roadmapcol/haciendaNapoles/cuatrimotos_gg76a2.jpg',
+        alt: 'Quad bike tour',
+      },
+      {
+        type: 'image' as const,
+        url: 'https://res.cloudinary.com/lesteban/image/upload/f_auto/v1771549850/roadmapcol/haciendaNapoles/Foto_de_roadtriptravel_col_tkvgru.jpg',
+        alt: 'Hacienda Napoles',
+      },
+      {
+        type: 'image' as const,
+        url: 'https://res.cloudinary.com/lesteban/image/upload/f_auto/v1771549845/roadmapcol/haciendaNapoles/rafting_ijs7jy.jpg',
+        alt: 'Rafting Rio Claro',
+      },
+      {
+        type: 'image' as const,
+        url: 'https://res.cloudinary.com/lesteban/image/upload/f_auto/v1771549836/roadmapcol/haciendaNapoles/IMG_1953_ugmzdg.heic',
+        alt: 'Hacienda Napoles',
+      },
+      {
+        type: 'image' as const,
+        url: 'https://res.cloudinary.com/lesteban/image/upload/f_auto/v1771549841/roadmapcol/haciendaNapoles/Foto_de_roadtriptravel_col_2_tl7lne.jpg',
+        alt: 'Hacienda Napoles',
+      },
+    ],
+    activities: [
+      {
+        title: 'Hacienda Napoles (6-7 hours)',
+        description:
+          'Full access to the Hacienda Napoles theme park including the water park, zoo, and museums.',
+        price: 35,
+        image:
+          'https://res.cloudinary.com/lesteban/image/upload/v1771549653/roadmapcol/haciendaNapoles/haciendaNapoles_j3t4qi.jpg',
+      },
+      {
+        title: 'Rio Claro Canyon: Hiking, Caves & Rafting (6-7 hours)',
+        description:
+          'Hiking through Rio Claro Canyon, exploring caves, and rafting on the river—an adventure combining nature and adrenaline.',
+        price: 40,
+        image:
+          'https://res.cloudinary.com/lesteban/image/upload/v1771549845/roadmapcol/haciendaNapoles/rafting_ijs7jy.jpg',
+      },
+      {
+        title: 'Quad Bike Tour (2 hours)',
+        description: 'Explore the area on quad bikes. Price is for 2 people.',
+        price: 65,
+        duration: '2 hours',
+        image:
+          'https://res.cloudinary.com/lesteban/image/upload/v1771549851/roadmapcol/haciendaNapoles/cuatrimotos_gg76a2.jpg',
+      },
+      {
+        title: 'Buggy Tour (2 hours)',
+        description:
+          'Adventure through the terrain in a buggy. Price for 2 people.',
+        price: 100,
+        duration: '2 hours',
+        image:
+          'https://res.cloudinary.com/lesteban/image/upload/v1771550640/roadmapcol/haciendaNapoles/buggy_hzoxhh.jpg',
+      },
     ],
   },
   {
-    title: 'Casa Colonial',
     place: 'Cartagena',
+    title: 'MAVI Cartagena',
     description:
-      'Una casa colonial en el centro histórico de Cartagena, con vista a la ciudad amurallada.',
-    type: 'Finca',
-    image:
-      'https://res.cloudinary.com/lesteban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1748815350/roadmap/finca_bdyr0s.avif',
-    price: 120000,
-    href: '/accommodation/casa-colonial',
+      "Celebrate birthdays, weddings, corporate events, or simply enjoy some of Colombia's most beautiful sunsets aboard the MAVI—a fully equipped vessel designed to give you unforgettable moments during your visit to Cartagena.",
+    duration: 'Flexible (by the hour)',
+    price: 150,
+    href: '/tours/mavi-cartagena',
     highlights: [
-      'Vista a la ciudad amurallada',
-      'Cerca de la playa',
-      'Cerca de los restaurantes',
+      'Fully equipped vessel',
+      'Maximum capacity: 40 people',
+      'Bay cruise through Cartagena Bay',
     ],
-  },
-  {
-    title: 'Casa Colonial',
-    place: 'Cartagena',
-    description:
-      'Una casa colonial en el centro histórico de Cartagena, con vista a la ciudad amurallada.',
-    type: 'Finca',
     image:
-      'https://res.cloudinary.com/lesteban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1748815350/roadmap/finca_bdyr0s.avif',
-    price: 120000,
-    href: '/accommodation/casa-colonial',
-    highlights: [
-      'Vista a la ciudad amurallada',
-      'Cerca de la playa',
-      'Cerca de los restaurantes',
+      'https://res.cloudinary.com/lesteban/image/upload/v1771549980/roadmapcol/maviCartagena/2c67bd94-35e4-4c70-98f0-585d0388fb67_nrkmz9.jpg',
+    images: [
+      {
+        type: 'image' as const,
+        url: 'https://res.cloudinary.com/lesteban/image/upload/f_auto/v1771549983/roadmapcol/maviCartagena/a533a6c1-d9e1-44cb-917e-6c60f9a7ee5a_z3gftr.jpg',
+        alt: 'MAVI Cartagena',
+      },
+      {
+        type: 'image' as const,
+        url: 'https://res.cloudinary.com/lesteban/image/upload/f_auto/v1771549982/roadmapcol/maviCartagena/df05c618-55d3-4395-917b-514243f99403_rzsnuu.jpg',
+        alt: 'MAVI Cartagena',
+      },
+      {
+        type: 'image' as const,
+        url: 'https://res.cloudinary.com/lesteban/image/upload/f_auto/v1771549981/roadmapcol/maviCartagena/23d47ee6-598d-48ae-ad03-d3468f8e41b7_cen7vl.jpg',
+        alt: 'MAVI Cartagena',
+      },
+      {
+        type: 'image' as const,
+        url: 'https://res.cloudinary.com/lesteban/image/upload/f_auto/v1771549979/roadmapcol/maviCartagena/7dc5de36-1419-448f-ab2d-5af4e818b59d_qikyot.jpg',
+        alt: 'MAVI Cartagena',
+      },
+      {
+        type: 'image' as const,
+        url: 'https://res.cloudinary.com/lesteban/image/upload/f_auto/v1771549978/roadmapcol/maviCartagena/a6aea978-7f5f-4268-ae80-76295d70042e_rzoewn.jpg',
+        alt: 'MAVI Cartagena',
+      },
+      {
+        type: 'image' as const,
+        url: 'https://res.cloudinary.com/lesteban/image/upload/f_auto/v1771549978/roadmapcol/maviCartagena/6ce1f046-463f-4d34-b855-255b54021e5f_odcqvt.jpg',
+        alt: 'MAVI Cartagena',
+      },
+      {
+        type: 'image' as const,
+        url: 'https://res.cloudinary.com/lesteban/image/upload/f_auto/v1771549977/roadmapcol/maviCartagena/079ba737-29f0-433a-b6b4-671089e207ac_qth5b2.jpg',
+        alt: 'MAVI Cartagena',
+      },
+      {
+        type: 'image' as const,
+        url: 'https://res.cloudinary.com/lesteban/image/upload/f_auto/v1771549976/roadmapcol/maviCartagena/60fd234b-8de6-4048-a39a-7a76ef87a486_lnmnf2.jpg',
+        alt: 'MAVI Cartagena',
+      },
+      {
+        type: 'video' as const,
+        url: 'https://res.cloudinary.com/lesteban/video/upload/v1771549976/roadmapcol/maviCartagena/c6b1b508-aae3-4726-9f98-14870563425f_ar1pey.mov',
+        alt: 'MAVI Cartagena',
+      },
+      {
+        type: 'video' as const,
+        url: 'https://res.cloudinary.com/lesteban/video/upload/v1771549917/roadmapcol/maviCartagena/video_presentacion_f1lmbk.mov',
+        alt: 'MAVI Cartagena - Presentation',
+      },
     ],
-  },
-  {
-    title: 'Casa Colonial',
-    place: 'Cartagena',
-    description:
-      'Una casa colonial en el centro histórico de Cartagena, con vista a la ciudad amurallada.',
-    type: 'Finca',
-    image:
-      'https://res.cloudinary.com/lesteban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1748815350/roadmap/finca_bdyr0s.avif',
-    price: 120000,
-    href: '/accommodation/casa-colonial',
-    highlights: [
-      'Vista a la ciudad amurallada',
-      'Cerca de la playa',
-      'Cerca de los restaurantes',
-    ],
+    activities: [],
   },
 ]
 

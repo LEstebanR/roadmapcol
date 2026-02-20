@@ -14,7 +14,7 @@ export function Title({ children }: { children: React.ReactNode }) {
 
 export function TitleCard({ children }: { children: React.ReactNode }) {
   return (
-    <p className={`text-primary text-6xl text-shadow-lg ${oneBrush.className}`}>
+    <p className={`text-6xl text-black text-shadow-lg ${oneBrush.className}`}>
       {children}
     </p>
   )
