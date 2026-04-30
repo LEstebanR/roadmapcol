@@ -17,12 +17,14 @@ Create a Linear issue and branch ready to start work on a new task.
    - Description: problem statement, proposed solution, Definition of Done checklist
    - Assign to `me`
 
-3. **Create a git branch** from `develop`:
+3. **Create a git branch** from an up-to-date `develop` — always pull before branching:
    ```
-   git checkout develop && git pull origin develop
+   git checkout develop
+   git pull origin develop
    git checkout -b <type>/les-<number>-<short-slug>
    ```
    Slug: lowercase, hyphens, max 5 words derived from the title.
+   If there are uncommitted changes on the current branch, stash them first (`git stash`).
 
 4. **Confirm** to the user:
    - Linear issue URL and number
