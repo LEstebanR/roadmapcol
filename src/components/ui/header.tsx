@@ -20,7 +20,7 @@ export default function Header() {
   const pathname = usePathname()
 
   return (
-    <header className="bg-background/80 fixed top-0 right-0 left-0 z-50 mx-auto flex justify-center backdrop-blur-sm">
+    <header className="bg-background/80 fixed top-0 right-0 left-0 z-50 mx-auto flex justify-center border-b border-border/40 backdrop-blur-md">
       <nav className="container flex h-14 items-center justify-between px-4 md:px-8">
         <Link href="/">
           <Image src={images.logo} alt="logo" width={60} height={60} />
@@ -44,7 +44,7 @@ export default function Header() {
           href={`https://wa.me/${CONTACT.phone}?text=${encodeURIComponent('Hello, I am from roadmapcol.com and I would like to get more information.')}`}
           target="_blank"
         >
-          <Button className="hidden items-center gap-2 bg-green-300 text-black hover:bg-green-400 md:inline-flex">
+          <Button className="hidden items-center gap-2 bg-green-500 text-white hover:bg-green-600 md:inline-flex">
             <Image
               src={images.whatsapp}
               alt="whatsapp"
