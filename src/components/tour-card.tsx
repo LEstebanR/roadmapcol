@@ -19,36 +19,39 @@ export function TourCard({
   }
 }) {
   return (
-    <Link href={tour.href} className="mx-auto w-11/12 md:w-full">
-      <Card className="flex h-full flex-col rounded-lg border border-black pt-0 transition-shadow duration-200 hover:shadow-lg">
-        <CardHeader className="px-0 pt-0">
+    <Link href={tour.href} className="group mx-auto w-11/12 md:w-full">
+      <Card className="flex h-full flex-col pt-0 transition-shadow duration-200 hover:shadow-md">
+        <CardHeader className="overflow-hidden rounded-t-[14px] px-0 pt-0">
           <Image
             src={tour.image}
             alt={tour.place}
             width={500}
             height={500}
-            className="h-[200px] w-full rounded-t-lg object-cover"
+            className="aspect-[4/3] w-full object-cover transition-transform duration-300 group-hover:scale-105"
           />
         </CardHeader>
         <CardContent className="flex flex-1 flex-col gap-4">
-          <div className="text-muted-foreground flex items-center gap-2">
-            <MapPin />
+          <div className="text-muted-foreground flex items-center gap-2 text-sm">
+            <MapPin className="size-4" />
             <p>{tour.place}</p>
           </div>
           <h2 className="text-2xl font-bold">{tour.title}</h2>
-          <div className="text-muted-foreground flex items-center gap-2">
-            <Clock />
+          <div className="text-muted-foreground flex items-center gap-2 text-sm">
+            <Clock className="size-4" />
             <p>{tour.duration}</p>
           </div>
-          <p className="flex-1">{tour.description}</p>
+          <p className="flex-1 text-sm">{tour.description}</p>
           <div className="mt-auto flex items-center justify-between">
-            <div className="text-secondary flex items-center gap-2 font-bold">
-              <p>${Number(tour.price).toLocaleString()}</p>
+            <div className="flex flex-col">
+              <p className="text-secondary text-xl font-bold">
+                ${Number(tour.price).toLocaleString()}
+              </p>
+              <p className="text-muted-foreground text-xs">per person</p>
             </div>
-            <Button className="bg-secondary text-black" asChild>
+            <Button variant="default" asChild>
               <span>
                 See details
-                <ArrowRight className="h-4 w-4 transition-all duration-300 hover:rotate-45" />
+                <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" />
               </span>
             </Button>
           </div>

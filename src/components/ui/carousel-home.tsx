@@ -55,7 +55,7 @@ export function CarouselHome() {
             className="flex h-[calc(100vh-3.5rem)] w-full items-center justify-center bg-cover bg-center bg-no-repeat pl-0"
             style={{ backgroundImage: `url(${item.image})` }}
           >
-            <Card className="w-10/12 border bg-white/80 md:w-xl">
+            <Card className="w-10/12 bg-white/90 shadow-lg backdrop-blur-sm md:w-xl">
               <CardHeader className="flex flex-col items-center justify-center">
                 <Badge className={`${item.chipColor} mx-auto text-black`}>
                   {item.chipIcon}

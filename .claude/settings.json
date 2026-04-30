@@ -1,0 +1,42 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(bun run format)",
+      "Bash(bun run format:check)",
+      "Bash(bun run lint)",
+      "Bash(bun run type-check)",
+      "Bash(bun run build)",
+      "Bash(bun dev)",
+      "Bash(bun test)",
+      "Bash(bunx vitest run*)",
+      "Bash(bunx prettier*)",
+      "Bash(find*)",
+      "Bash(grep*)",
+      "Bash(ls*)",
+      "Bash(git log*)",
+      "Bash(git diff*)",
+      "Bash(git status*)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path // empty' | { read -r f; [[ \"$f\" =~ \\.(ts|tsx)$ ]] && bunx prettier --write \"$f\"; } 2>/dev/null || true",
+            "statusMessage": "Formatting…",
+            "async": true
+          },
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path // empty' | { read -r f; [[ \"$f\" =~ \\.(ts|tsx)$ ]] && bun run type-check; } 2>/dev/null || true",
+            "statusMessage": "Type-checking…",
+            "async": true
+          }
+        ]
+      }
+    ]
+  }
+}

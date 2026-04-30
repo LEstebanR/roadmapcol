@@ -45,8 +45,6 @@ export default function TourPage() {
   const [selectedActivities, setSelectedActivities] = useState<string[]>([])
   const [message, setMessage] = useState<string>('')
 
-  console.log('tour', tour, name)
-
   const getSelectedActivityPrice = (activityTitle: string) => {
     const activity = tour?.activities?.find(
       (activity) => activity.title === activityTitle
@@ -73,7 +71,7 @@ export default function TourPage() {
     return (
       <div className="mx-auto my-14 flex flex-col items-center justify-center gap-12 md:w-6/12">
         <h1 className="text-2xl font-bold">Tour not found</h1>
-        <Link href="/tours" className="flex items-center gap-2 text-sky-500">
+        <Link href="/tours" className="text-muted-foreground hover:text-foreground flex items-center gap-2 text-sm transition-colors duration-200">
           <ArrowLeft className="h-4 w-4" />
           Back to tours
         </Link>
@@ -94,12 +92,12 @@ export default function TourPage() {
     <div className="mx-auto my-14 flex flex-col items-center justify-center gap-12 md:w-6/12">
       <Link
         href="/tours"
-        className="flex items-center gap-2 self-start text-sky-500"
+        className="text-muted-foreground hover:text-foreground flex items-center gap-2 self-start text-sm transition-colors duration-200"
       >
         <ArrowLeft className="h-4 w-4" />
         Back to tours
       </Link>
-      <Card className="mx-auto flex w-11/12 flex-col rounded-lg border border-black pt-0 md:w-full">
+      <Card className="mx-auto flex w-11/12 flex-col pt-0 md:w-full">
         <CardHeader className="px-0 pt-0">
           {tour.images ? (
             <TourMediaCarousel items={tour.images} />
@@ -109,7 +107,7 @@ export default function TourPage() {
               alt={tour.place}
               width={500}
               height={500}
-              className="h-[200px] w-full rounded-t-lg object-cover"
+              className="aspect-[4/3] w-full rounded-t-[14px] object-cover"
             />
           )}
         </CardHeader>
@@ -126,7 +124,7 @@ export default function TourPage() {
           </div>
           <h2 className="text-2xl font-bold">{tour.title}</h2>
           <p className="text-muted-foreground">{tour.description}</p>
-          <h3 className="text-xl font-bold">Destacados:</h3>
+          <h3 className="text-xl font-bold">Highlights:</h3>
           <ul className="grid list-inside list-disc gap-2 md:grid-cols-2">
             {tour.highlights.map((highlight) => (
               <li key={highlight}>{highlight}</li>
@@ -137,7 +135,7 @@ export default function TourPage() {
 
       {tour.activities.length > 0 && (
         <h2 className="ml-4 self-start text-2xl font-bold">
-          Activities availables:
+          Available activities:
         </h2>
       )}
       <div className="flex flex-col gap-4">
@@ -145,14 +143,14 @@ export default function TourPage() {
           ? tour.activities.map((activity) => (
               <Card
                 key={activity.title}
-                className="mx-auto flex w-11/12 flex-col border border-black py-0 md:w-full md:flex-row"
+                className="mx-auto flex w-11/12 flex-col py-0 md:w-full md:flex-row"
               >
                 <Image
                   src={activity.image}
                   alt={activity.title}
                   width={200}
                   height={200}
-                  className="w-full rounded-t-lg object-cover md:w-4/12 md:rounded-l-lg md:rounded-r-none"
+                  className="w-full rounded-t-[14px] object-cover md:w-4/12 md:rounded-l-[14px] md:rounded-r-none"
                 />
                 <div className="flex flex-col gap-2 p-4">
                   <div className="flex w-full items-center justify-between gap-4">
@@ -164,11 +162,11 @@ export default function TourPage() {
                   </p>
                   {activity.includes && (
                     <div>
-                      <p className="font-bold">Incluye:</p>
+                      <p className="font-bold">Includes:</p>
                       <ul className="grid grid-cols-2 gap-2">
                         {activity.includes.map((include: string) => (
                           <li key={include} className="flex items-center gap-2">
-                            <Check className="h-4 w-4 text-green-500" />
+                            <Check className="h-4 w-4 text-primary" />
                             {include}
                           </li>
                         ))}
@@ -176,8 +174,8 @@ export default function TourPage() {
                     </div>
                   )}
                   <div className="flex items-center justify-between">
-                    <p className="text-muted-foreground text-xl font-bold">
-                      Price: ${Number(activity.price).toLocaleString()}
+                    <p className="text-xl font-bold text-secondary">
+                      ${Number(activity.price).toLocaleString()}
                     </p>
                     <Button
                       variant={
@@ -197,7 +195,7 @@ export default function TourPage() {
             ))
           : null}
       </div>
-      <Card className="mx-auto w-11/12 border border-black px-4 md:w-full">
+      <Card className="mx-auto w-11/12 px-4 md:w-full">
         <CardHeader>
           <h2 className="text-2xl font-bold">Summary of your experience</h2>
           <div className="flex flex-col gap-4">
@@ -239,7 +237,7 @@ export default function TourPage() {
           </div>
         </CardHeader>
         <Button
-          className="flex w-full items-center gap-2 bg-green-300 px-4 text-black"
+          className="flex w-full items-center gap-2 bg-green-500 text-white hover:bg-green-600"
           asChild
         >
           <Link
