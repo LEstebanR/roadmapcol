@@ -57,7 +57,8 @@ Tours have a base price plus optional activities with individual prices. The tou
 Common workflows are available as slash commands in `.claude/commands/`:
 
 - `/start-issue` — create a Linear issue + branch before starting any change
-- `/ship-issue` — commit, push, and open a PR to `develop`
+- `/ship-issue` — commit and push the current branch
+- `/new-pr` — open a PR to `develop` for the current branch
 - `/new-tour` — add a tour to `src/lib/data.tsx`
 - `/new-page` — add a page/route and nav entry
 - `/new-image` — upload to Cloudinary and wire up in the project
