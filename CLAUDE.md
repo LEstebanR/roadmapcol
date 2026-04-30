@@ -20,7 +20,7 @@ bun test:ui          # Vitest interactive UI
 bun test:coverage    # Vitest with coverage
 ```
 
-CI runs lint, typecheck, and test workflows on push/PR to main/develop.
+CI runs lint, typecheck, and test as parallel jobs on PR to `main`/`develop`, and on push to `main` only (no double-run on merge). Branches are auto-deleted after PR close except `develop` and `main`.
 
 ## Architecture
 
@@ -81,3 +81,17 @@ Upload to Cloudinary under the `lesteban` account, in the `roadmapcol/<tour-slug
 ### WhatsApp contact integration
 
 All WhatsApp links use the format `https://wa.me/${CONTACT.phone}?text=${encodeURIComponent(message)}`. The phone number is centralized in `CONTACT` from `src/lib/data.tsx`. When adding new contact points, import `CONTACT` rather than hardcoding the number.
+
+## Branch & PR Workflow
+
+Every code change must follow this flow for traceability:
+
+1. **Create a Linear issue** (in the Road Map Col project) before starting work.
+2. **Create a branch** from `develop` using the convention:
+   - `feat/les-XX-short-description` — new feature
+   - `fix/les-XX-short-description` — bug fix
+   - `chore/les-XX-short-description` — infrastructure / tooling
+3. **Commit** with a message referencing the issue: `feat: add X (LES-XX)`.
+4. **Open a PR** targeting `develop` (never directly to `main`). Title must reference the Linear issue number.
+5. After merge, the branch is **auto-deleted** by `.github/workflows/cleanup.yml`.
+6. Never commit directly to `develop` or `main`.
