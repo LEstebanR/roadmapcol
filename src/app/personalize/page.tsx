@@ -203,6 +203,7 @@ export default function PersonalizaExperiencia() {
           <Link
             href={`https://wa.me/${CONTACT.phone}?text=${encodeURIComponent(message)}`}
             target="_blank"
+            rel="noopener noreferrer"
           >
             <Button className="w-full">Send request</Button>
           </Link>
