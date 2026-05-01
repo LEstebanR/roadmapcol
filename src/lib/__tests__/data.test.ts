@@ -28,6 +28,18 @@ describe('Data Constants', () => {
         }
       })
     })
+
+    it('all tour image/video URLs start with https://', () => {
+      TOURS.forEach((tour) => {
+        expect(tour.image).toMatch(/^https:\/\//)
+        tour.images?.forEach(({ url }) => {
+          expect(url).toMatch(/^https:\/\//)
+        })
+        tour.activities?.forEach((activity) => {
+          expect(activity.image).toMatch(/^https:\/\//)
+        })
+      })
+    })
   })
 
   describe('HEADER_LINKS', () => {
