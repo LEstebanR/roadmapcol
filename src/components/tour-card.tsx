@@ -1,4 +1,5 @@
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
+import { blurDataUrl, imgUrl } from '@/lib/cloudinary'
 import { ArrowRight, Clock, MapPin } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -9,13 +10,13 @@ export function TourCard({
   tour,
 }: {
   tour: {
-    place: string
     description: string
-    image: string
-    title: string
     duration: string
-    price: number
     href: string
+    image: string
+    place: string
+    price: number
+    title: string
   }
 }) {
   return (
@@ -23,10 +24,12 @@ export function TourCard({
       <Card className="flex h-full flex-col pt-0 transition-shadow duration-200 hover:shadow-md">
         <CardHeader className="overflow-hidden rounded-t-[14px] px-0 pt-0">
           <Image
-            src={tour.image}
+            src={imgUrl(tour.image)}
             alt={tour.place}
             width={500}
             height={500}
+            placeholder="blur"
+            blurDataURL={blurDataUrl}
             className="aspect-[4/3] w-full object-cover transition-transform duration-300 group-hover:scale-105"
           />
         </CardHeader>
