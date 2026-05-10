@@ -3,6 +3,7 @@
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { TourMediaCarousel } from '@/components/ui/tour-media-carousel'
+import { imgUrl } from '@/lib/cloudinary'
 import { CONTACT } from '@/lib/data'
 import { images } from '@/lib/images'
 import { ArrowLeft, Check, Clock, MapPin } from 'lucide-react'
@@ -84,7 +85,7 @@ export default function TourClient({ tour }: { tour: Tour }) {
             <TourMediaCarousel items={tour.images} />
           ) : (
             <Image
-              src={tour.image}
+              src={imgUrl(tour.image)}
               alt={tour.place}
               width={500}
               height={500}
@@ -127,7 +128,7 @@ export default function TourClient({ tour }: { tour: Tour }) {
                 className="mx-auto flex w-11/12 flex-col py-0 md:w-full md:flex-row"
               >
                 <Image
-                  src={activity.image}
+                  src={imgUrl(activity.image)}
                   alt={activity.title}
                   width={200}
                   height={200}
