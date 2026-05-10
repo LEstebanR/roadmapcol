@@ -24,7 +24,7 @@ CI runs lint, typecheck, and test as parallel jobs on PR to `main`/`develop`, an
 
 ## Architecture
 
-- **App Router pages** at `src/app/` — routes: `/`, `/tours`, `/tours/[name]`, `/personalize`
+- **App Router pages** at `src/app/` — routes: `/`, `/tours`, `/tours/[name]`, `/personalize`; also `sitemap.ts` and `robots.ts` (Next.js special files serving `/sitemap.xml` and `/robots.txt`)
 - **Static data** in `src/lib/data.tsx` — all tour, header link, and contact data lives here (no database/CMS). Images hosted on Cloudinary.
 - **Image URLs** in `src/lib/images.ts` — centralized Cloudinary URLs for logo and social icons. Use Cloudinary transformations (e.g. `w_1200,h_630,c_pad,b_white`) for resizing without uploading new assets.
 - **UI components** in `src/components/ui/` — built on Radix UI primitives + shadcn/ui ("new-york" style) + CVA for variants
@@ -43,7 +43,7 @@ CI runs lint, typecheck, and test as parallel jobs on PR to `main`/`develop`, an
 
 ## Testing
 
-Vitest + jsdom + Testing Library. Test setup at `src/test/setup.ts` provides mocks for Next.js router, Image, Link, and fonts. Run a single test file with:
+Vitest + jsdom + Testing Library. Test setup at `src/test/setup.ts` provides mocks for Next.js router, Image, Link, and fonts. **Known**: 20 tests in the suite have pre-existing failures (jsdom/font-mock issues) unrelated to feature code — baseline is 14 pass / 20 fail on `develop`. Run a single test file with:
 
 ```bash
 bunx vitest run src/components/__tests__/button.test.tsx
