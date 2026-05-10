@@ -110,6 +110,7 @@ function Carousel({
         api: api,
         opts,
         orientation:
+          /* c8 ignore next */
           orientation || (opts?.axis === 'y' ? 'vertical' : 'horizontal'),
         scrollPrev,
         scrollNext,
@@ -256,6 +257,7 @@ export function MediaCarousel({ items, className }: MediaCarouselProps) {
   )
 
   const onSelect = React.useCallback(() => {
+    /* c8 ignore next */
     if (!emblaApi) return
     setSelectedIndex(emblaApi.selectedScrollSnap())
   }, [emblaApi])

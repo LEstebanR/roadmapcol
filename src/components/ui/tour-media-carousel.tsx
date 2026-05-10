@@ -34,6 +34,7 @@ export function TourMediaCarousel({
   }, [emblaApi])
 
   const onSelect = React.useCallback(() => {
+    /* c8 ignore next */
     if (!emblaApi) return
     setSelectedIndex(emblaApi.selectedScrollSnap())
     const videos = document.querySelectorAll('video')

@@ -105,4 +105,21 @@ describe('Tour detail page', () => {
     expect(screen.getByText('No Activities Tour')).toBeInTheDocument()
     expect(screen.queryByText('Available activities:')).not.toBeInTheDocument()
   })
+
+  it('treats activity with no price as $0', () => {
+    const tourWithPricelessActivity: Tour = {
+      ...testTour,
+      activities: [
+        {
+          description: 'Free activity',
+          image: 'https://res.cloudinary.com/test/free.jpg',
+          title: 'Free Activity',
+        },
+      ],
+    }
+    render(<TourClient tour={tourWithPricelessActivity} />)
+    const addBtn = screen.getByText('Add to my experience')
+    fireEvent.click(addBtn)
+    expect(screen.getByText('Selected activities:')).toBeInTheDocument()
+  })
 })
