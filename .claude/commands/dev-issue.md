@@ -14,7 +14,7 @@ Complete end-to-end workflow for developing an existing Linear issue: read and i
    - Title, description, label (Feature / Bug / Infrastructure), priority, current status.
 
 3. **Determine branch type** from the issue label:
-   - Feature → `feat`
+   - Feature / Improvement → `feat`
    - Bug → `fix`
    - Infrastructure / tooling → `chore`
 
