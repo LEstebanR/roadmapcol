@@ -423,7 +423,7 @@ export const TOURS = [
       },
       {
         type: 'video',
-        url: 'hhttps://res.cloudinary.com/lesteban/video/upload/v1749943359/roadmapcol/parapente/parapente-3_rq6vsk.mov',
+        url: 'https://res.cloudinary.com/lesteban/video/upload/v1749943359/roadmapcol/parapente/parapente-3_rq6vsk.mov',
         alt: 'parapente',
       },
     ],

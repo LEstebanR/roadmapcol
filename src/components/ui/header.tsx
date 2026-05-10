@@ -20,7 +20,7 @@ export default function Header() {
   const pathname = usePathname()
 
   return (
-    <header className="bg-background/80 fixed top-0 right-0 left-0 z-50 mx-auto flex justify-center border-b border-border/40 backdrop-blur-md">
+    <header className="bg-background/80 border-border/40 fixed top-0 right-0 left-0 z-50 mx-auto flex justify-center border-b backdrop-blur-md">
       <nav className="container flex h-14 items-center justify-between px-4 md:px-8">
         <Link href="/">
           <Image src={images.logo} alt="logo" width={60} height={60} />
@@ -43,6 +43,7 @@ export default function Header() {
         <Link
           href={`https://wa.me/${CONTACT.phone}?text=${encodeURIComponent('Hello, I am from roadmapcol.com and I would like to get more information.')}`}
           target="_blank"
+          rel="noopener noreferrer"
         >
           <Button className="hidden items-center gap-2 bg-green-500 text-white hover:bg-green-600 md:inline-flex">
             <Image
@@ -75,6 +76,7 @@ export default function Header() {
             <Link
               href={`https://wa.me/${CONTACT.phone}?text=${encodeURIComponent('Hola, vengo de roadmapcol.com y me gustaría obtener más información.')}`}
               target="_blank"
+              rel="noopener noreferrer"
               className="hover:text-primary flex items-center gap-2 text-sm font-medium transition-all duration-300 hover:underline"
             >
               <DropdownMenuItem className="w-full cursor-pointer">

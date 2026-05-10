@@ -71,7 +71,10 @@ export default function TourPage() {
     return (
       <div className="mx-auto my-14 flex flex-col items-center justify-center gap-12 md:w-6/12">
         <h1 className="text-2xl font-bold">Tour not found</h1>
-        <Link href="/tours" className="text-muted-foreground hover:text-foreground flex items-center gap-2 text-sm transition-colors duration-200">
+        <Link
+          href="/tours"
+          className="text-muted-foreground hover:text-foreground flex items-center gap-2 text-sm transition-colors duration-200"
+        >
           <ArrowLeft className="h-4 w-4" />
           Back to tours
         </Link>
@@ -166,7 +169,7 @@ export default function TourPage() {
                       <ul className="grid grid-cols-2 gap-2">
                         {activity.includes.map((include: string) => (
                           <li key={include} className="flex items-center gap-2">
-                            <Check className="h-4 w-4 text-primary" />
+                            <Check className="text-primary h-4 w-4" />
                             {include}
                           </li>
                         ))}
@@ -174,7 +177,7 @@ export default function TourPage() {
                     </div>
                   )}
                   <div className="flex items-center justify-between">
-                    <p className="text-xl font-bold text-secondary">
+                    <p className="text-secondary text-xl font-bold">
                       ${Number(activity.price).toLocaleString()}
                     </p>
                     <Button
@@ -243,6 +246,7 @@ export default function TourPage() {
           <Link
             href={`https://wa.me/${CONTACT.phone}?text=${encodeURIComponent(message)}`}
             target="_blank"
+            rel="noopener noreferrer"
           >
             <Image
               src={images.whatsapp}

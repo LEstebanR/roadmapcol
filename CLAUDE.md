@@ -20,7 +20,7 @@ bun test:ui          # Vitest interactive UI
 bun test:coverage    # Vitest with coverage
 ```
 
-CI runs lint, typecheck, and test workflows on push/PR to main/develop.
+CI runs lint, typecheck, and test as parallel jobs on PR to `main`/`develop`, and on push to `main` only (no double-run on merge). Branches are auto-deleted after PR close except `develop` and `main`.
 
 ## Architecture
 
@@ -52,32 +52,13 @@ bunx vitest run src/components/__tests__/button.test.tsx
 
 Tours have a base price plus optional activities with individual prices. The tour detail page (`src/app/tours/[name]/page.tsx`) calculates dynamic pricing from selected activities and generates pre-filled WhatsApp messages for quotes.
 
-## Common Skills
+## Skills
 
-### Adding a new tour
+Common workflows are available as slash commands in `.claude/commands/`:
 
-1. Add the tour entry to the `TOURS` array in `src/lib/data.tsx` following the existing structure: `place`, `title`, `description`, `image`, `images` (optional gallery with `{type: 'image'|'video', url, alt}`), `duration`, `highlights`, `price`, `href` (must be `/tours/<slug>`), and `activities` array.
-2. Optionally add a landing carousel entry to `LANDING_LINKS` in the same file to feature the tour on the home page.
-3. No new route file is needed — the dynamic route `src/app/tours/[name]/page.tsx` handles all tours by matching `href`.
-
-### Adding a new page/route
-
-1. Create `src/app/<route>/page.tsx`. Use `'use client'` directive if the page needs interactivity (useState, useEffect, event handlers).
-2. Add navigation entry to `HEADER_LINKS` in `src/lib/data.tsx` with `label`, `href`, and `icon` (from lucide-react).
-3. Layout is handled globally in `src/app/layout.tsx` (Header + Footer + WhatsApp button wrap all pages).
-
-### Adding a UI component (shadcn/ui)
-
-```bash
-bunx shadcn@latest add <component-name>
-```
-
-Components land in `src/components/ui/`. Config is in `components.json` (style: "new-york", icons: lucide). Custom components in the same directory should follow the same pattern: Radix primitives + CVA variants + `cn()` for class merging.
-
-### Adding Cloudinary images
-
-Upload to Cloudinary under the `lesteban` account, in the `roadmapcol/<tour-slug>/` folder. Use the full `https://res.cloudinary.com/lesteban/image/upload/...` URL. Remote image patterns for Cloudinary are already configured in `next.config.ts`.
-
-### WhatsApp contact integration
-
-All WhatsApp links use the format `https://wa.me/${CONTACT.phone}?text=${encodeURIComponent(message)}`. The phone number is centralized in `CONTACT` from `src/lib/data.tsx`. When adding new contact points, import `CONTACT` rather than hardcoding the number.
+- `/start-issue` — create a Linear issue + branch before starting any change
+- `/ship-issue` — commit and push the current branch
+- `/new-pr` — open a PR to `develop` for the current branch
+- `/new-tour` — add a tour to `src/lib/data.tsx`
+- `/new-page` — add a page/route and nav entry
+- `/new-image` — upload to Cloudinary and wire up in the project
