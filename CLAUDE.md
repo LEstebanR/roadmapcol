@@ -15,9 +15,9 @@ bun run lint         # ESLint
 bun run format       # Prettier format
 bun run format:check # Prettier check
 bun run type-check   # TypeScript type check (tsc --noEmit)
-bun test             # Run Vitest tests
-bun test:ui          # Vitest interactive UI
-bun test:coverage    # Vitest with coverage
+bun run test         # Run Vitest tests
+bun run test:ui      # Vitest interactive UI
+bun run test:coverage # Vitest with coverage (100% threshold enforced)
 ```
 
 CI runs lint, typecheck, and test as parallel jobs on PR to `main`/`develop`, and on push to `main` only (no double-run on merge). Branches are auto-deleted after PR close except `develop` and `main`.
@@ -43,11 +43,16 @@ CI runs lint, typecheck, and test as parallel jobs on PR to `main`/`develop`, an
 
 ## Testing
 
-Vitest + jsdom + Testing Library. Test setup at `src/test/setup.ts` provides mocks for Next.js router, Image, Link, and fonts. **Known**: 20 tests in the suite have pre-existing failures (jsdom/font-mock issues) unrelated to feature code — baseline is 14 pass / 20 fail on `develop`. Run a single test file with:
+Vitest + jsdom + Testing Library. Test setup at `src/test/setup.ts` provides mocks for Next.js router, Image, Link, fonts, and `HTMLMediaElement`. Coverage is enforced at 100% (branches/functions/lines/statements) via vitest.config.ts thresholds — CI fails if coverage drops. Run a single test file with:
 
 ```bash
 bunx vitest run src/components/__tests__/button.test.tsx
 ```
+
+**Key pitfalls:**
+- `bun test` ≠ `bun run test` — `bun test` uses Bun's native runner and ignores vitest.config.ts entirely. Always use `bun run test`.
+- The global `next/image` mock returns `null`. Tests that need `getByAltText` must add a local `vi.mock('next/image', ...)` that renders a real `<img>`.
+- Use `/* c8 ignore next */` for genuinely unreachable branches (Embla stale-closure guards, dead code in shadcn templates) rather than writing contorted tests.
 
 ## Key Business Logic
 
