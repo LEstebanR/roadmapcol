@@ -13,10 +13,14 @@ vi.mock('next/navigation', () => ({
   useSearchParams: vi.fn(() => new URLSearchParams()),
 }))
 
+type SearchParamsReturn = ReturnType<typeof useSearchParams>
+
 describe('GTM', () => {
   afterEach(() => {
-    vi.mocked(useSearchParams).mockReturnValue(new URLSearchParams() as any)
-    delete (window as any).dataLayer
+    vi.mocked(useSearchParams).mockReturnValue(
+      new URLSearchParams() as unknown as SearchParamsReturn
+    )
+    delete window.dataLayer
   })
 
   it('renders the GTM script tag', () => {
@@ -34,12 +38,12 @@ describe('GTM', () => {
 
   it('includes search params in the pageview page value when present', () => {
     vi.mocked(useSearchParams).mockReturnValue(
-      new URLSearchParams('tour=medellin') as any
+      new URLSearchParams('tour=medellin') as unknown as SearchParamsReturn
     )
     window.dataLayer = []
     render(<GTM />)
-    const entry = window.dataLayer.find((e) => e['event'] === 'pageview') as any
-    expect(entry?.page).toContain('tour=medellin')
+    const entry = window.dataLayer.find((e) => e['event'] === 'pageview')
+    expect(String(entry?.['page'])).toContain('tour=medellin')
   })
 })
 

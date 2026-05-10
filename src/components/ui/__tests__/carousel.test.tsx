@@ -7,7 +7,10 @@ import {
   MediaCarousel,
 } from '@/components/ui/carousel'
 import { fireEvent, render, screen } from '@testing-library/react'
-import useEmblaCarousel from 'embla-carousel-react'
+import type { EmblaCarouselType } from 'embla-carousel'
+import useEmblaCarousel, {
+  type EmblaViewportRefType,
+} from 'embla-carousel-react'
 
 vi.mock('embla-carousel-react', () => ({
   default: vi.fn(),
@@ -29,10 +32,12 @@ const buildMockApi = (canScrollPrev = false, canScrollNext = true) => ({
   selectedScrollSnap: vi.fn(() => 1),
 })
 
+const mockRef = vi.fn() as unknown as EmblaViewportRefType
+
 beforeEach(() => {
   vi.mocked(useEmblaCarousel).mockReturnValue([
-    vi.fn() as any,
-    buildMockApi() as any,
+    mockRef,
+    buildMockApi() as unknown as EmblaCarouselType,
   ])
 })
 
@@ -51,8 +56,8 @@ describe('Carousel', () => {
   it('handles ArrowLeft key to scroll prev', () => {
     const mockApi = buildMockApi()
     vi.mocked(useEmblaCarousel).mockReturnValue([
-      vi.fn() as any,
-      mockApi as any,
+      mockRef,
+      mockApi as unknown as EmblaCarouselType,
     ])
     render(
       <Carousel>
@@ -69,8 +74,8 @@ describe('Carousel', () => {
   it('handles ArrowRight key to scroll next', () => {
     const mockApi = buildMockApi()
     vi.mocked(useEmblaCarousel).mockReturnValue([
-      vi.fn() as any,
-      mockApi as any,
+      mockRef,
+      mockApi as unknown as EmblaCarouselType,
     ])
     render(
       <Carousel>
@@ -87,8 +92,8 @@ describe('Carousel', () => {
   it('ignores unrelated key presses', () => {
     const mockApi = buildMockApi()
     vi.mocked(useEmblaCarousel).mockReturnValue([
-      vi.fn() as any,
-      mockApi as any,
+      mockRef,
+      mockApi as unknown as EmblaCarouselType,
     ])
     render(
       <Carousel>
@@ -116,10 +121,7 @@ describe('Carousel', () => {
   })
 
   it('does not crash when embla api is undefined', () => {
-    vi.mocked(useEmblaCarousel).mockReturnValue([
-      vi.fn() as any,
-      undefined as any,
-    ])
+    vi.mocked(useEmblaCarousel).mockReturnValue([mockRef, undefined])
     render(
       <Carousel>
         <CarouselContent>
@@ -144,8 +146,8 @@ describe('Carousel', () => {
   it('cleans up event listener on unmount', () => {
     const mockApi = buildMockApi()
     vi.mocked(useEmblaCarousel).mockReturnValue([
-      vi.fn() as any,
-      mockApi as any,
+      mockRef,
+      mockApi as unknown as EmblaCarouselType,
     ])
     const { unmount } = render(
       <Carousel>
@@ -176,8 +178,8 @@ describe('CarouselPrevious and CarouselNext', () => {
 
   it('previous button is disabled when canScrollPrev is false', () => {
     vi.mocked(useEmblaCarousel).mockReturnValue([
-      vi.fn() as any,
-      buildMockApi(false, true) as any,
+      mockRef,
+      buildMockApi(false, true) as unknown as EmblaCarouselType,
     ])
     render(
       <Carousel>
@@ -196,8 +198,8 @@ describe('CarouselPrevious and CarouselNext', () => {
 
   it('next button is enabled when canScrollNext is true', () => {
     vi.mocked(useEmblaCarousel).mockReturnValue([
-      vi.fn() as any,
-      buildMockApi(false, true) as any,
+      mockRef,
+      buildMockApi(false, true) as unknown as EmblaCarouselType,
     ])
     render(
       <Carousel>
@@ -275,8 +277,8 @@ describe('MediaCarousel', () => {
   it('clicking prev/next scrolls media carousel', () => {
     const mockApi = buildMockApi()
     vi.mocked(useEmblaCarousel).mockReturnValue([
-      vi.fn() as any,
-      mockApi as any,
+      mockRef,
+      mockApi as unknown as EmblaCarouselType,
     ])
     render(
       <MediaCarousel
@@ -296,8 +298,8 @@ describe('MediaCarousel', () => {
   it('clicking a dot scrolls to that index', () => {
     const mockApi = buildMockApi()
     vi.mocked(useEmblaCarousel).mockReturnValue([
-      vi.fn() as any,
-      mockApi as any,
+      mockRef,
+      mockApi as unknown as EmblaCarouselType,
     ])
     render(
       <MediaCarousel
@@ -311,10 +313,7 @@ describe('MediaCarousel', () => {
   })
 
   it('renders without error when embla api is undefined', () => {
-    vi.mocked(useEmblaCarousel).mockReturnValue([
-      vi.fn() as any,
-      undefined as any,
-    ])
+    vi.mocked(useEmblaCarousel).mockReturnValue([mockRef, undefined])
     render(
       <MediaCarousel
         items={[{ alt: 'A', type: 'image', url: 'https://example.com/a.jpg' }]}

@@ -1,6 +1,9 @@
 import { CarouselHome } from '@/components/ui/carousel-home'
 import { fireEvent, render, screen } from '@testing-library/react'
-import useEmblaCarousel from 'embla-carousel-react'
+import type { EmblaCarouselType } from 'embla-carousel'
+import useEmblaCarousel, {
+  type EmblaViewportRefType,
+} from 'embla-carousel-react'
 
 vi.mock('embla-carousel-react', () => ({
   default: vi.fn(),
@@ -57,11 +60,13 @@ const buildMockApi = () => ({
   selectedScrollSnap: vi.fn(() => 0),
 })
 
+const mockRef = vi.fn() as unknown as EmblaViewportRefType
+
 describe('CarouselHome', () => {
   beforeEach(() => {
     vi.mocked(useEmblaCarousel).mockReturnValue([
-      vi.fn() as any,
-      buildMockApi() as any,
+      mockRef,
+      buildMockApi() as unknown as EmblaCarouselType,
     ])
   })
 
@@ -96,10 +101,7 @@ describe('CarouselHome', () => {
   })
 
   it('renders without error when embla api is undefined', () => {
-    vi.mocked(useEmblaCarousel).mockReturnValue([
-      vi.fn() as any,
-      undefined as any,
-    ])
+    vi.mocked(useEmblaCarousel).mockReturnValue([mockRef, undefined])
     render(<CarouselHome />)
     expect(screen.getByText('Road Map Col')).toBeInTheDocument()
   })

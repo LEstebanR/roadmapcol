@@ -1,15 +1,18 @@
 import { TourMediaCarousel } from '@/components/ui/tour-media-carousel'
 import { fireEvent, render, screen } from '@testing-library/react'
-import useEmblaCarousel from 'embla-carousel-react'
+import type { EmblaCarouselType } from 'embla-carousel'
+import useEmblaCarousel, {
+  type EmblaViewportRefType,
+} from 'embla-carousel-react'
 
 vi.mock('embla-carousel-react', () => ({
   default: vi.fn(),
 }))
 
 vi.mock('next/image', () => ({
-  default: ({ alt, ...props }: { alt: string; [k: string]: unknown }) => (
+  default: ({ alt, ...props }: React.ImgHTMLAttributes<HTMLImageElement>) => (
     // eslint-disable-next-line @next/next/no-img-element
-    <img alt={alt} {...(props as any)} />
+    <img alt={alt} {...props} />
   ),
 }))
 
@@ -23,10 +26,12 @@ const buildMockApi = () => ({
   selectedScrollSnap: vi.fn(() => 0),
 })
 
+const mockRef = vi.fn() as unknown as EmblaViewportRefType
+
 beforeEach(() => {
   vi.mocked(useEmblaCarousel).mockReturnValue([
-    vi.fn() as any,
-    buildMockApi() as any,
+    mockRef,
+    buildMockApi() as unknown as EmblaCarouselType,
   ])
 })
 
@@ -93,8 +98,8 @@ describe('TourMediaCarousel', () => {
   it('clicking a dot calls scrollTo', () => {
     const mockApi = buildMockApi()
     vi.mocked(useEmblaCarousel).mockReturnValue([
-      vi.fn() as any,
-      mockApi as any,
+      mockRef,
+      mockApi as unknown as EmblaCarouselType,
     ])
     render(<TourMediaCarousel items={imageItems} />)
     const buttons = screen.getAllByRole('button')
@@ -105,8 +110,8 @@ describe('TourMediaCarousel', () => {
   it('clicking previous/next scrolls the carousel', () => {
     const mockApi = buildMockApi()
     vi.mocked(useEmblaCarousel).mockReturnValue([
-      vi.fn() as any,
-      mockApi as any,
+      mockRef,
+      mockApi as unknown as EmblaCarouselType,
     ])
     render(<TourMediaCarousel items={imageItems} />)
     const buttons = screen.getAllByRole('button')
@@ -124,10 +129,7 @@ describe('TourMediaCarousel', () => {
   })
 
   it('renders without error when embla api is undefined', () => {
-    vi.mocked(useEmblaCarousel).mockReturnValue([
-      vi.fn() as any,
-      undefined as any,
-    ])
+    vi.mocked(useEmblaCarousel).mockReturnValue([mockRef, undefined])
     render(<TourMediaCarousel items={imageItems} />)
     expect(screen.getByAltText('Image 1')).toBeInTheDocument()
   })
