@@ -23,9 +23,34 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 })
 
+const siteDescription =
+  'Discover unforgettable tours in Medellín, Antioquia and Colombia. Adventure, culture and nature experiences designed for you.'
+const siteTitle = 'Road Map Col — Tours in Colombia'
+const ogImageUrl =
+  'https://res.cloudinary.com/lesteban/image/upload/w_1200,h_630,c_pad,b_white/v1748229585/roadmap/road_map_sin_fondo_atjeji.png'
+
 export const metadata: Metadata = {
-  title: 'Road Map Col',
-  description: 'Road Map Col',
+  description: siteDescription,
+  metadataBase: new URL('https://roadmapcol.com'),
+  openGraph: {
+    images: [
+      { alt: 'Road Map Col', height: 630, url: ogImageUrl, width: 1200 },
+    ],
+    locale: 'en_US',
+    siteName: 'Road Map Col',
+    type: 'website',
+    url: 'https://roadmapcol.com',
+  },
+  title: {
+    default: siteTitle,
+    template: '%s | Road Map Col',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    description: siteDescription,
+    images: [ogImageUrl],
+    title: siteTitle,
+  },
 }
 
 export default function RootLayout({
