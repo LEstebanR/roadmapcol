@@ -20,7 +20,7 @@ bun run test:ui      # Vitest interactive UI
 bun run test:coverage # Vitest with coverage (100% threshold enforced)
 ```
 
-CI runs lint, typecheck, and test as parallel jobs on PR to `main`/`develop`, and on push to `main` only (no double-run on merge). Branches are auto-deleted after PR close except `develop` and `main`.
+CI runs lint, typecheck, test, and coverage as parallel jobs on PR to `main`/`develop`, and on push to `main` only (no double-run on merge). The `Coverage (100% required)` job fails the PR if any metric drops below 100%. Branches are auto-deleted after PR close except `develop` and `main`.
 
 ## Architecture
 
@@ -53,6 +53,7 @@ bunx vitest run src/components/__tests__/button.test.tsx
 - `bun test` ≠ `bun run test` — `bun test` uses Bun's native runner and ignores vitest.config.ts entirely. Always use `bun run test`.
 - The global `next/image` mock returns `null`. Tests that need `getByAltText` must add a local `vi.mock('next/image', ...)` that renders a real `<img>`.
 - Use `/* c8 ignore next */` for genuinely unreachable branches (Embla stale-closure guards, dead code in shadcn templates) rather than writing contorted tests.
+- Never disable ESLint rules (`eslint-disable`) in test files. Fix the actual types — use `as unknown as TargetType` for mocks that can't satisfy the interface directly (e.g. `vi.fn() as unknown as EmblaViewportRefType`).
 
 ## Key Business Logic
 
