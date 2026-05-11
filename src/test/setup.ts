@@ -35,3 +35,7 @@ vi.mock('next/font/local', () => ({
     style: { fontFamily: 'mocked-font' },
   })),
 }))
+
+// jsdom doesn't implement HTMLMediaElement methods
+window.HTMLMediaElement.prototype.pause = vi.fn()
+window.HTMLMediaElement.prototype.play = vi.fn(() => Promise.resolve())

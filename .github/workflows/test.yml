@@ -8,6 +8,7 @@ on:
 
 jobs:
   test:
+    name: Unit tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -15,4 +16,17 @@ jobs:
         with:
           bun-version: latest
       - run: bun install
-      - run: bun test:coverage
+      - name: Run tests
+        run: bunx vitest run
+
+  coverage:
+    name: Coverage (100% required)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - run: bun install
+      - name: Enforce 100% coverage
+        run: bun run test:coverage
