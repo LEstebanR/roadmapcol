@@ -1,14 +1,6 @@
 import RootLayout from '@/app/layout'
 import { render } from '@testing-library/react'
 
-vi.mock('next/font/google', () => ({
-  Geist: () => ({ variable: '--font-geist-sans', className: 'geist' }),
-  Geist_Mono: () => ({
-    variable: '--font-geist-mono',
-    className: 'geist-mono',
-  }),
-}))
-
 vi.mock('@vercel/analytics/next', () => ({
   Analytics: () => null,
 }))
