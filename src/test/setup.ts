@@ -28,11 +28,22 @@ vi.mock('next/link', () => ({
   ),
 }))
 
-// Mock Next.js font
+// Mock Next.js fonts
 vi.mock('next/font/local', () => ({
   default: vi.fn(() => ({
     className: 'mocked-font-class',
     style: { fontFamily: 'mocked-font' },
+  })),
+}))
+
+vi.mock('next/font/google', () => ({
+  Geist: vi.fn(() => ({
+    className: 'mocked-geist',
+    variable: '--font-geist-sans',
+  })),
+  Geist_Mono: vi.fn(() => ({
+    className: 'mocked-geist-mono',
+    variable: '--font-geist-mono',
   })),
 }))
 
