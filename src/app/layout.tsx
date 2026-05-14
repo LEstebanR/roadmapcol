@@ -1,8 +1,10 @@
 import { GTM, GTMNoscript } from '@/components/gtm'
+import { JsonLd } from '@/components/json-ld'
 import Footer from '@/components/ui/footer'
 import Header from '@/components/ui/header'
 import { CONTACT } from '@/lib/data'
 import { images } from '@/lib/images'
+import { organizationSchema } from '@/lib/structured-data'
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
@@ -60,6 +62,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <JsonLd data={organizationSchema()} />
+      </head>
       {isProduction && <GTM />}
       <body
         className={` ${geistSans.variable} ${geistMono.variable} grid min-h-dvh w-full grid-rows-[auto_1fr_auto] antialiased`}

@@ -1,4 +1,6 @@
+import { JsonLd } from '@/components/json-ld'
 import { TOURS } from '@/lib/data'
+import { breadcrumbSchema, touristTripSchema } from '@/lib/structured-data'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
@@ -29,5 +31,11 @@ export default async function TourPage({ params }: PageProps) {
     | Tour
     | undefined
   if (!tour) notFound()
-  return <TourClient tour={tour} />
+  return (
+    <>
+      <JsonLd data={touristTripSchema(tour)} />
+      <JsonLd data={breadcrumbSchema(tour.title, tour.href)} />
+      <TourClient tour={tour} />
+    </>
+  )
 }
