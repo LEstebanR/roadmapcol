@@ -12,6 +12,7 @@ import {
 import { TitleCard } from '@/components/ui/typography/typography'
 import { LANDING_LINKS } from '@/lib/data'
 import Autoplay from 'embla-carousel-autoplay'
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import * as React from 'react'
 
@@ -52,10 +53,26 @@ export function CarouselHome() {
         {LANDING_LINKS.map((item, index) => (
           <CarouselItem
             key={index}
-            className="flex h-[calc(100vh-3.5rem)] w-full items-center justify-center bg-cover bg-center bg-no-repeat pl-0"
-            style={{ backgroundImage: `url(${item.image})` }}
+            className="relative flex h-[calc(100vh-3.5rem)] w-full items-center justify-center overflow-hidden pl-0"
           >
-            <Card className="w-10/12 bg-white/90 shadow-lg backdrop-blur-sm md:w-xl">
+            {index === 0 ? (
+              <Image
+                src={item.image}
+                alt={item.title}
+                fill
+                priority
+                className="object-cover"
+              />
+            ) : (
+              <Image
+                src={item.image}
+                alt={item.title}
+                fill
+                loading="lazy"
+                className="object-cover"
+              />
+            )}
+            <Card className="relative w-10/12 bg-white/90 shadow-lg backdrop-blur-sm md:w-xl">
               <CardHeader className="flex flex-col items-center justify-center">
                 <Badge className={`${item.chipColor} mx-auto text-black`}>
                   {item.chipIcon}
