@@ -22,21 +22,19 @@ import { Card, CardContent, CardHeader } from './card'
 export function CarouselHome() {
   const router = useRouter()
   const [api, setApi] = React.useState<CarouselApi>()
-  const autoplay = React.useRef(
-    Autoplay({
-      delay: 4000,
-      stopOnInteraction: false,
-    })
+  const autoplay = React.useMemo(
+    () => Autoplay({ delay: 4000, stopOnInteraction: false }),
+    []
   )
 
   const handlePrevious = () => {
     api?.scrollPrev()
-    autoplay.current?.reset()
+    autoplay.reset()
   }
 
   const handleNext = () => {
     api?.scrollNext()
-    autoplay.current?.reset()
+    autoplay.reset()
   }
 
   return (
@@ -46,7 +44,7 @@ export function CarouselHome() {
         align: 'start',
         loop: true,
       }}
-      plugins={[autoplay.current]}
+      plugins={[autoplay]}
       className="mt-14 flex h-[calc(100vh-3.5rem)] w-screen flex-col items-center justify-center"
     >
       <CarouselContent className="mx-0 w-screen px-0">

@@ -9,7 +9,7 @@ import { images } from '@/lib/images'
 import { ArrowLeft, Check, Clock, MapPin } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useMemo, useState } from 'react'
 
 interface Activity {
   description: string
@@ -39,7 +39,6 @@ export interface Tour {
 
 export default function TourClient({ tour }: { tour: Tour }) {
   const [selectedActivities, setSelectedActivities] = useState<string[]>([])
-  const [message, setMessage] = useState<string>('')
 
   const getSelectedActivityPrice = (activityTitle: string) => {
     const activity = tour.activities?.find(
@@ -55,11 +54,11 @@ export default function TourClient({ tour }: { tour: Tour }) {
       0
     )
 
-  useEffect(() => {
-    setMessage(
-      `Hello, I would like to get more information about the tour ${tour.title}${selectedActivities.length > 0 ? `, with the activities: ${selectedActivities.join(', ')}` : ''}. With an approximate value of ${totalPrice}`
-    )
-  }, [tour, selectedActivities, totalPrice])
+  const message = useMemo(
+    () =>
+      `Hello, I would like to get more information about the tour ${tour.title}${selectedActivities.length > 0 ? `, with the activities: ${selectedActivities.join(', ')}` : ''}. With an approximate value of ${totalPrice}`,
+    [tour, selectedActivities, totalPrice]
+  )
 
   const handleActivityToggle = (activityTitle: string) => {
     setSelectedActivities((prev) => {
