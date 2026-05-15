@@ -94,7 +94,7 @@ function Carousel({
 
   React.useEffect(() => {
     if (!api) return
-    onSelect(api)
+    React.startTransition(() => onSelect(api))
     api.on('reInit', onSelect)
     api.on('select', onSelect)
 
@@ -264,8 +264,10 @@ export function MediaCarousel({ items, className }: MediaCarouselProps) {
 
   React.useEffect(() => {
     if (!emblaApi) return
-    onSelect()
-    setScrollSnaps(emblaApi.scrollSnapList())
+    React.startTransition(() => {
+      onSelect()
+      setScrollSnaps(emblaApi.scrollSnapList())
+    })
     emblaApi.on('select', onSelect)
   }, [emblaApi, onSelect])
 

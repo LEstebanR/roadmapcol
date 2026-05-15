@@ -45,8 +45,10 @@ export function TourMediaCarousel({
 
   React.useEffect(() => {
     if (!emblaApi) return
-    onSelect()
-    setScrollSnaps(emblaApi.scrollSnapList())
+    React.startTransition(() => {
+      onSelect()
+      setScrollSnaps(emblaApi.scrollSnapList())
+    })
     emblaApi.on('select', onSelect)
     return () => {
       emblaApi.off('select', onSelect)
