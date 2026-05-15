@@ -4,14 +4,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Road Map Col — a tourism/travel booking website for Colombia (focused on Medellín/Antioquia). Built with Next.js 15 App Router, React 19, TypeScript, and Tailwind CSS 4. Uses Bun as the package manager and runtime.
+Road Map Col — a tourism/travel booking website for Colombia (focused on Medellín/Antioquia). Built with Next.js 16 App Router, React 19, TypeScript, and Tailwind CSS 4. Uses Bun as the package manager and runtime.
 
 ## Commands
 
 ```bash
 bun dev              # Start dev server (Turbopack)
 bun run build        # Production build
-bun run lint         # ESLint
+bun run lint         # ESLint (runs `eslint .` — `next lint` removed in Next.js 16)
 bun run format       # Prettier format
 bun run format:check # Prettier check
 bun run type-check   # TypeScript type check (tsc --noEmit)
@@ -38,6 +38,8 @@ CI runs lint, typecheck, test, and coverage as parallel jobs on PR to `main`/`de
 - Import sorting enforced by `@trivago/prettier-plugin-sort-imports`
 - Tailwind class sorting enforced by `prettier-plugin-tailwindcss`
 - ESLint enforces sorted object keys (`sort-keys`)
+- ESLint config (`eslint.config.mjs`) uses native flat config — import `eslint-config-next/core-web-vitals` and `eslint-config-next/typescript` directly as arrays. No `FlatCompat` needed (Next.js 16+).
+- Environment variables: client-accessible vars use `NEXT_PUBLIC_` prefix. Secrets go in `.env.local` (gitignored). `.env.example` is tracked and lists all required vars with placeholder values. All dependency versions are pinned (no `^`).
 - File naming: kebab-case for components (e.g., `tour-card.tsx`)
 - Tests go in `__tests__/` directories adjacent to source files, named `*.test.ts(x)`
 
@@ -54,6 +56,7 @@ bunx vitest run src/components/__tests__/button.test.tsx
 - The global `next/image` mock returns `null`. Tests that need `getByAltText` must add a local `vi.mock('next/image', ...)` that renders a real `<img>`.
 - Use `/* c8 ignore next */` for genuinely unreachable branches (Embla stale-closure guards, dead code in shadcn templates) rather than writing contorted tests.
 - Never disable ESLint rules (`eslint-disable`) in test files. Fix the actual types — use `as unknown as TargetType` for mocks that can't satisfy the interface directly (e.g. `vi.fn() as unknown as EmblaViewportRefType`).
+- **esbuild binary corruption**: After `bun add` installs many packages, the esbuild binary can be corrupted (exits SIGKILL 137), causing Vitest to fail with "write EPIPE". Fix: `rm -rf node_modules/esbuild node_modules/@esbuild && bun add -d esbuild@<version>`.
 
 ## Key Business Logic
 
