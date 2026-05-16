@@ -2,6 +2,7 @@
 
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
+import { StarRating } from '@/components/ui/star-rating'
 import { TourMediaCarousel } from '@/components/ui/tour-media-carousel'
 import { imgUrl } from '@/lib/cloudinary'
 import { CONTACT } from '@/lib/data'
@@ -34,6 +35,7 @@ export interface Tour {
   }>
   place: string
   price: number
+  rating?: number
   title: string
 }
 
@@ -105,6 +107,7 @@ export default function TourClient({ tour }: { tour: Tour }) {
             </div>
           </div>
           <h2 className="text-2xl font-bold">{tour.title}</h2>
+          {tour.rating !== undefined && <StarRating rating={tour.rating} />}
           <p className="text-muted-foreground">{tour.description}</p>
           <h3 className="text-xl font-bold">Highlights:</h3>
           <ul className="grid list-inside list-disc gap-2 md:grid-cols-2">

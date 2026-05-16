@@ -1,4 +1,5 @@
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
+import { StarRating } from '@/components/ui/star-rating'
 import { blurDataUrl, imgUrl } from '@/lib/cloudinary'
 import { ArrowRight, Clock, MapPin } from 'lucide-react'
 import Image from 'next/image'
@@ -16,6 +17,7 @@ export function TourCard({
     image: string
     place: string
     price: number
+    rating?: number
     title: string
   }
 }) {
@@ -39,6 +41,7 @@ export function TourCard({
             <p>{tour.place}</p>
           </div>
           <h2 className="text-2xl font-bold">{tour.title}</h2>
+          {tour.rating !== undefined && <StarRating rating={tour.rating} />}
           <div className="text-muted-foreground flex items-center gap-2 text-sm">
             <Clock className="size-4" />
             <p>{tour.duration}</p>
