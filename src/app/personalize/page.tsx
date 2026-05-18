@@ -20,7 +20,7 @@ import {
   Waves,
 } from 'lucide-react'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useMemo, useState } from 'react'
 
 const activities = [
   { id: 'aventura', label: 'Adventure', icon: Mountain },
@@ -36,7 +36,6 @@ const activities = [
 
 export default function PersonalizaExperiencia() {
   const [selectedActivities, setSelectedActivities] = useState<string[]>([])
-  const [message, setMessage] = useState<string>('')
   const [data, setData] = useState<{
     name: string
     email: string
@@ -67,8 +66,8 @@ export default function PersonalizaExperiencia() {
     )
   }
 
-  useEffect(() => {
-    setMessage(`Hello, I want more information about a personalized tour, these are my data:
+  const message = useMemo(
+    () => `Hello, I want more information about a personalized tour, these are my data:
       Name: ${data?.name}
       Email: ${data?.email}
       Phone: ${data?.phone}
@@ -79,8 +78,9 @@ export default function PersonalizaExperiencia() {
       Budget: ${data?.budget}
       Comments: ${data?.comments}
       Activities: ${selectedActivities.join(', ')}
-      `)
-  }, [data, selectedActivities])
+      `,
+    [data, selectedActivities]
+  )
 
   return (
     <section className="mx-auto my-14 flex w-11/12 flex-col items-center justify-center gap-4 md:w-6/12">

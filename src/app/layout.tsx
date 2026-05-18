@@ -1,8 +1,10 @@
 import { GTM, GTMNoscript } from '@/components/gtm'
+import { JsonLd } from '@/components/json-ld'
 import Footer from '@/components/ui/footer'
 import Header from '@/components/ui/header'
 import { CONTACT } from '@/lib/data'
 import { images } from '@/lib/images'
+import { organizationSchema } from '@/lib/structured-data'
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
@@ -23,9 +25,34 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 })
 
+const siteDescription =
+  'Discover unforgettable tours in Medellín, Antioquia and Colombia. Adventure, culture and nature experiences designed for you.'
+const siteTitle = 'Road Map Col — Tours in Colombia'
+const ogImageUrl =
+  'https://res.cloudinary.com/lesteban/image/upload/w_1200,h_630,c_pad,b_white/v1748229585/roadmap/road_map_sin_fondo_atjeji.png'
+
 export const metadata: Metadata = {
-  title: 'Road Map Col',
-  description: 'Road Map Col',
+  description: siteDescription,
+  metadataBase: new URL('https://roadmapcol.com'),
+  openGraph: {
+    images: [
+      { alt: 'Road Map Col', height: 630, url: ogImageUrl, width: 1200 },
+    ],
+    locale: 'en_US',
+    siteName: 'Road Map Col',
+    type: 'website',
+    url: 'https://roadmapcol.com',
+  },
+  title: {
+    default: siteTitle,
+    template: '%s | Road Map Col',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    description: siteDescription,
+    images: [ogImageUrl],
+    title: siteTitle,
+  },
 }
 
 export default function RootLayout({
@@ -35,6 +62,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <JsonLd data={organizationSchema()} />
+      </head>
       {isProduction && <GTM />}
       <body
         className={` ${geistSans.variable} ${geistMono.variable} grid min-h-dvh w-full grid-rows-[auto_1fr_auto] antialiased`}

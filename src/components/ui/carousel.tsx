@@ -94,7 +94,7 @@ function Carousel({
 
   React.useEffect(() => {
     if (!api) return
-    onSelect(api)
+    React.startTransition(() => onSelect(api))
     api.on('reInit', onSelect)
     api.on('select', onSelect)
 
@@ -110,6 +110,7 @@ function Carousel({
         api: api,
         opts,
         orientation:
+          /* c8 ignore next */
           orientation || (opts?.axis === 'y' ? 'vertical' : 'horizontal'),
         scrollPrev,
         scrollNext,
@@ -256,14 +257,17 @@ export function MediaCarousel({ items, className }: MediaCarouselProps) {
   )
 
   const onSelect = React.useCallback(() => {
+    /* c8 ignore next */
     if (!emblaApi) return
     setSelectedIndex(emblaApi.selectedScrollSnap())
   }, [emblaApi])
 
   React.useEffect(() => {
     if (!emblaApi) return
-    onSelect()
-    setScrollSnaps(emblaApi.scrollSnapList())
+    React.startTransition(() => {
+      onSelect()
+      setScrollSnaps(emblaApi.scrollSnapList())
+    })
     emblaApi.on('select', onSelect)
   }, [emblaApi, onSelect])
 

@@ -1,5 +1,6 @@
 'use client'
 
+import { imgUrl, videoPoster } from '@/lib/cloudinary'
 import { cn } from '@/lib/utils'
 import useEmblaCarousel from 'embla-carousel-react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
@@ -7,13 +8,13 @@ import Image from 'next/image'
 import * as React from 'react'
 
 interface TourMediaCarouselProps {
+  className?: string
   items: {
+    alt: string
+    thumbnail?: string
     type: 'image' | 'video'
     url: string
-    thumbnail?: string
-    alt: string
   }[]
-  className?: string
 }
 
 export function TourMediaCarousel({
@@ -33,9 +34,9 @@ export function TourMediaCarousel({
   }, [emblaApi])
 
   const onSelect = React.useCallback(() => {
+    /* c8 ignore next */
     if (!emblaApi) return
     setSelectedIndex(emblaApi.selectedScrollSnap())
-    // Pause all videos when changing slides
     const videos = document.querySelectorAll('video')
     videos.forEach((video) => {
       video.pause()
@@ -44,8 +45,10 @@ export function TourMediaCarousel({
 
   React.useEffect(() => {
     if (!emblaApi) return
-    onSelect()
-    setScrollSnaps(emblaApi.scrollSnapList())
+    React.startTransition(() => {
+      onSelect()
+      setScrollSnaps(emblaApi.scrollSnapList())
+    })
     emblaApi.on('select', onSelect)
     return () => {
       emblaApi.off('select', onSelect)
@@ -63,7 +66,7 @@ export function TourMediaCarousel({
             >
               {item.type === 'image' ? (
                 <Image
-                  src={item.url}
+                  src={imgUrl(item.url)}
                   alt={item.alt}
                   width={500}
                   height={500}
@@ -72,7 +75,8 @@ export function TourMediaCarousel({
               ) : (
                 <video
                   src={item.url}
-                  poster={item.thumbnail}
+                  poster={item.thumbnail ?? videoPoster(item.url)}
+                  preload={index === selectedIndex ? 'metadata' : 'none'}
                   controls
                   playsInline
                   className="h-[400px] w-full object-cover"

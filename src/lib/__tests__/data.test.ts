@@ -1,4 +1,4 @@
-import { CONTACT, HEADER_LINKS, TOURS } from '@/lib/data'
+import { CONTACT, HEADER_LINKS, TESTIMONIALS, TOURS } from '@/lib/data'
 
 describe('Data Constants', () => {
   describe('TOURS', () => {
@@ -62,6 +62,24 @@ describe('Data Constants', () => {
       expect(CONTACT).toHaveProperty('email')
       expect(typeof CONTACT.phone).toBe('string')
       expect(typeof CONTACT.email).toBe('string')
+    })
+  })
+
+  describe('TESTIMONIALS', () => {
+    it('should be a non-empty array', () => {
+      expect(Array.isArray(TESTIMONIALS)).toBe(true)
+      expect(TESTIMONIALS.length).toBeGreaterThan(0)
+    })
+
+    it('each entry has required fields with correct types', () => {
+      TESTIMONIALS.forEach((t) => {
+        expect(typeof t.author).toBe('string')
+        expect(typeof t.location).toBe('string')
+        expect(typeof t.quote).toBe('string')
+        expect(typeof t.rating).toBe('number')
+        expect(t.rating).toBeGreaterThanOrEqual(1)
+        expect(t.rating).toBeLessThanOrEqual(5)
+      })
     })
   })
 })

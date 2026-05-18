@@ -38,4 +38,14 @@ describe('TourCard Component', () => {
     const link = screen.getByRole('link')
     expect(link).toHaveAttribute('href', '/tours/test-tour')
   })
+
+  it('shows star rating when rating is provided', () => {
+    render(<TourCard tour={{ ...mockTour, rating: 5 }} />)
+    expect(screen.getByLabelText('5 out of 5 stars')).toBeInTheDocument()
+  })
+
+  it('hides star rating when rating is not provided', () => {
+    render(<TourCard tour={mockTour} />)
+    expect(screen.queryByLabelText(/out of 5 stars/)).not.toBeInTheDocument()
+  })
 })

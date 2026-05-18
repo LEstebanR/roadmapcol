@@ -4,8 +4,6 @@ import { usePathname, useSearchParams } from 'next/navigation'
 import Script from 'next/script'
 import { Suspense, useEffect } from 'react'
 
-const GTM_ID = 'GTM-N2ZVJPC2'
-
 function GTMPageView() {
   const pathname = usePathname()
   const searchParams = useSearchParams()
@@ -14,7 +12,9 @@ function GTMPageView() {
     if (pathname) {
       window.dataLayer?.push({
         event: 'pageview',
-        page: pathname + (searchParams?.toString() ? `?${searchParams.toString()}` : ''),
+        page:
+          pathname +
+          (searchParams?.toString() ? `?${searchParams.toString()}` : ''),
       })
     }
   }, [pathname, searchParams])
@@ -34,7 +34,7 @@ export function GTM() {
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
             j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','${GTM_ID}');
+            })(window,document,'script','dataLayer','${process.env.NEXT_PUBLIC_GTM_ID}');
           `,
         }}
       />
@@ -49,7 +49,7 @@ export function GTMNoscript() {
   return (
     <noscript>
       <iframe
-        src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+        src={`https://www.googletagmanager.com/ns.html?id=${process.env.NEXT_PUBLIC_GTM_ID}`}
         height="0"
         width="0"
         style={{ display: 'none', visibility: 'hidden' }}
