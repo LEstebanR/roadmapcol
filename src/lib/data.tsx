@@ -705,6 +705,37 @@ export const TOURS = [
   },
 ]
 
+export const TESTIMONIALS = [
+  {
+    author: 'María Fernanda G.',
+    location: 'Bogotá, Colombia',
+    quote:
+      'An incredible experience! The Canopy tour at El Salto del Buey was breathtaking. The guides were professional and made us feel safe the entire time.',
+    rating: 5,
+  },
+  {
+    author: 'James T.',
+    location: 'London, UK',
+    quote:
+      'Guatapé was absolutely stunning. Road Map Col organized everything perfectly — from transport to lunch. Will definitely book again!',
+    rating: 5,
+  },
+  {
+    author: 'Laura M.',
+    location: 'Medellín, Colombia',
+    quote:
+      'The Jardín tour was a dream. Small group, personalized attention, and unforgettable landscapes. Highly recommend to anyone visiting Antioquia.',
+    rating: 5,
+  },
+  {
+    author: 'Carlos R.',
+    location: 'Buenos Aires, Argentina',
+    quote:
+      'Paragliding over Medellín was the highlight of my trip to Colombia. The team at Road Map Col made it stress-free and magical.',
+    rating: 5,
+  },
+]
+
 export const CONTACT = {
   phone: '+573127064293',
   instagram: 'https://www.instagram.com/roadmapcol/',

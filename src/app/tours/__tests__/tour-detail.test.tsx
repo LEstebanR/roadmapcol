@@ -122,4 +122,14 @@ describe('Tour detail page', () => {
     fireEvent.click(addBtn)
     expect(screen.getByText('Selected activities:')).toBeInTheDocument()
   })
+
+  it('shows star rating when rating is provided', () => {
+    render(<TourClient tour={{ ...testTour, rating: 5 }} />)
+    expect(screen.getByLabelText('5 out of 5 stars')).toBeInTheDocument()
+  })
+
+  it('hides star rating when rating is not provided', () => {
+    render(<TourClient tour={testTour} />)
+    expect(screen.queryByLabelText(/out of 5 stars/)).not.toBeInTheDocument()
+  })
 })
