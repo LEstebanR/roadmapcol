@@ -19,4 +19,11 @@ describe('Home page', () => {
     render(<Home />)
     expect(screen.getByTestId('testimonials')).toBeInTheDocument()
   })
+
+  it('renders an H1 with SEO copy', () => {
+    render(<Home />)
+    expect(
+      screen.getByRole('heading', { level: 1, name: /Tours in Medellín/ })
+    ).toBeInTheDocument()
+  })
 })
