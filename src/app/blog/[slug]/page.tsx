@@ -1,6 +1,6 @@
 import { JsonLd } from '@/components/json-ld'
 import { Button } from '@/components/ui/button'
-import { Title } from '@/components/ui/typography/typography'
+import { PostTitle } from '@/components/ui/typography/typography'
 import { getAllPostSlugs, getPostBySlug } from '@/lib/blog'
 import { renderMarkdown } from '@/lib/markdown'
 import { blogBreadcrumbSchema, blogPostingSchema } from '@/lib/structured-data'
@@ -50,8 +50,8 @@ export default async function BlogPostPage({ params }: PageProps) {
           className="object-cover"
         />
       </div>
-      <Title>{post.title}</Title>
-      <p className="text-muted-foreground -mt-4 text-center text-sm">
+      <PostTitle>{post.title}</PostTitle>
+      <p className="text-muted-foreground text-center text-sm">
         {new Date(post.date).toLocaleDateString('en-US', {
           day: 'numeric',
           month: 'long',
