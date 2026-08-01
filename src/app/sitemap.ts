@@ -1,3 +1,4 @@
+import { getAllPostSlugs } from '@/lib/blog'
 import { TOURS } from '@/lib/data'
 import { MetadataRoute } from 'next'
 
@@ -20,6 +21,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
       url: `${BASE_URL}/personalize`,
     },
+    {
+      changeFrequency: 'weekly',
+      lastModified,
+      priority: 0.7,
+      url: `${BASE_URL}/blog`,
+    },
   ]
 
   const uniqueTourHrefs = [...new Set(TOURS.map((tour) => tour.href))]
@@ -30,5 +37,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${BASE_URL}${href}`,
   }))
 
-  return [...staticRoutes, ...tourRoutes]
+  const blogRoutes: MetadataRoute.Sitemap = getAllPostSlugs().map((slug) => ({
+    changeFrequency: 'monthly',
+    lastModified,
+    priority: 0.6,
+    url: `${BASE_URL}/blog/${slug}`,
+  }))
+
+  return [...staticRoutes, ...tourRoutes, ...blogRoutes]
 }

@@ -12,6 +12,12 @@ export function Title({ children }: { children: React.ReactNode }) {
   )
 }
 
+export function PostTitle({ children }: { children: React.ReactNode }) {
+  return (
+    <h1 className="text-center text-3xl font-bold md:text-5xl">{children}</h1>
+  )
+}
+
 export function TitleCard({ children }: { children: React.ReactNode }) {
   return (
     <p className={`text-6xl text-black text-shadow-lg ${oneBrush.className}`}>

@@ -1,4 +1,8 @@
-import { Title, TitleCard } from '@/components/ui/typography/typography'
+import {
+  PostTitle,
+  Title,
+  TitleCard,
+} from '@/components/ui/typography/typography'
 import { render, screen } from '@testing-library/react'
 
 describe('Title', () => {
@@ -6,6 +10,15 @@ describe('Title', () => {
     render(<Title>Hello World</Title>)
     expect(
       screen.getByRole('heading', { level: 1, name: 'Hello World' })
+    ).toBeInTheDocument()
+  })
+})
+
+describe('PostTitle', () => {
+  it('renders an h1 with children', () => {
+    render(<PostTitle>A Long Blog Post Title</PostTitle>)
+    expect(
+      screen.getByRole('heading', { level: 1, name: 'A Long Blog Post Title' })
     ).toBeInTheDocument()
   })
 })
