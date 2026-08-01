@@ -1,5 +1,6 @@
 import {
   breadcrumbSchema,
+  itemListSchema,
   organizationSchema,
   touristTripSchema,
 } from '@/lib/structured-data'
@@ -52,6 +53,38 @@ describe('structured-data', () => {
     it('builds full url from href', () => {
       const schema = touristTripSchema(tour)
       expect(schema.url).toBe('https://roadmapcol.com/tours/test')
+    })
+  })
+
+  describe('itemListSchema', () => {
+    const tours = [
+      { href: '/tours/tour-a', title: 'Tour A' },
+      { href: '/tours/tour-b', title: 'Tour B' },
+    ]
+
+    it('returns ItemList schema with one entry per tour', () => {
+      const schema = itemListSchema(tours)
+      expect(schema['@type']).toBe('ItemList')
+      expect(schema.itemListElement).toHaveLength(2)
+    })
+
+    it('sets positions and names in order', () => {
+      const schema = itemListSchema(tours)
+      expect(schema.itemListElement[0]).toMatchObject({
+        name: 'Tour A',
+        position: 1,
+      })
+      expect(schema.itemListElement[1]).toMatchObject({
+        name: 'Tour B',
+        position: 2,
+      })
+    })
+
+    it('builds full item urls from href', () => {
+      const schema = itemListSchema(tours)
+      expect(schema.itemListElement[0].item).toBe(
+        'https://roadmapcol.com/tours/tour-a'
+      )
     })
   })
 

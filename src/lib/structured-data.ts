@@ -45,6 +45,19 @@ export function touristTripSchema(tour: {
   }
 }
 
+export function itemListSchema(tours: { href: string; title: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: tours.map((tour, index) => ({
+      '@type': 'ListItem',
+      item: `${BASE_URL}${tour.href}`,
+      name: tour.title,
+      position: index + 1,
+    })),
+  }
+}
+
 export function breadcrumbSchema(tourTitle: string, tourHref: string) {
   return {
     '@context': 'https://schema.org',

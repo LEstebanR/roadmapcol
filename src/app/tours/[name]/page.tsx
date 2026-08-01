@@ -19,6 +19,7 @@ export async function generateMetadata({
     | undefined
   if (!tour) return {}
   return {
+    alternates: { canonical: tour.href },
     description: tour.description,
     openGraph: { images: [{ alt: tour.title, url: tour.image }] },
     title: tour.title,
