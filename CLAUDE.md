@@ -66,11 +66,16 @@ Tours have a base price plus optional activities with individual prices. The tou
 
 Common workflows are available as slash commands in `.claude/commands/`:
 
-- `/start-issue` — create a Linear issue + branch before starting any change
-- `/dev-issue` — pick up an existing Linear issue, implement it, and open a PR end-to-end
+- `/start-issue` — create a GitHub issue + branch before starting any change
+- `/dev-issue` — pick up an existing GitHub issue, implement it, and open a PR end-to-end
 - `/ship-issue` — commit and push the current branch
 - `/new-pr` — open a PR to `develop` for the current branch (standardized description)
 - `/new-tour` — add a tour to `src/lib/data.tsx`
 - `/new-page` — add a page/route and nav entry
 - `/new-image` — upload to Cloudinary and wire up in the project
+- `/audit-project` — sweep the project for code/perf/UX issues and file GitHub issues
 - `/retrospective` — review the session and sync CLAUDE.md + skills with what changed
+
+## Issue Tracking
+
+Issues are tracked in GitHub Issues (`gh issue`) on `LEstebanR/roadmapcol`, not Linear. Branches are named `<type>/<issue-number>-<slug>` and PRs use `Closes #<issue-number>` to auto-close on merge. Category labels: `bug`, `enhancement`, `performance`, `security`, `accessibility`, `seo`, `ux`, `tech-debt`. Priority labels: `priority:urgent` / `priority:high` / `priority:normal` / `priority:low`.

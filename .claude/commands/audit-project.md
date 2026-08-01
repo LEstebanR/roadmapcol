@@ -1,4 +1,4 @@
-Run a comprehensive audit of the Road Map Col project and create prioritized Linear issues for every real finding.
+Run a comprehensive audit of the Road Map Col project and create prioritized GitHub issues for every real finding.
 
 ## When to use
 
@@ -6,7 +6,7 @@ Run this skill periodically (after major feature batches, before releases, or wh
 
 ## Audit dimensions
 
-For each dimension below, read the relevant files and report **specific, actionable findings** — not vague suggestions. Skip anything already tracked in Linear.
+For each dimension below, read the relevant files and report **specific, actionable findings** — not vague suggestions. Skip anything already tracked as an open GitHub issue.
 
 ### 1. Security
 - `target="_blank"` links missing `rel="noopener noreferrer"`
@@ -57,7 +57,7 @@ For each dimension below, read the relevant files and report **specific, actiona
 ## Steps
 
 1. **Read files** relevant to each dimension (see paths below).
-2. **Cross-reference Linear** — list open issues with `list_issues` to skip already-tracked items.
+2. **Cross-reference GitHub** — run `gh issue list --state open --limit 100` to skip already-tracked items.
 3. **Report findings** in this format for each issue:
    ```
    [Category] Severity — Short title
@@ -65,12 +65,12 @@ For each dimension below, read the relevant files and report **specific, actiona
    Problem: one sentence
    Fix: one sentence
    ```
-4. **Create Linear issues** for every new finding:
-   - Team: Lesteban, Project: Road Map Col
-   - Priority: 1 (Urgent) = security/data loss, 2 (High) = user-facing bug/SEO/perf, 3 (Normal) = a11y/UX/tests, 4 (Low) = polish
-   - Label: Bug / Feature / Infrastructure / Design
-   - Description: problem + fix + Definition of Done checklist
-5. **Summarize** to the user: total issues found, breakdown by category and severity, Linear issue numbers created.
+4. **Create a GitHub issue** for every new finding with `gh issue create`:
+   - Title: clear English sentence, e.g. `[Performance] Hero image missing priority prop`
+   - Priority label: `priority:urgent` = security/data loss, `priority:high` = user-facing bug/SEO/perf, `priority:normal` = a11y/UX/tests, `priority:low` = polish
+   - Category label: one of `bug`, `enhancement`, `performance`, `security`, `accessibility`, `seo`, `ux`, `tech-debt` (create the label first with `gh label create` if it doesn't exist)
+   - Body: problem + fix + Definition of Done checklist
+5. **Summarize** to the user: total issues found, breakdown by category and severity, GitHub issue numbers created.
 
 ## Key files to read
 

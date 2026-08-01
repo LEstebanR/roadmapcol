@@ -2,16 +2,16 @@ Open a pull request for the current branch targeting `develop` with a standardiz
 
 ## Arguments
 
-`$ARGUMENTS` — Linear issue number (e.g. `LES-42`). If omitted, infer from the current branch name.
+`$ARGUMENTS` — GitHub issue number (e.g. `42`). If omitted, infer from the current branch name.
 
 ## Steps
 
-1. **Infer the issue number** from `$ARGUMENTS` or the branch name (`feat/les-42-*` → `LES-42`).
+1. **Infer the issue number** from `$ARGUMENTS` or the branch name (`feat/42-*` → `42`).
 
 2. **Collect context** before writing the PR:
    - Run `git log develop..HEAD --oneline` to list all commits on this branch.
    - Run `git diff develop...HEAD --stat` to see which files changed.
-   - Fetch the Linear issue title, description, and label.
+   - Fetch the issue title, body, and labels: `gh issue view <number> --json title,body,labels`.
 
 3. **Verify the branch is pushed**:
    ```
@@ -21,9 +21,9 @@ Open a pull request for the current branch targeting `develop` with a standardiz
 
 4. **Open the PR** with `gh pr create` targeting `develop`:
 
-   **Title format**: `<type>: <Linear issue title> (<issue-number>)`
+   **Title format**: `<type>: <issue title> (#<issue-number>)`
    - `type` must match the branch prefix: `feat` | `fix` | `chore`
-   - Example: `feat: Add WhatsApp quote flow to tour detail page (LES-42)`
+   - Example: `feat: Add WhatsApp quote flow to tour detail page (#42)`
 
    **Body template** (fill every section — no empty sections):
    ```
@@ -55,7 +55,7 @@ Open a pull request for the current branch targeting `develop` with a standardiz
    <!-- Anything non-obvious: trade-offs, deferred work, known limitations. Delete if none. -->
 
    ---
-   Linear: <issue-url>
+   Closes #<issue-number>
    ```
 
    Rules:
@@ -63,9 +63,6 @@ Open a pull request for the current branch targeting `develop` with a standardiz
    - Never target `main` directly.
    - Keep bullets concise (< 80 chars each).
    - Screenshots are required for any visible UI change.
+   - `Closes #<issue-number>` auto-closes the issue when the PR merges — no manual status update needed.
 
-5. **Update the Linear issue**:
-   - Status → `In Review`
-   - Add the PR URL as a link on the issue.
-
-6. **Report** the PR URL and Linear issue URL to the user.
+5. **Report** the PR URL and issue URL to the user.
