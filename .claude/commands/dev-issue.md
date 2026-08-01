@@ -1,8 +1,8 @@
-Complete end-to-end workflow for developing an existing Linear issue: read and implement the issue, create branch, commit, push, and open a PR — all in one command.
+Complete end-to-end workflow for developing an existing GitHub issue: read and implement the issue, create branch, commit, push, and open a PR — all in one command.
 
 ## Arguments
 
-`$ARGUMENTS` — Linear issue number (e.g. `LES-42`). If omitted, ask the user: "Which Linear issue do you want to develop? (e.g. LES-42)"
+`$ARGUMENTS` — GitHub issue number (e.g. `42`). If omitted, ask the user: "Which GitHub issue do you want to develop? (e.g. 42)"
 
 ## Steps
 
@@ -10,28 +10,33 @@ Complete end-to-end workflow for developing an existing Linear issue: read and i
 
 1. **Identify the issue**: use `$ARGUMENTS` or ask the user for the issue number.
 
-2. **Fetch the issue details** from Linear:
-   - Title, description, label (Feature / Bug / Infrastructure), priority, current status.
+2. **Fetch the issue details** from GitHub:
+   ```
+   gh issue view <number> --json title,body,labels
+   ```
 
 3. **Determine branch type** from the issue label:
-   - Feature / Improvement → `feat`
-   - Bug → `fix`
-   - Infrastructure / tooling → `chore`
+   - `enhancement` → `feat`
+   - `bug` → `fix`
+   - `tech-debt` / infrastructure / tooling → `chore`
 
 4. **Create a git branch** from an up-to-date `develop` — always pull before branching:
    ```
    git checkout develop
    git pull origin develop
-   git checkout -b <type>/les-<number>-<short-slug>
+   git checkout -b <type>/<issue-number>-<short-slug>
    ```
    Slug: lowercase, hyphens, max 5 words derived from the title.
    If there are uncommitted changes on the current branch, stash them first (`git stash`).
 
-5. **Update the Linear issue** status → `In Progress`.
+5. **Comment on the issue** to mark it as being worked on:
+   ```
+   gh issue comment <number> --body "Starting work on this."
+   ```
 
 ### Develop
 
-6. **Understand the issue fully**: re-read the Linear description, definition of done, and any code snippets it contains. Explore the relevant files in the codebase to understand the current state before writing a single line.
+6. **Understand the issue fully**: re-read the GitHub issue body, definition of done, and any code snippets it contains. Explore the relevant files in the codebase to understand the current state before writing a single line.
 
 7. **Implement the changes**: write the code needed to satisfy the issue. Follow all project conventions (no semicolons, single quotes, 80-char limit, kebab-case files, sorted keys). Run tests and type-check after implementing:
    ```
@@ -51,4 +56,4 @@ Complete end-to-end workflow for developing an existing Linear issue: read and i
 
 ### Open PR
 
-10. **Run `/new-pr`** — follows the full new-pr skill to open a standardized PR targeting `develop`, update the Linear issue to `In Review`, and report the PR URL.
+10. **Run `/new-pr`** — follows the full new-pr skill to open a standardized PR targeting `develop` with `Closes #<number>` so the issue auto-closes on merge, and report the PR URL.

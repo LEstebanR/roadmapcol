@@ -1,4 +1,4 @@
-Create a Linear issue and branch ready to start work on a new task.
+Create a GitHub issue and branch ready to start work on a new task.
 
 ## Arguments
 
@@ -7,26 +7,26 @@ Create a Linear issue and branch ready to start work on a new task.
 ## Steps
 
 1. **Determine issue type** from the description:
-   - New feature → type `feat`, Linear label `Feature`
-   - Bug fix → type `fix`, Linear label `Bug`
-   - Infrastructure/tooling → type `chore`, Linear label `Infrastructure`
+   - New feature → type `feat`, GitHub label `enhancement`
+   - Bug fix → type `fix`, GitHub label `bug`
+   - Infrastructure/tooling → type `chore`, GitHub label `tech-debt`
 
-2. **Create a Linear issue** in the Road Map Col project (team: Lesteban):
-   - Title: clear English sentence
-   - Priority: 2 (High) for bugs, 3 (Normal) for features/chores
-   - Description: problem statement, proposed solution, Definition of Done checklist
-   - Assign to `me`
+2. **Create a GitHub issue** in `LEstebanR/roadmapcol`:
+   ```
+   gh issue create --title "<clear English title>" --label "<type-label>" --label "priority:<level>" --body "<problem statement, proposed solution, Definition of Done checklist>" --assignee @me
+   ```
+   Priority: `priority:high` for bugs, `priority:normal` for features/chores.
 
 3. **Create a git branch** from an up-to-date `develop` — always pull before branching:
    ```
    git checkout develop
    git pull origin develop
-   git checkout -b <type>/les-<number>-<short-slug>
+   git checkout -b <type>/<issue-number>-<short-slug>
    ```
    Slug: lowercase, hyphens, max 5 words derived from the title.
    If there are uncommitted changes on the current branch, stash them first (`git stash`).
 
 4. **Confirm** to the user:
-   - Linear issue URL and number
+   - GitHub issue URL and number
    - Branch name now checked out
    - Next step: make changes, then run `/ship-issue`
