@@ -45,6 +45,19 @@ export function touristTripSchema(tour: {
   }
 }
 
+export function itemListSchema(tours: { href: string; title: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: tours.map((tour, index) => ({
+      '@type': 'ListItem',
+      item: `${BASE_URL}${tour.href}`,
+      name: tour.title,
+      position: index + 1,
+    })),
+  }
+}
+
 export function breadcrumbSchema(tourTitle: string, tourHref: string) {
   return {
     '@context': 'https://schema.org',
@@ -69,5 +82,57 @@ export function breadcrumbSchema(tourTitle: string, tourHref: string) {
         position: 3,
       },
     ],
+  }
+}
+
+export function blogBreadcrumbSchema(postTitle: string, slug: string) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        item: BASE_URL,
+        name: 'Home',
+        position: 1,
+      },
+      {
+        '@type': 'ListItem',
+        item: `${BASE_URL}/blog`,
+        name: 'Blog',
+        position: 2,
+      },
+      {
+        '@type': 'ListItem',
+        item: `${BASE_URL}/blog/${slug}`,
+        name: postTitle,
+        position: 3,
+      },
+    ],
+  }
+}
+
+export function blogPostingSchema(post: {
+  coverImage: string
+  date: string
+  description: string
+  slug: string
+  title: string
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    author: { '@type': 'Organization', name: 'Road Map Col' },
+    datePublished: post.date,
+    description: post.description,
+    headline: post.title,
+    image: post.coverImage,
+    mainEntityOfPage: `${BASE_URL}/blog/${post.slug}`,
+    publisher: {
+      '@type': 'Organization',
+      logo: { '@type': 'ImageObject', url: LOGO_URL },
+      name: 'Road Map Col',
+    },
+    url: `${BASE_URL}/blog/${post.slug}`,
   }
 }

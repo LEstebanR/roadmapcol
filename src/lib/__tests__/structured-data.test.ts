@@ -1,5 +1,8 @@
 import {
+  blogBreadcrumbSchema,
+  blogPostingSchema,
   breadcrumbSchema,
+  itemListSchema,
   organizationSchema,
   touristTripSchema,
 } from '@/lib/structured-data'
@@ -55,6 +58,38 @@ describe('structured-data', () => {
     })
   })
 
+  describe('itemListSchema', () => {
+    const tours = [
+      { href: '/tours/tour-a', title: 'Tour A' },
+      { href: '/tours/tour-b', title: 'Tour B' },
+    ]
+
+    it('returns ItemList schema with one entry per tour', () => {
+      const schema = itemListSchema(tours)
+      expect(schema['@type']).toBe('ItemList')
+      expect(schema.itemListElement).toHaveLength(2)
+    })
+
+    it('sets positions and names in order', () => {
+      const schema = itemListSchema(tours)
+      expect(schema.itemListElement[0]).toMatchObject({
+        name: 'Tour A',
+        position: 1,
+      })
+      expect(schema.itemListElement[1]).toMatchObject({
+        name: 'Tour B',
+        position: 2,
+      })
+    })
+
+    it('builds full item urls from href', () => {
+      const schema = itemListSchema(tours)
+      expect(schema.itemListElement[0].item).toBe(
+        'https://roadmapcol.com/tours/tour-a'
+      )
+    })
+  })
+
   describe('breadcrumbSchema', () => {
     it('returns BreadcrumbList with 3 items', () => {
       const schema = breadcrumbSchema('Test Tour', '/tours/test')
@@ -78,6 +113,52 @@ describe('structured-data', () => {
       expect(schema.itemListElement[2].item).toBe(
         'https://roadmapcol.com/tours/test'
       )
+    })
+  })
+
+  describe('blogBreadcrumbSchema', () => {
+    it('returns BreadcrumbList with Home, Blog and the post', () => {
+      const schema = blogBreadcrumbSchema('Test Post', 'test-post')
+      expect(schema['@type']).toBe('BreadcrumbList')
+      const [home, blog, post] = schema.itemListElement
+      expect(home.name).toBe('Home')
+      expect(blog.name).toBe('Blog')
+      expect(blog.item).toBe('https://roadmapcol.com/blog')
+      expect(post.name).toBe('Test Post')
+      expect(post.item).toBe('https://roadmapcol.com/blog/test-post')
+    })
+  })
+
+  describe('blogPostingSchema', () => {
+    const post = {
+      coverImage: 'https://example.com/cover.jpg',
+      date: '2026-01-15',
+      description: 'A great post',
+      slug: 'test-post',
+      title: 'Test Post',
+    }
+
+    it('returns BlogPosting schema with post data', () => {
+      const schema = blogPostingSchema(post)
+      expect(schema['@type']).toBe('BlogPosting')
+      expect(schema.headline).toBe('Test Post')
+      expect(schema.description).toBe('A great post')
+      expect(schema.image).toBe('https://example.com/cover.jpg')
+      expect(schema.datePublished).toBe('2026-01-15')
+    })
+
+    it('builds full url and mainEntityOfPage from slug', () => {
+      const schema = blogPostingSchema(post)
+      expect(schema.url).toBe('https://roadmapcol.com/blog/test-post')
+      expect(schema.mainEntityOfPage).toBe(
+        'https://roadmapcol.com/blog/test-post'
+      )
+    })
+
+    it('includes publisher with logo', () => {
+      const schema = blogPostingSchema(post)
+      expect(schema.publisher.name).toBe('Road Map Col')
+      expect(schema.publisher.logo.url).toContain('cloudinary.com')
     })
   })
 })

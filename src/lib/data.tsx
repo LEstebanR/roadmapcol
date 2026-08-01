@@ -1,4 +1,4 @@
-import { Gift, Home, Info, Map, MapPin } from 'lucide-react'
+import { BookOpen, Gift, Home, Info, Map, MapPin } from 'lucide-react'
 
 export const HEADER_LINKS = [
   {
@@ -15,6 +15,11 @@ export const HEADER_LINKS = [
     label: 'Personalize your experience',
     href: '/personalize',
     icon: <MapPin />,
+  },
+  {
+    label: 'Blog',
+    href: '/blog',
+    icon: <BookOpen />,
   },
 ]
 
