@@ -46,52 +46,48 @@ export function CarouselHome() {
         loop: true,
       }}
       plugins={[autoplay]}
-      className="mt-14 flex h-[calc(100vh-3.5rem)] w-screen flex-col items-center justify-center"
+      className="relative mt-14 h-[calc(100vh-3.5rem)] w-full"
     >
-      <CarouselContent className="mx-0 w-screen px-0">
+      <CarouselContent className="ml-0 h-full">
         {LANDING_LINKS.map((item, index) => (
           <CarouselItem
             key={index}
-            className="relative flex h-[calc(100vh-3.5rem)] w-full items-center justify-center overflow-hidden pl-0"
+            className="relative h-[calc(100vh-3.5rem)] basis-full overflow-hidden pl-0"
           >
-            {index === 0 ? (
-              <Image
-                src={imgUrl(item.image)}
-                alt={item.title}
-                fill
-                priority
-                className="object-cover"
-              />
-            ) : (
-              <Image
-                src={imgUrl(item.image)}
-                alt={item.title}
-                fill
-                loading="lazy"
-                className="object-cover"
-              />
-            )}
-            <Card className="relative w-10/12 bg-white/90 shadow-lg backdrop-blur-sm md:w-xl">
-              <CardHeader className="flex flex-col items-center justify-center">
-                <Badge className={`${item.chipColor} mx-auto text-black`}>
-                  {item.chipIcon}
-                  {item.chip}
-                </Badge>
-                <TitleCard>{item.title}</TitleCard>
-                <p className="text-center text-xl font-bold">{item.subtitle}</p>
-              </CardHeader>
-              <CardContent className="flex flex-col items-center justify-center gap-4">
-                <p className="text-center">{item.description}</p>
-                <Button
-                  className="mx-auto w-full"
-                  onClick={() => {
-                    router.push(item.href)
-                  }}
-                >
-                  {item.button}
-                </Button>
-              </CardContent>
-            </Card>
+            <Image
+              src={imgUrl(item.image)}
+              alt={item.title}
+              fill
+              priority={index === 0}
+              loading={index === 0 ? undefined : 'lazy'}
+              sizes="100vw"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <Card className="relative w-10/12 bg-white/90 shadow-lg backdrop-blur-sm md:w-xl">
+                <CardHeader className="flex flex-col items-center justify-center">
+                  <Badge className={`${item.chipColor} mx-auto text-black`}>
+                    {item.chipIcon}
+                    {item.chip}
+                  </Badge>
+                  <TitleCard>{item.title}</TitleCard>
+                  <p className="text-center text-xl font-bold">
+                    {item.subtitle}
+                  </p>
+                </CardHeader>
+                <CardContent className="flex flex-col items-center justify-center gap-4">
+                  <p className="text-center">{item.description}</p>
+                  <Button
+                    className="mx-auto w-full"
+                    onClick={() => {
+                      router.push(item.href)
+                    }}
+                  >
+                    {item.button}
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
           </CarouselItem>
         ))}
       </CarouselContent>
