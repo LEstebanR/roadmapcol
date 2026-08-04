@@ -10,9 +10,13 @@ vi.mock('embla-carousel-react', () => ({
 }))
 
 vi.mock('next/image', () => ({
-  default: ({ alt, ...props }: React.ImgHTMLAttributes<HTMLImageElement>) => (
+  default: ({
+    alt,
+    priority,
+    ...props
+  }: React.ImgHTMLAttributes<HTMLImageElement> & { priority?: boolean }) => (
     // eslint-disable-next-line @next/next/no-img-element
-    <img alt={alt} {...props} />
+    <img alt={alt} data-priority={priority ? 'true' : 'false'} {...props} />
   ),
 }))
 
@@ -67,6 +71,16 @@ describe('TourMediaCarousel', () => {
     render(<TourMediaCarousel items={imageItems} />)
     expect(screen.getByAltText('Image 1')).toBeInTheDocument()
     expect(screen.getByAltText('Image 2')).toBeInTheDocument()
+  })
+
+  it('marks the first image as priority and sets sizes on all images', () => {
+    render(<TourMediaCarousel items={imageItems} />)
+    const first = screen.getByAltText('Image 1')
+    const second = screen.getByAltText('Image 2')
+    expect(first).toHaveAttribute('data-priority', 'true')
+    expect(second).toHaveAttribute('data-priority', 'false')
+    expect(first).toHaveAttribute('sizes', '(max-width: 768px) 100vw, 640px')
+    expect(second).toHaveAttribute('sizes', '(max-width: 768px) 100vw, 640px')
   })
 
   it('renders video items — uses thumbnail when provided', () => {

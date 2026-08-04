@@ -70,6 +70,8 @@ export function TourMediaCarousel({
                   alt={item.alt}
                   width={500}
                   height={500}
+                  priority={index === 0}
+                  sizes="(max-width: 768px) 100vw, 640px"
                   className="h-[400px] w-full object-cover"
                 />
               ) : (
