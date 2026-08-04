@@ -1,4 +1,8 @@
-import TourPage, { generateMetadata } from '@/app/tours/[name]/page'
+import TourPage, {
+  dynamicParams,
+  generateMetadata,
+  generateStaticParams,
+} from '@/app/tours/[name]/page'
 import { render, screen } from '@testing-library/react'
 import { notFound } from 'next/navigation'
 
@@ -67,5 +71,17 @@ describe('generateMetadata', () => {
       params: Promise.resolve({ name: 'unknown' }),
     })
     expect(result).toEqual({})
+  })
+})
+
+describe('generateStaticParams', () => {
+  it('returns a name param for every tour', () => {
+    expect(generateStaticParams()).toEqual([{ name: 'test-tour' }])
+  })
+})
+
+describe('dynamicParams', () => {
+  it('is false so unknown slugs 404 at the edge', () => {
+    expect(dynamicParams).toBe(false)
   })
 })
