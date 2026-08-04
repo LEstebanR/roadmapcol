@@ -1,8 +1,11 @@
+import { IMG_WIDTH_ICON, IMG_WIDTH_OG, imgUrl } from './cloudinary'
 import { CONTACT } from './data'
 
 const BASE_URL = 'https://roadmapcol.com'
-const LOGO_URL =
-  'https://res.cloudinary.com/lesteban/image/upload/v1748229585/roadmap/road_map_sin_fondo_atjeji.png'
+const LOGO_URL = imgUrl(
+  'https://res.cloudinary.com/lesteban/image/upload/v1748229585/roadmap/road_map_sin_fondo_atjeji.png',
+  IMG_WIDTH_ICON
+)
 
 export function organizationSchema() {
   return {
@@ -32,7 +35,7 @@ export function touristTripSchema(tour: {
     '@context': 'https://schema.org',
     '@type': 'TouristTrip',
     description: tour.description,
-    image: tour.image,
+    image: imgUrl(tour.image, IMG_WIDTH_OG),
     name: tour.title,
     offers: {
       '@type': 'Offer',
@@ -126,7 +129,7 @@ export function blogPostingSchema(post: {
     datePublished: post.date,
     description: post.description,
     headline: post.title,
-    image: post.coverImage,
+    image: imgUrl(post.coverImage, IMG_WIDTH_OG),
     mainEntityOfPage: `${BASE_URL}/blog/${post.slug}`,
     publisher: {
       '@type': 'Organization',

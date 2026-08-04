@@ -10,6 +10,7 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel'
 import { TitleCard } from '@/components/ui/typography/typography'
+import { imgUrl } from '@/lib/cloudinary'
 import { LANDING_LINKS } from '@/lib/data'
 import Autoplay from 'embla-carousel-autoplay'
 import Image from 'next/image'
@@ -55,7 +56,7 @@ export function CarouselHome() {
           >
             {index === 0 ? (
               <Image
-                src={item.image}
+                src={imgUrl(item.image)}
                 alt={item.title}
                 fill
                 priority
@@ -63,7 +64,7 @@ export function CarouselHome() {
               />
             ) : (
               <Image
-                src={item.image}
+                src={imgUrl(item.image)}
                 alt={item.title}
                 fill
                 loading="lazy"

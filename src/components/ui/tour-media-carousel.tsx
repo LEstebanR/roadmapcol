@@ -1,6 +1,6 @@
 'use client'
 
-import { imgUrl, videoPoster } from '@/lib/cloudinary'
+import { IMG_WIDTH_DETAIL, imgUrl, videoPoster } from '@/lib/cloudinary'
 import { cn } from '@/lib/utils'
 import useEmblaCarousel from 'embla-carousel-react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
@@ -66,7 +66,7 @@ export function TourMediaCarousel({
             >
               {item.type === 'image' ? (
                 <Image
-                  src={imgUrl(item.url)}
+                  src={imgUrl(item.url, IMG_WIDTH_DETAIL)}
                   alt={item.alt}
                   width={500}
                   height={500}

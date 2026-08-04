@@ -1,5 +1,31 @@
-export function imgUrl(url: string): string {
-  return url.replace('/upload/', '/upload/f_auto,q_auto/')
+/** Default max width for detail/gallery images (retina-friendly). */
+export const IMG_WIDTH_DETAIL = 1600
+/** Max width for card/thumbnail images. */
+export const IMG_WIDTH_CARD = 800
+/** Max width for OG/social preview images. */
+export const IMG_WIDTH_OG = 1200
+/** Max width for small icons/logos. */
+export const IMG_WIDTH_ICON = 200
+
+/**
+ * Inject Cloudinary delivery transforms: format/quality auto + width cap.
+ * Skips adding another `w_` when the URL already has one.
+ */
+export function imgUrl(url: string, width: number = IMG_WIDTH_DETAIL): string {
+  if (!url.includes('/upload/')) return url
+
+  // First path segment after /upload/ already sets a width — keep it.
+  if (/\/upload\/[^/]*\bw_\d+/.test(url)) {
+    if (
+      /\/upload\/[^/]*\bf_auto\b/.test(url) &&
+      /\/upload\/[^/]*\bq_auto\b/.test(url)
+    ) {
+      return url
+    }
+    return url.replace('/upload/', '/upload/f_auto,q_auto/')
+  }
+
+  return url.replace('/upload/', `/upload/f_auto,q_auto,w_${width},c_limit/`)
 }
 
 export function videoPoster(url: string): string {

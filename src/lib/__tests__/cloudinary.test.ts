@@ -1,10 +1,36 @@
-import { blurDataUrl, imgUrl, videoPoster } from '@/lib/cloudinary'
+import {
+  IMG_WIDTH_CARD,
+  blurDataUrl,
+  imgUrl,
+  videoPoster,
+} from '@/lib/cloudinary'
 
 describe('imgUrl', () => {
-  it('injects f_auto,q_auto into a Cloudinary upload URL', () => {
+  it('injects f_auto,q_auto and a default width cap', () => {
     const url = 'https://res.cloudinary.com/demo/image/upload/sample.jpg'
     expect(imgUrl(url)).toBe(
-      'https://res.cloudinary.com/demo/image/upload/f_auto,q_auto/sample.jpg'
+      'https://res.cloudinary.com/demo/image/upload/f_auto,q_auto,w_1600,c_limit/sample.jpg'
+    )
+  })
+
+  it('accepts a custom width', () => {
+    const url = 'https://res.cloudinary.com/demo/image/upload/sample.jpg'
+    expect(imgUrl(url, IMG_WIDTH_CARD)).toBe(
+      'https://res.cloudinary.com/demo/image/upload/f_auto,q_auto,w_800,c_limit/sample.jpg'
+    )
+  })
+
+  it('does not double-add w_ when the URL already has a width', () => {
+    const url =
+      'https://res.cloudinary.com/demo/image/upload/w_1920,q_auto,f_auto/v1/sample.jpg'
+    expect(imgUrl(url)).toBe(url)
+  })
+
+  it('adds f_auto,q_auto when width exists but format/quality do not', () => {
+    const url =
+      'https://res.cloudinary.com/demo/image/upload/w_1000,c_fill/v1/sample.jpg'
+    expect(imgUrl(url)).toBe(
+      'https://res.cloudinary.com/demo/image/upload/f_auto,q_auto/w_1000,c_fill/v1/sample.jpg'
     )
   })
 
