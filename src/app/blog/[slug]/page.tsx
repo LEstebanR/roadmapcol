@@ -2,8 +2,9 @@ import { JsonLd } from '@/components/json-ld'
 import { Button } from '@/components/ui/button'
 import { PostTitle } from '@/components/ui/typography/typography'
 import { getAllPostSlugs, getPostBySlug } from '@/lib/blog'
-import { IMG_WIDTH_DETAIL, IMG_WIDTH_OG, imgUrl } from '@/lib/cloudinary'
+import { IMG_WIDTH_DETAIL, imgUrl } from '@/lib/cloudinary'
 import { renderMarkdown } from '@/lib/markdown'
+import { socialMetadata } from '@/lib/og'
 import { blogBreadcrumbSchema, blogPostingSchema } from '@/lib/structured-data'
 import type { Metadata } from 'next'
 import Image from 'next/image'
@@ -27,15 +28,14 @@ export async function generateMetadata({
   return {
     alternates: { canonical: `/blog/${post.slug}` },
     description: post.description,
-    openGraph: {
-      images: [
-        {
-          alt: post.title,
-          url: imgUrl(post.coverImage, IMG_WIDTH_OG),
-        },
-      ],
-    },
     title: post.title,
+    ...socialMetadata({
+      alt: post.title,
+      description: post.description,
+      imageUrl: post.coverImage,
+      title: post.title,
+      url: `https://roadmapcol.com/blog/${post.slug}`,
+    }),
   }
 }
 

@@ -4,6 +4,7 @@ import Footer from '@/components/ui/footer'
 import Header from '@/components/ui/header'
 import { CONTACT } from '@/lib/data'
 import { images } from '@/lib/images'
+import { DEFAULT_OG_IMAGE, OG_HEIGHT, OG_WIDTH } from '@/lib/og'
 import { organizationSchema } from '@/lib/structured-data'
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata } from 'next'
@@ -28,18 +29,23 @@ const geistMono = Geist_Mono({
 const siteDescription =
   'Discover unforgettable tours in Medellín, Antioquia and Colombia. Adventure, culture and nature experiences designed for you.'
 const siteTitle = 'Road Map Col — Tours in Colombia'
-const ogImageUrl =
-  'https://res.cloudinary.com/lesteban/image/upload/w_1200,h_630,c_pad,b_white/v1748229585/roadmap/road_map_sin_fondo_atjeji.png'
 
 export const metadata: Metadata = {
   description: siteDescription,
   metadataBase: new URL('https://roadmapcol.com'),
   openGraph: {
+    description: siteDescription,
     images: [
-      { alt: 'Road Map Col', height: 630, url: ogImageUrl, width: 1200 },
+      {
+        alt: 'Road Map Col',
+        height: OG_HEIGHT,
+        url: DEFAULT_OG_IMAGE,
+        width: OG_WIDTH,
+      },
     ],
     locale: 'en_US',
     siteName: 'Road Map Col',
+    title: siteTitle,
     type: 'website',
     url: 'https://roadmapcol.com',
   },
@@ -50,7 +56,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     description: siteDescription,
-    images: [ogImageUrl],
+    images: [DEFAULT_OG_IMAGE],
     title: siteTitle,
   },
   verification: {

@@ -2,16 +2,24 @@ import { JsonLd } from '@/components/json-ld'
 import { Title } from '@/components/ui/typography/typography'
 import { getAllPosts } from '@/lib/blog'
 import { IMG_WIDTH_CARD, imgUrl } from '@/lib/cloudinary'
+import { socialMetadata } from '@/lib/og'
 import { itemListSchema } from '@/lib/structured-data'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 
+const blogDescription =
+  'Travel guides, tips and stories about Medellín, Antioquia and Colombia — safety, itineraries, food, and our favorite day trips.'
+
 export const metadata: Metadata = {
   alternates: { canonical: '/blog' },
-  description:
-    'Travel guides, tips and stories about Medellín, Antioquia and Colombia — safety, itineraries, food, and our favorite day trips.',
+  description: blogDescription,
   title: 'Travel Blog',
+  ...socialMetadata({
+    description: blogDescription,
+    title: 'Travel Blog',
+    url: 'https://roadmapcol.com/blog',
+  }),
 }
 
 export default function BlogIndex() {

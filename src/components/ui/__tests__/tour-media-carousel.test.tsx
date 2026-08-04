@@ -83,6 +83,14 @@ describe('TourMediaCarousel', () => {
     expect(second).toHaveAttribute('sizes', '(max-width: 768px) 100vw, 640px')
   })
 
+  it('uses object-contain so vertical media is fully visible', () => {
+    render(<TourMediaCarousel items={imageItems} />)
+    expect(screen.getByAltText('Image 1').className).toContain('object-contain')
+    render(<TourMediaCarousel items={videoItems} />)
+    const video = document.querySelector('video')
+    expect(video?.className).toContain('object-contain')
+  })
+
   it('renders video items — uses thumbnail when provided', () => {
     render(<TourMediaCarousel items={videoItems} />)
     const videos = document.querySelectorAll('video')

@@ -138,7 +138,7 @@ function CarouselContent({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
       ref={carouselRef}
-      className="overflow-hidden"
+      className="w-full overflow-hidden"
       data-slot="carousel-content"
     >
       <div
@@ -278,21 +278,25 @@ export function MediaCarousel({ items, className }: MediaCarouselProps) {
           {items.map((item, index) => (
             <div key={index} className="relative min-w-0 flex-[0_0_100%]">
               {item.type === 'image' ? (
-                <img
-                  src={item.url}
-                  alt={item.alt}
-                  className="h-[500px] w-full object-cover"
-                />
+                <div className="flex h-[500px] w-full items-center justify-center bg-neutral-900">
+                  <img
+                    src={item.url}
+                    alt={item.alt}
+                    className="max-h-[500px] w-full object-contain"
+                  />
+                </div>
               ) : (
-                <video
-                  src={item.url}
-                  poster={item.thumbnail}
-                  controls
-                  className="h-[500px] w-full object-cover"
-                >
-                  <source src={item.url} type="video/mp4" />
-                  Tu navegador no soporta el elemento de video.
-                </video>
+                <div className="flex h-[500px] w-full items-center justify-center bg-neutral-900">
+                  <video
+                    src={item.url}
+                    poster={item.thumbnail}
+                    controls
+                    className="max-h-[500px] w-full object-contain"
+                  >
+                    <source src={item.url} type="video/mp4" />
+                    Tu navegador no soporta el elemento de video.
+                  </video>
+                </div>
               )}
             </div>
           ))}

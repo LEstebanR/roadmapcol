@@ -2,14 +2,22 @@ import { JsonLd } from '@/components/json-ld'
 import { TourCard } from '@/components/tour-card'
 import { Title } from '@/components/ui/typography/typography'
 import { TOURS } from '@/lib/data'
+import { socialMetadata } from '@/lib/og'
 import { itemListSchema } from '@/lib/structured-data'
 import type { Metadata } from 'next'
 
+const toursDescription =
+  'Browse our full catalogue of tours across Medellín, Guatapé, Jardín, Cartagena and the rest of Antioquia and Colombia — adventure, culture, nature and gastronomy experiences for every traveler.'
+
 export const metadata: Metadata = {
   alternates: { canonical: '/tours' },
-  description:
-    'Browse our full catalogue of tours across Medellín, Guatapé, Jardín, Cartagena and the rest of Antioquia and Colombia — adventure, culture, nature and gastronomy experiences for every traveler.',
+  description: toursDescription,
   title: 'Tours in Colombia',
+  ...socialMetadata({
+    description: toursDescription,
+    title: 'Tours in Colombia',
+    url: 'https://roadmapcol.com/tours',
+  }),
 }
 
 export default function Tours() {
