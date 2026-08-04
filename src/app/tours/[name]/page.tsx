@@ -11,6 +11,14 @@ interface PageProps {
   params: Promise<{ name: string }>
 }
 
+export const dynamicParams = false
+
+export function generateStaticParams() {
+  return TOURS.map((tour) => ({
+    name: tour.href.replace(/^\/tours\//, ''),
+  }))
+}
+
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
