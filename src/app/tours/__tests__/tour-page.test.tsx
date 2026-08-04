@@ -64,6 +64,8 @@ describe('generateMetadata', () => {
     expect(result.title).toBe('Test Tour')
     expect(result.description).toBe('Test description')
     expect(result.alternates?.canonical).toBe('/tours/test-tour')
+    expect(result.twitter).toMatchObject({ card: 'summary_large_image' })
+    expect(result.openGraph?.images).toBeDefined()
   })
 
   it('returns empty object for an unknown tour', async () => {

@@ -1,10 +1,19 @@
 import { Testimonials } from '@/components/testimonials'
 import { CarouselHome } from '@/components/ui/carousel-home'
 import { Title } from '@/components/ui/typography/typography'
+import { socialMetadata } from '@/lib/og'
 import type { Metadata } from 'next'
+
+const homeDescription =
+  'Discover unforgettable tours in Medellín, Antioquia and Colombia. Adventure, culture and nature experiences designed for you.'
 
 export const metadata: Metadata = {
   alternates: { canonical: '/' },
+  ...socialMetadata({
+    description: homeDescription,
+    title: 'Road Map Col — Tours in Colombia',
+    url: 'https://roadmapcol.com',
+  }),
 }
 
 export default function Home() {

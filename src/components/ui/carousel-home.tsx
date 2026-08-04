@@ -54,23 +54,25 @@ export function CarouselHome() {
             key={index}
             className="relative flex h-[calc(100vh-3.5rem)] w-full items-center justify-center overflow-hidden pl-0"
           >
-            {index === 0 ? (
-              <Image
-                src={imgUrl(item.image)}
-                alt={item.title}
-                fill
-                priority
-                className="object-cover"
-              />
-            ) : (
-              <Image
-                src={imgUrl(item.image)}
-                alt={item.title}
-                fill
-                loading="lazy"
-                className="object-cover"
-              />
-            )}
+            <div className="absolute inset-0 bg-neutral-900">
+              {index === 0 ? (
+                <Image
+                  src={imgUrl(item.image)}
+                  alt={item.title}
+                  fill
+                  priority
+                  className="object-contain"
+                />
+              ) : (
+                <Image
+                  src={imgUrl(item.image)}
+                  alt={item.title}
+                  fill
+                  loading="lazy"
+                  className="object-contain"
+                />
+              )}
+            </div>
             <Card className="relative w-10/12 bg-white/90 shadow-lg backdrop-blur-sm md:w-xl">
               <CardHeader className="flex flex-col items-center justify-center">
                 <Badge className={`${item.chipColor} mx-auto text-black`}>

@@ -65,27 +65,31 @@ export function TourMediaCarousel({
               className="relative min-w-0 flex-[0_0_100%] overflow-hidden"
             >
               {item.type === 'image' ? (
-                <Image
-                  src={imgUrl(item.url, IMG_WIDTH_DETAIL)}
-                  alt={item.alt}
-                  width={500}
-                  height={500}
-                  priority={index === 0}
-                  sizes="(max-width: 768px) 100vw, 640px"
-                  className="h-[400px] w-full object-cover"
-                />
+                <div className="flex h-[400px] w-full items-center justify-center bg-neutral-900">
+                  <Image
+                    src={imgUrl(item.url, IMG_WIDTH_DETAIL)}
+                    alt={item.alt}
+                    width={800}
+                    height={800}
+                    priority={index === 0}
+                    sizes="(max-width: 768px) 100vw, 640px"
+                    className="max-h-[400px] w-full object-contain"
+                  />
+                </div>
               ) : (
-                <video
-                  src={item.url}
-                  poster={item.thumbnail ?? videoPoster(item.url)}
-                  preload={index === selectedIndex ? 'metadata' : 'none'}
-                  controls
-                  playsInline
-                  className="h-[400px] w-full object-cover"
-                >
-                  <source src={item.url} type="video/mp4" />
-                  Tu navegador no soporta el elemento de video.
-                </video>
+                <div className="flex h-[400px] w-full items-center justify-center bg-neutral-900">
+                  <video
+                    src={item.url}
+                    poster={item.thumbnail ?? videoPoster(item.url)}
+                    preload={index === selectedIndex ? 'metadata' : 'none'}
+                    controls
+                    playsInline
+                    className="max-h-[400px] w-full object-contain"
+                  >
+                    <source src={item.url} type="video/mp4" />
+                    Tu navegador no soporta el elemento de video.
+                  </video>
+                </div>
               )}
             </div>
           ))}
