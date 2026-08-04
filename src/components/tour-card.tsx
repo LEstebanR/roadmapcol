@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { StarRating } from '@/components/ui/star-rating'
-import { blurDataUrl, imgUrl } from '@/lib/cloudinary'
+import { IMG_WIDTH_CARD, blurDataUrl, imgUrl } from '@/lib/cloudinary'
 import { ArrowRight, Clock, MapPin } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -26,7 +26,7 @@ export function TourCard({
       <Card className="flex h-full flex-col pt-0 transition-shadow duration-200 hover:shadow-md">
         <CardHeader className="overflow-hidden rounded-t-[14px] px-0 pt-0">
           <Image
-            src={imgUrl(tour.image)}
+            src={imgUrl(tour.image, IMG_WIDTH_CARD)}
             alt={tour.place}
             width={500}
             height={500}

@@ -1,6 +1,7 @@
 import { JsonLd } from '@/components/json-ld'
 import { Title } from '@/components/ui/typography/typography'
 import { getAllPosts } from '@/lib/blog'
+import { IMG_WIDTH_CARD, imgUrl } from '@/lib/cloudinary'
 import { itemListSchema } from '@/lib/structured-data'
 import type { Metadata } from 'next'
 import Image from 'next/image'
@@ -40,7 +41,7 @@ export default function BlogIndex() {
           >
             <div className="relative h-48 w-full overflow-hidden">
               <Image
-                src={post.coverImage}
+                src={imgUrl(post.coverImage, IMG_WIDTH_CARD)}
                 alt={post.title}
                 fill
                 className="object-cover transition-transform duration-300 group-hover:scale-105"

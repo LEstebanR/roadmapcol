@@ -1,4 +1,5 @@
 import { JsonLd } from '@/components/json-ld'
+import { IMG_WIDTH_OG, imgUrl } from '@/lib/cloudinary'
 import { TOURS } from '@/lib/data'
 import { breadcrumbSchema, touristTripSchema } from '@/lib/structured-data'
 import type { Metadata } from 'next'
@@ -21,7 +22,9 @@ export async function generateMetadata({
   return {
     alternates: { canonical: tour.href },
     description: tour.description,
-    openGraph: { images: [{ alt: tour.title, url: tour.image }] },
+    openGraph: {
+      images: [{ alt: tour.title, url: imgUrl(tour.image, IMG_WIDTH_OG) }],
+    },
     title: tour.title,
   }
 }

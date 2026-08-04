@@ -2,6 +2,7 @@ import { JsonLd } from '@/components/json-ld'
 import { Button } from '@/components/ui/button'
 import { PostTitle } from '@/components/ui/typography/typography'
 import { getAllPostSlugs, getPostBySlug } from '@/lib/blog'
+import { IMG_WIDTH_DETAIL, IMG_WIDTH_OG, imgUrl } from '@/lib/cloudinary'
 import { renderMarkdown } from '@/lib/markdown'
 import { blogBreadcrumbSchema, blogPostingSchema } from '@/lib/structured-data'
 import type { Metadata } from 'next'
@@ -26,7 +27,14 @@ export async function generateMetadata({
   return {
     alternates: { canonical: `/blog/${post.slug}` },
     description: post.description,
-    openGraph: { images: [{ alt: post.title, url: post.coverImage }] },
+    openGraph: {
+      images: [
+        {
+          alt: post.title,
+          url: imgUrl(post.coverImage, IMG_WIDTH_OG),
+        },
+      ],
+    },
     title: post.title,
   }
 }
@@ -43,7 +51,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       <JsonLd data={blogBreadcrumbSchema(post.title, post.slug)} />
       <div className="relative h-64 w-full overflow-hidden rounded-md md:h-96">
         <Image
-          src={post.coverImage}
+          src={imgUrl(post.coverImage, IMG_WIDTH_DETAIL)}
           alt={post.title}
           fill
           priority
