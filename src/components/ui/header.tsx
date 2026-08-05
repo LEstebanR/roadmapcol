@@ -7,6 +7,7 @@ import { MenuIcon, XIcon } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import type { MouseEvent } from 'react'
 import { useEffect, useState } from 'react'
 
 const SCROLL_THRESHOLD = 16
@@ -17,6 +18,16 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const isHome = pathname === '/'
   const isTransparent = isHome && !isScrolled && !isMenuOpen
+
+  const handleHomeClick = (
+    event: MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    if (href === '/' && isHome) {
+      event.preventDefault()
+      window.scrollTo({ behavior: 'smooth', top: 0 })
+    }
+  }
 
   useEffect(() => {
     if (!isHome) {
@@ -42,7 +53,7 @@ export default function Header() {
       )}
     >
       <nav className="container flex h-14 items-center justify-between px-4 md:px-8">
-        <Link href="/">
+        <Link href="/" onClick={(e) => handleHomeClick(e, '/')}>
           <Image src={images.logo} alt="logo" width={60} height={60} />
         </Link>
         <div className="hidden gap-6 md:flex">
@@ -50,6 +61,7 @@ export default function Header() {
             <Link
               key={link.href}
               href={link.href}
+              onClick={(e) => handleHomeClick(e, link.href)}
               className={cn(
                 'text-sm font-medium transition-all duration-300 hover:underline',
                 isTransparent
@@ -83,7 +95,10 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                onClick={() => setIsMenuOpen(false)}
+                onClick={(e) => {
+                  handleHomeClick(e, link.href)
+                  setIsMenuOpen(false)
+                }}
                 className={cn(
                   'hover:text-primary hover:bg-accent flex min-h-20 flex-1 items-center justify-center gap-3 px-8 text-xl font-medium transition-all duration-300',
                   pathname === link.href &&

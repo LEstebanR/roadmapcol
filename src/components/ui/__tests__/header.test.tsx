@@ -74,4 +74,33 @@ describe('Header', () => {
       screen.queryByRole('button', { name: 'Close menu' })
     ).not.toBeInTheDocument()
   })
+
+  it('scrolls to top instead of navigating when the Home link is clicked on the home page', () => {
+    const scrollTo = vi.spyOn(window, 'scrollTo').mockImplementation(() => {})
+    render(<Header />)
+
+    fireEvent.click(screen.getAllByText('Home')[0])
+
+    expect(scrollTo).toHaveBeenCalledWith({ behavior: 'smooth', top: 0 })
+  })
+
+  it('scrolls to top when the logo is clicked on the home page', () => {
+    const scrollTo = vi.spyOn(window, 'scrollTo').mockImplementation(() => {})
+    const { container } = render(<Header />)
+    const logoLink = container.querySelector('a[href="/"]')!
+
+    fireEvent.click(logoLink)
+
+    expect(scrollTo).toHaveBeenCalledWith({ behavior: 'smooth', top: 0 })
+  })
+
+  it('does not scroll and navigates normally when Home is clicked from another page', () => {
+    vi.mocked(usePathname).mockReturnValue('/tours')
+    const scrollTo = vi.spyOn(window, 'scrollTo').mockImplementation(() => {})
+    render(<Header />)
+
+    fireEvent.click(screen.getAllByText('Home')[0])
+
+    expect(scrollTo).not.toHaveBeenCalled()
+  })
 })
