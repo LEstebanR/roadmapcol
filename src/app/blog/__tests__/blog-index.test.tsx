@@ -2,8 +2,8 @@ import BlogIndex from '@/app/blog/page'
 import { render, screen } from '@testing-library/react'
 
 vi.mock('next/image', () => ({
-  default: (props: { alt: string; src: string }) => (
-    <img alt={props.alt} src={props.src} />
+  default: (props: { alt: string; sizes?: string; src: string }) => (
+    <img alt={props.alt} src={props.src} sizes={props.sizes} />
   ),
 }))
 
@@ -50,5 +50,16 @@ describe('Blog index page', () => {
     render(<BlogIndex />)
     expect(screen.getByText('Description A')).toBeInTheDocument()
     expect(screen.getByText('3 min read')).toBeInTheDocument()
+  })
+
+  it('declares an accurate sizes attribute so the browser picks a small source', () => {
+    render(<BlogIndex />)
+    const images = document.querySelectorAll('img')
+    images.forEach((img) => {
+      expect(img).toHaveAttribute(
+        'sizes',
+        '(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw'
+      )
+    })
   })
 })
