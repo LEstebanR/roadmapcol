@@ -40,6 +40,8 @@ const nextConfig: NextConfig = {
     return [{ headers: securityHeaders, source: '/(.*)' }]
   },
   images: {
+    loaderFile: './src/lib/cloudinary-loader.ts',
+    loader: 'custom',
     remotePatterns: [
       {
         hostname: 'res.cloudinary.com',
