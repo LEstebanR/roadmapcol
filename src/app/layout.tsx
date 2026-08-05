@@ -71,7 +71,7 @@ export default function RootLayout({
       </head>
       {isProduction && <GTM />}
       <body
-        className={`${inter.variable} grid min-h-dvh w-full grid-rows-[auto_1fr_auto] antialiased`}
+        className={`${inter.variable} grid min-h-dvh w-full grid-rows-[auto_1fr_auto] font-sans antialiased`}
       >
         {isProduction && <GTMNoscript />}
         <Header />
