@@ -1,16 +1,13 @@
+import { FloatingWhatsApp } from '@/components/floating-whatsapp'
 import { GTM, GTMNoscript } from '@/components/gtm'
 import { JsonLd } from '@/components/json-ld'
 import Footer from '@/components/ui/footer'
 import Header from '@/components/ui/header'
-import { CONTACT } from '@/lib/data'
-import { images } from '@/lib/images'
 import { DEFAULT_OG_IMAGE, OG_HEIGHT, OG_WIDTH } from '@/lib/og'
 import { organizationSchema } from '@/lib/structured-data'
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import Image from 'next/image'
-import Link from 'next/link'
 
 import './globals.css'
 
@@ -78,16 +75,7 @@ export default function RootLayout({
         <div className="w-full min-w-0">{children}</div>
         <Footer />
         <Analytics />
-
-        {/* Botón flotante de WhatsApp */}
-        <Link
-          href={`https://wa.me/${CONTACT.phone}?text=${encodeURIComponent('Hello, I am from roadmapcol.com and I would like to get more information.')}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="fixed right-6 bottom-12 z-[9999] flex h-14 w-14 items-center justify-center rounded-full bg-green-500 shadow-lg transition-all duration-300 hover:scale-110 hover:bg-green-600"
-        >
-          <Image src={images.whatsapp} alt="WhatsApp" width={28} height={28} />
-        </Link>
+        <FloatingWhatsApp />
       </body>
     </html>
   )

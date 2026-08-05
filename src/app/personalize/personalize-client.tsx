@@ -89,6 +89,9 @@ export default function PersonalizeClient() {
     [data, selectedActivityLabels]
   )
 
+  const isValid =
+    Boolean(data.name.trim()) && Boolean(data.email.trim() || data.phone.trim())
+
   return (
     <>
       <Card className="w-full p-4">
@@ -96,15 +99,16 @@ export default function PersonalizeClient() {
           <h2 className="text-lg font-bold">Personal information</h2>
           <div className="grid gap-4 md:grid-cols-2">
             <div className="flex flex-col gap-2">
-              <Label>Name</Label>
+              <Label>Name *</Label>
               <Input
+                required
                 placeholder="Enter your name"
                 value={data.name}
                 onChange={(e) => setData({ ...data, name: e.target.value })}
               />
             </div>
             <div className="flex flex-col gap-2">
-              <Label>Email</Label>
+              <Label>Email *</Label>
               <Input
                 placeholder="tu@email.com"
                 value={data.email}
@@ -112,12 +116,15 @@ export default function PersonalizeClient() {
               />
             </div>
           </div>
-          <Label>Phone</Label>
+          <Label>Phone *</Label>
           <Input
             placeholder="Enter your phone"
             value={data.phone}
             onChange={(e) => setData({ ...data, phone: e.target.value })}
           />
+          <p className="text-muted-foreground text-xs">
+            * Name and at least one of email or phone are required.
+          </p>
           <hr className="my-4" />
           <h2 className="text-lg font-bold">Trip details</h2>
           <div className="grid gap-4 md:grid-cols-2">
@@ -202,13 +209,25 @@ export default function PersonalizeClient() {
             onChange={(e) => setData({ ...data, comments: e.target.value })}
           />
 
-          <Link
-            href={`https://wa.me/${CONTACT.phone}?text=${encodeURIComponent(message)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Button className="w-full">Send request</Button>
-          </Link>
+          {!isValid && (
+            <p role="alert" className="text-destructive text-sm">
+              Please enter your name and at least an email or phone number
+              before sending your request.
+            </p>
+          )}
+          {isValid ? (
+            <Link
+              href={`https://wa.me/${CONTACT.phone}?text=${encodeURIComponent(message)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button className="w-full">Send request</Button>
+            </Link>
+          ) : (
+            <Button className="w-full" disabled type="button">
+              Send request
+            </Button>
+          )}
         </div>
       </Card>
     </>
