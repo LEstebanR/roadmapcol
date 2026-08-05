@@ -5,7 +5,6 @@ import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
-import { Title } from '@/components/ui/typography/typography'
 import { CONTACT } from '@/lib/data'
 import { cn } from '@/lib/utils'
 import {
@@ -91,12 +90,7 @@ export default function PersonalizeClient() {
   )
 
   return (
-    <section className="mx-auto my-14 flex w-11/12 flex-col items-center justify-center gap-4 md:w-6/12">
-      <Title>Personalized tour</Title>
-      <p className="text-muted-foreground">
-        Don&apos;t find what you&apos;re looking for? Tell us what type of
-        experience you want and we will design a itinerary to your measure.{' '}
-      </p>
+    <>
       <Card className="w-full p-4">
         <div className="flex flex-col gap-4">
           <h2 className="text-lg font-bold">Personal information</h2>
@@ -217,6 +211,6 @@ export default function PersonalizeClient() {
           </Link>
         </div>
       </Card>
-    </section>
+    </>
   )
 }

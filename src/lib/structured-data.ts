@@ -1,5 +1,5 @@
 import { IMG_WIDTH_ICON, IMG_WIDTH_OG, imgUrl } from './cloudinary'
-import { CONTACT } from './data'
+import { CONTACT, TESTIMONIALS } from './data'
 
 const BASE_URL = 'https://roadmapcol.com'
 const LOGO_URL = imgUrl(
@@ -8,9 +8,19 @@ const LOGO_URL = imgUrl(
 )
 
 export function organizationSchema() {
+  const ratingValue =
+    TESTIMONIALS.reduce((sum, testimonial) => sum + testimonial.rating, 0) /
+    TESTIMONIALS.length
+
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      bestRating: 5,
+      ratingValue: Number(ratingValue.toFixed(1)),
+      reviewCount: TESTIMONIALS.length,
+    },
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'customer support',
@@ -19,6 +29,16 @@ export function organizationSchema() {
     },
     logo: LOGO_URL,
     name: 'Road Map Col',
+    review: TESTIMONIALS.map((testimonial) => ({
+      '@type': 'Review',
+      author: { '@type': 'Person', name: testimonial.author },
+      reviewBody: testimonial.quote,
+      reviewRating: {
+        '@type': 'Rating',
+        bestRating: 5,
+        ratingValue: testimonial.rating,
+      },
+    })),
     sameAs: [CONTACT.instagram, CONTACT.tiktok],
     url: BASE_URL,
   }

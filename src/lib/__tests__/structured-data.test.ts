@@ -1,3 +1,4 @@
+import { TESTIMONIALS } from '@/lib/data'
 import {
   blogBreadcrumbSchema,
   blogPostingSchema,
@@ -26,6 +27,28 @@ describe('structured-data', () => {
       const schema = organizationSchema()
       expect(Array.isArray(schema.sameAs)).toBe(true)
       expect(schema.sameAs.length).toBeGreaterThan(0)
+    })
+
+    it('includes an aggregateRating derived from TESTIMONIALS', () => {
+      const schema = organizationSchema()
+      expect(schema.aggregateRating['@type']).toBe('AggregateRating')
+      expect(schema.aggregateRating.reviewCount).toBe(TESTIMONIALS.length)
+      expect(schema.aggregateRating.ratingValue).toBeGreaterThan(0)
+      expect(schema.aggregateRating.ratingValue).toBeLessThanOrEqual(5)
+    })
+
+    it('includes one Review per testimonial with matching author and rating', () => {
+      const schema = organizationSchema()
+      expect(schema.review).toHaveLength(TESTIMONIALS.length)
+      expect(schema.review[0]).toMatchObject({
+        '@type': 'Review',
+        author: { '@type': 'Person', name: TESTIMONIALS[0].author },
+        reviewBody: TESTIMONIALS[0].quote,
+        reviewRating: {
+          '@type': 'Rating',
+          ratingValue: TESTIMONIALS[0].rating,
+        },
+      })
     })
   })
 

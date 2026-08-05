@@ -1,3 +1,4 @@
+import { Title } from '@/components/ui/typography/typography'
 import { socialMetadata } from '@/lib/og'
 import type { Metadata } from 'next'
 
@@ -18,5 +19,14 @@ export const metadata: Metadata = {
 }
 
 export default function PersonalizePage() {
-  return <PersonalizeClient />
+  return (
+    <section className="mx-auto my-14 flex w-11/12 flex-col items-center justify-center gap-4 md:w-6/12">
+      <Title>Personalized tour</Title>
+      <p className="text-muted-foreground">
+        Don&apos;t find what you&apos;re looking for? Tell us what type of
+        experience you want and we will design a itinerary to your measure.{' '}
+      </p>
+      <PersonalizeClient />
+    </section>
+  )
 }
