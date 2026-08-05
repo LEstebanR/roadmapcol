@@ -139,7 +139,7 @@ export const TOURS = [
     images: [
       {
         type: 'video' as const,
-        url: 'https://res.cloudinary.com/lesteban/video/upload/v1749350202/roadmapcol/saltodelbuey/IMG_4317_xbgjie.mov',
+        url: 'https://res.cloudinary.com/lesteban/video/upload/f_auto,q_auto,w_1280,c_limit/v1749350202/roadmapcol/saltodelbuey/IMG_4317_xbgjie.mov',
         alt: 'Vista panorámica del Salto del Buey',
       },
       {
@@ -149,7 +149,7 @@ export const TOURS = [
       },
       {
         type: 'video' as const,
-        url: 'https://res.cloudinary.com/lesteban/video/upload/v1749350824/roadmapcol/saltodelbuey/DJI_0270_2_k5phmc.mp4',
+        url: 'https://res.cloudinary.com/lesteban/video/upload/f_auto,q_auto,w_1280,c_limit/v1749350824/roadmapcol/saltodelbuey/DJI_0270_2_k5phmc.mp4',
         alt: 'Vista panorámica del Salto del Buey',
       },
 
@@ -170,22 +170,22 @@ export const TOURS = [
       },
       {
         type: 'video' as const,
-        url: 'https://res.cloudinary.com/lesteban/video/upload/v1749350239/roadmapcol/saltodelbuey/copy_CF5DE597-5748-4D6D-8025-892A124D1FB6_o7sxon.mov',
+        url: 'https://res.cloudinary.com/lesteban/video/upload/f_auto,q_auto,w_1280,c_limit/v1749350239/roadmapcol/saltodelbuey/copy_CF5DE597-5748-4D6D-8025-892A124D1FB6_o7sxon.mov',
         alt: 'Vista panorámica del Salto del Buey',
       },
       {
         type: 'video' as const,
-        url: 'https://res.cloudinary.com/lesteban/video/upload/v1749350206/roadmapcol/saltodelbuey/IMG_3632_qogszv.mov',
+        url: 'https://res.cloudinary.com/lesteban/video/upload/f_auto,q_auto,w_1280,c_limit/v1749350206/roadmapcol/saltodelbuey/IMG_3632_qogszv.mov',
         alt: 'Vista panorámica del Salto del Buey',
       },
       {
         type: 'video' as const,
-        url: 'https://res.cloudinary.com/lesteban/video/upload/v1749350206/roadmapcol/saltodelbuey/IMG_4310_lx7ofw.mov',
+        url: 'https://res.cloudinary.com/lesteban/video/upload/f_auto,q_auto,w_1280,c_limit/v1749350206/roadmapcol/saltodelbuey/IMG_4310_lx7ofw.mov',
         alt: 'Canopy',
       },
       {
         type: 'video' as const,
-        url: 'https://res.cloudinary.com/lesteban/video/upload/v1749350202/roadmapcol/saltodelbuey/IMG_4317_xbgjie.mov',
+        url: 'https://res.cloudinary.com/lesteban/video/upload/f_auto,q_auto,w_1280,c_limit/v1749350202/roadmapcol/saltodelbuey/IMG_4317_xbgjie.mov',
         alt: 'Salto del buey',
       },
     ],
@@ -403,7 +403,7 @@ export const TOURS = [
     images: [
       {
         type: 'video',
-        url: 'https://res.cloudinary.com/lesteban/video/upload/v1749943355/roadmapcol/parapente/parapente-5_qpyri0.mp4',
+        url: 'https://res.cloudinary.com/lesteban/video/upload/f_auto,q_auto,w_1280,c_limit/v1749943355/roadmapcol/parapente/parapente-5_qpyri0.mp4',
         alt: 'parapente',
       },
       {
@@ -413,7 +413,7 @@ export const TOURS = [
       },
       {
         type: 'video',
-        url: 'https://res.cloudinary.com/lesteban/video/upload/v1749943368/roadmapcol/parapente/parapente-4_lkxlwx.mov',
+        url: 'https://res.cloudinary.com/lesteban/video/upload/f_auto,q_auto,w_1280,c_limit/v1749943368/roadmapcol/parapente/parapente-4_lkxlwx.mov',
         alt: 'parapente',
       },
       {
@@ -423,7 +423,7 @@ export const TOURS = [
       },
       {
         type: 'video',
-        url: 'https://res.cloudinary.com/lesteban/video/upload/v1749943359/roadmapcol/parapente/parapente-3_rq6vsk.mov',
+        url: 'https://res.cloudinary.com/lesteban/video/upload/f_auto,q_auto,w_1280,c_limit/v1749943359/roadmapcol/parapente/parapente-3_rq6vsk.mov',
         alt: 'parapente',
       },
     ],
@@ -456,7 +456,7 @@ export const TOURS = [
     images: [
       {
         type: 'video',
-        url: 'https://res.cloudinary.com/lesteban/video/upload/v1749944620/roadmapcol/oriente/oriente-2_abvz83.mov',
+        url: 'https://res.cloudinary.com/lesteban/video/upload/f_auto,q_auto,w_1280,c_limit/v1749944620/roadmapcol/oriente/oriente-2_abvz83.mov',
         alt: 'parapente',
       },
       {
@@ -692,12 +692,12 @@ export const TOURS = [
       },
       {
         type: 'video' as const,
-        url: 'https://res.cloudinary.com/lesteban/video/upload/v1771549976/roadmapcol/maviCartagena/c6b1b508-aae3-4726-9f98-14870563425f_ar1pey.mov',
+        url: 'https://res.cloudinary.com/lesteban/video/upload/f_auto,q_auto,w_1280,c_limit/v1771549976/roadmapcol/maviCartagena/c6b1b508-aae3-4726-9f98-14870563425f_ar1pey.mov',
         alt: 'MAVI Cartagena',
       },
       {
         type: 'video' as const,
-        url: 'https://res.cloudinary.com/lesteban/video/upload/v1771549917/roadmapcol/maviCartagena/video_presentacion_f1lmbk.mov',
+        url: 'https://res.cloudinary.com/lesteban/video/upload/f_auto,q_auto,w_1280,c_limit/v1771549917/roadmapcol/maviCartagena/video_presentacion_f1lmbk.mov',
         alt: 'MAVI Cartagena - Presentation',
       },
     ],
