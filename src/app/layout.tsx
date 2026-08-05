@@ -8,7 +8,7 @@ import { DEFAULT_OG_IMAGE, OG_HEIGHT, OG_WIDTH } from '@/lib/og'
 import { organizationSchema } from '@/lib/structured-data'
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata } from 'next'
-import { Geist_Mono, Inter } from 'next/font/google'
+import { Inter } from 'next/font/google'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -18,11 +18,6 @@ const isProduction = process.env.NODE_ENV === 'production'
 
 const inter = Inter({
   variable: '--font-inter',
-  subsets: ['latin'],
-})
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
   subsets: ['latin'],
 })
 
@@ -76,7 +71,7 @@ export default function RootLayout({
       </head>
       {isProduction && <GTM />}
       <body
-        className={` ${inter.variable} ${geistMono.variable} grid min-h-dvh w-full grid-rows-[auto_1fr_auto] antialiased`}
+        className={`${inter.variable} grid min-h-dvh w-full grid-rows-[auto_1fr_auto] antialiased`}
       >
         {isProduction && <GTMNoscript />}
         <Header />
