@@ -5,6 +5,12 @@ import BlogPostPage, {
 import { render, screen } from '@testing-library/react'
 import { notFound } from 'next/navigation'
 
+vi.mock('next/image', () => ({
+  default: (props: { alt: string; sizes?: string; src: string }) => (
+    <img alt={props.alt} src={props.src} sizes={props.sizes} />
+  ),
+}))
+
 vi.mock('next/navigation', () => ({
   notFound: vi.fn(() => {
     throw new Error('NEXT_NOT_FOUND')
@@ -102,6 +108,17 @@ describe('BlogPostPage', () => {
     expect(screen.getByText('See our tours').closest('a')).toHaveAttribute(
       'href',
       '/tours'
+    )
+  })
+
+  it('declares an accurate sizes attribute on the cover image', async () => {
+    const element = await BlogPostPage({
+      params: Promise.resolve({ slug: 'post-a' }),
+    })
+    render(element)
+    expect(screen.getByAltText('Post A')).toHaveAttribute(
+      'sizes',
+      '(max-width: 768px) 100vw, 768px'
     )
   })
 
