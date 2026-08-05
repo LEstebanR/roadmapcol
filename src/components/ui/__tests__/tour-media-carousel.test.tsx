@@ -150,6 +150,32 @@ describe('TourMediaCarousel', () => {
     expect(window.HTMLMediaElement.prototype.pause).toHaveBeenCalled()
   })
 
+  it('reorders items so an image always leads, even if the data has a video first', () => {
+    render(
+      <TourMediaCarousel
+        items={[
+          {
+            alt: 'Leading video',
+            type: 'video' as const,
+            url: 'https://example.com/video.mp4',
+          },
+          {
+            alt: 'Trailing image',
+            type: 'image' as const,
+            url: 'https://res.cloudinary.com/demo/image/upload/a.jpg',
+          },
+        ]}
+      />
+    )
+
+    const image = screen.getByAltText('Trailing image')
+    const video = document.querySelector('video')
+    expect(video).toBeInTheDocument()
+    expect(
+      image.compareDocumentPosition(video!) & Node.DOCUMENT_POSITION_FOLLOWING
+    ).toBeTruthy()
+  })
+
   it('renders without error when embla api is undefined', () => {
     vi.mocked(useEmblaCarousel).mockReturnValue([mockRef, undefined])
     render(<TourMediaCarousel items={imageItems} />)

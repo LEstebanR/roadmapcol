@@ -21,6 +21,13 @@ export function TourMediaCarousel({
   items,
   className,
 }: TourMediaCarouselProps) {
+  const orderedItems = React.useMemo(
+    () =>
+      [...items].sort(
+        (a, b) => Number(a.type === 'video') - Number(b.type === 'video')
+      ),
+    [items]
+  )
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true })
   const [selectedIndex, setSelectedIndex] = React.useState(0)
   const [scrollSnaps, setScrollSnaps] = React.useState<number[]>([])
@@ -59,7 +66,7 @@ export function TourMediaCarousel({
     <div className={cn('relative w-full', className)}>
       <div className="overflow-hidden rounded-t-lg" ref={emblaRef}>
         <div className="flex">
-          {items.map((item, index) => (
+          {orderedItems.map((item, index) => (
             <div
               key={index}
               className="relative min-w-0 flex-[0_0_100%] overflow-hidden"
