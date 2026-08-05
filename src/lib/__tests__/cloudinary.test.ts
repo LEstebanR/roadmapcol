@@ -1,6 +1,7 @@
 import {
   IMG_WIDTH_CARD,
   blurDataUrl,
+  cloudinaryImageLoader,
   imgUrl,
   videoPoster,
 } from '@/lib/cloudinary'
@@ -60,6 +61,35 @@ describe('videoPoster', () => {
     expect(videoPoster(url)).toBe(
       'https://res.cloudinary.com/demo/video/upload/so_0,w_1280,c_limit,q_auto,f_auto/sample.jpg'
     )
+  })
+})
+
+describe('cloudinaryImageLoader', () => {
+  it('injects f_auto,q_auto and the requested width on a raw URL', () => {
+    const src = 'https://res.cloudinary.com/demo/image/upload/v1/sample.jpg'
+    expect(cloudinaryImageLoader({ src, width: 640 })).toBe(
+      'https://res.cloudinary.com/demo/image/upload/f_auto,q_auto,w_640,c_limit/v1/sample.jpg'
+    )
+  })
+
+  it('replaces an existing transform segment with the requested width', () => {
+    const src =
+      'https://res.cloudinary.com/demo/image/upload/f_auto,q_auto,w_1600,c_limit/v1/sample.jpg'
+    expect(cloudinaryImageLoader({ src, width: 384 })).toBe(
+      'https://res.cloudinary.com/demo/image/upload/f_auto,q_auto,w_384,c_limit/v1/sample.jpg'
+    )
+  })
+
+  it('uses the requested quality when provided', () => {
+    const src = 'https://res.cloudinary.com/demo/image/upload/v1/sample.jpg'
+    expect(cloudinaryImageLoader({ quality: 60, src, width: 640 })).toBe(
+      'https://res.cloudinary.com/demo/image/upload/f_auto,q_60,w_640,c_limit/v1/sample.jpg'
+    )
+  })
+
+  it('returns non-Cloudinary URLs unchanged', () => {
+    const src = 'https://example.com/image.jpg'
+    expect(cloudinaryImageLoader({ src, width: 640 })).toBe(src)
   })
 })
 

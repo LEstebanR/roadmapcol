@@ -1,3 +1,5 @@
+import type { ImageLoaderProps } from 'next/image'
+
 /** Default max width for detail/gallery images (retina-friendly). */
 export const IMG_WIDTH_DETAIL = 1600
 /** Max width for card/thumbnail images. */
@@ -26,6 +28,30 @@ export function imgUrl(url: string, width: number = IMG_WIDTH_DETAIL): string {
   }
 
   return url.replace('/upload/', `/upload/f_auto,q_auto,w_${width},c_limit/`)
+}
+
+const TRANSFORM_SEGMENT = /\/upload\/(?:[a-z]+_[^/,]+,?)+\//
+
+/**
+ * next/image `loaderFile`: rewrites Cloudinary URLs to the exact
+ * width/quality Next requests instead of routing every image through
+ * (and re-encoding via) the Next.js image optimizer — Cloudinary is
+ * already an image CDN with its own f_auto/q_auto optimization.
+ */
+export function cloudinaryImageLoader({
+  src,
+  width,
+  quality,
+}: ImageLoaderProps): string {
+  if (!src.includes('/upload/')) return src
+
+  const transform = `f_auto,q_${quality ?? 'auto'},w_${width},c_limit`
+
+  if (TRANSFORM_SEGMENT.test(src)) {
+    return src.replace(TRANSFORM_SEGMENT, `/upload/${transform}/`)
+  }
+
+  return src.replace('/upload/', `/upload/${transform}/`)
 }
 
 export function videoPoster(url: string): string {
