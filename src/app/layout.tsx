@@ -8,7 +8,7 @@ import { DEFAULT_OG_IMAGE, OG_HEIGHT, OG_WIDTH } from '@/lib/og'
 import { organizationSchema } from '@/lib/structured-data'
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Geist_Mono, Inter } from 'next/font/google'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -16,8 +16,8 @@ import './globals.css'
 
 const isProduction = process.env.NODE_ENV === 'production'
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+const inter = Inter({
+  variable: '--font-inter',
   subsets: ['latin'],
 })
 
@@ -76,11 +76,11 @@ export default function RootLayout({
       </head>
       {isProduction && <GTM />}
       <body
-        className={` ${geistSans.variable} ${geistMono.variable} grid min-h-dvh w-full grid-rows-[auto_1fr_auto] antialiased`}
+        className={` ${inter.variable} ${geistMono.variable} grid min-h-dvh w-full grid-rows-[auto_1fr_auto] antialiased`}
       >
         {isProduction && <GTMNoscript />}
         <Header />
-        <div className="w-full">{children}</div>
+        <div className="w-full min-w-0">{children}</div>
         <Footer />
         <Analytics />
 
@@ -89,7 +89,7 @@ export default function RootLayout({
           href={`https://wa.me/${CONTACT.phone}?text=${encodeURIComponent('Hello, I am from roadmapcol.com and I would like to get more information.')}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="fixed right-6 bottom-12 z-[9999] flex h-14 w-14 items-center justify-center rounded-full bg-green-500 shadow-lg transition-all duration-300 hover:scale-110 hover:bg-green-600 md:hidden"
+          className="fixed right-6 bottom-12 z-[9999] flex h-14 w-14 items-center justify-center rounded-full bg-green-500 shadow-lg transition-all duration-300 hover:scale-110 hover:bg-green-600"
         >
           <Image src={images.whatsapp} alt="WhatsApp" width={28} height={28} />
         </Link>

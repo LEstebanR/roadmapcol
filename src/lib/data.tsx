@@ -1,4 +1,4 @@
-import { BookOpen, Gift, Home, Info, Map, MapPin } from 'lucide-react'
+import { Gift, Home, Info, Map, MapPin } from 'lucide-react'
 
 export const HEADER_LINKS = [
   {
@@ -15,11 +15,6 @@ export const HEADER_LINKS = [
     label: 'Personalize your experience',
     href: '/personalize',
     icon: <MapPin />,
-  },
-  {
-    label: 'Blog',
-    href: '/blog',
-    icon: <BookOpen />,
   },
 ]
 
@@ -737,6 +732,34 @@ export const TESTIMONIALS = [
     location: 'Buenos Aires, Argentina',
     quote:
       'Paragliding over Medellín was the highlight of my trip to Colombia. The team at Road Map Col made it stress-free and magical.',
+    rating: 5,
+  },
+  {
+    author: 'Sophie L.',
+    location: 'Paris, France',
+    quote:
+      'From booking to the last minute of the tour, everything was smooth. Comuna 13 came alive with our guide’s stories. Loved it!',
+    rating: 5,
+  },
+  {
+    author: 'Daniel P.',
+    location: 'Ciudad de México, México',
+    quote:
+      'El tour al Peñol-Guatapé superó todas mis expectativas. Muy buena organización y un guía que realmente conocía la zona.',
+    rating: 5,
+  },
+  {
+    author: 'Anna K.',
+    location: 'Berlin, Germany',
+    quote:
+      'A perfectly balanced mix of adventure and culture. The coffee farm tour near Jardín was a highlight of our whole Colombia trip.',
+    rating: 4,
+  },
+  {
+    author: 'Andrés V.',
+    location: 'Cali, Colombia',
+    quote:
+      'Excelente atención desde el primer mensaje de WhatsApp hasta el final del recorrido. Se nota que conocen bien cada destino.',
     rating: 5,
   },
 ]

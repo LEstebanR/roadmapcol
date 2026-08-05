@@ -9,6 +9,10 @@ vi.mock('@/components/testimonials', () => ({
   Testimonials: () => <section data-testid="testimonials" />,
 }))
 
+vi.mock('@/components/ui/tours-carousel', () => ({
+  ToursCarousel: () => <section data-testid="tours-carousel" />,
+}))
+
 describe('Home page', () => {
   it('renders CarouselHome', () => {
     render(<Home />)
@@ -18,6 +22,11 @@ describe('Home page', () => {
   it('renders Testimonials section', () => {
     render(<Home />)
     expect(screen.getByTestId('testimonials')).toBeInTheDocument()
+  })
+
+  it('renders ToursCarousel section', () => {
+    render(<Home />)
+    expect(screen.getByTestId('tours-carousel')).toBeInTheDocument()
   })
 
   it('renders an H1 with SEO copy', () => {

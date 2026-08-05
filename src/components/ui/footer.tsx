@@ -43,6 +43,12 @@ export default function Footer() {
               >
                 Personalize your experience
               </Link>
+              <Link
+                href="/blog"
+                className="text-muted-foreground hover:text-foreground text-sm underline-offset-4 transition-colors duration-200 hover:underline"
+              >
+                Blog
+              </Link>
             </div>
           </div>
 
