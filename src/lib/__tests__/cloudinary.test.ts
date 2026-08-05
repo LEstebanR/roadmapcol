@@ -44,21 +44,21 @@ describe('videoPoster', () => {
   it('generates a jpg poster from an mp4 URL', () => {
     const url = 'https://res.cloudinary.com/demo/video/upload/sample.mp4'
     expect(videoPoster(url)).toBe(
-      'https://res.cloudinary.com/demo/video/upload/so_0/sample.jpg'
+      'https://res.cloudinary.com/demo/video/upload/so_0,w_1280,c_limit,q_auto,f_auto/sample.jpg'
     )
   })
 
   it('generates a jpg poster from a mov URL', () => {
     const url = 'https://res.cloudinary.com/demo/video/upload/sample.mov'
     expect(videoPoster(url)).toBe(
-      'https://res.cloudinary.com/demo/video/upload/so_0/sample.jpg'
+      'https://res.cloudinary.com/demo/video/upload/so_0,w_1280,c_limit,q_auto,f_auto/sample.jpg'
     )
   })
 
   it('generates a jpg poster from a webm URL', () => {
     const url = 'https://res.cloudinary.com/demo/video/upload/sample.webm'
     expect(videoPoster(url)).toBe(
-      'https://res.cloudinary.com/demo/video/upload/so_0/sample.jpg'
+      'https://res.cloudinary.com/demo/video/upload/so_0,w_1280,c_limit,q_auto,f_auto/sample.jpg'
     )
   })
 })

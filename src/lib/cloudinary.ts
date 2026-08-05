@@ -30,7 +30,10 @@ export function imgUrl(url: string, width: number = IMG_WIDTH_DETAIL): string {
 
 export function videoPoster(url: string): string {
   return url
-    .replace('/video/upload/', '/video/upload/so_0/')
+    .replace(
+      '/video/upload/',
+      '/video/upload/so_0,w_1280,c_limit,q_auto,f_auto/'
+    )
     .replace(/\.(mov|mp4|webm)$/i, '.jpg')
 }
 
