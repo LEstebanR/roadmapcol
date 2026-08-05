@@ -1,5 +1,6 @@
 import { Testimonials } from '@/components/testimonials'
 import { CarouselHome } from '@/components/ui/carousel-home'
+import { ToursCarousel } from '@/components/ui/tours-carousel'
 import { Title } from '@/components/ui/typography/typography'
 import { socialMetadata } from '@/lib/og'
 import type { Metadata } from 'next'
@@ -30,6 +31,7 @@ export default function Home() {
         </p>
       </section>
       <Testimonials />
+      <ToursCarousel />
     </div>
   )
 }

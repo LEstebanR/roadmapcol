@@ -17,7 +17,13 @@ import { Card, CardContent, CardHeader } from './card'
 export function CarouselHome() {
   const router = useRouter()
   const autoplay = React.useMemo(
-    () => Autoplay({ delay: 4000, stopOnInteraction: false }),
+    () =>
+      Autoplay({
+        delay: 6000,
+        stopOnFocusIn: false,
+        stopOnInteraction: false,
+        stopOnMouseEnter: false,
+      }),
     []
   )
   const [emblaRef, emblaApi] = useEmblaCarousel(
@@ -36,7 +42,7 @@ export function CarouselHome() {
   }
 
   return (
-    <section className="relative mt-14 h-[calc(100dvh-3.5rem)] w-full">
+    <section className="relative h-dvh w-full min-w-0">
       <div className="h-full w-full overflow-hidden" ref={emblaRef}>
         <div className="flex h-full touch-pan-y">
           {LANDING_LINKS.map((item, index) => (

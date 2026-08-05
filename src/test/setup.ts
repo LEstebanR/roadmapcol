@@ -37,13 +37,13 @@ vi.mock('next/font/local', () => ({
 }))
 
 vi.mock('next/font/google', () => ({
-  Geist: vi.fn(() => ({
-    className: 'mocked-geist',
-    variable: '--font-geist-sans',
-  })),
   Geist_Mono: vi.fn(() => ({
     className: 'mocked-geist-mono',
     variable: '--font-geist-mono',
+  })),
+  Inter: vi.fn(() => ({
+    className: 'mocked-inter',
+    variable: '--font-inter',
   })),
 }))
 

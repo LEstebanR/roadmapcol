@@ -33,6 +33,17 @@ describe('Personalize page', () => {
     fireEvent.click(adventureBtn)
   })
 
+  it('uses the English activity label (not the internal id) in the WhatsApp message', () => {
+    render(<PersonalizaExperiencia />)
+    const adventureBtn = screen.getByText('Adventure').closest('button')!
+    fireEvent.click(adventureBtn)
+
+    const sendLink = screen.getByText('Send request').closest('a')!
+    const href = decodeURIComponent(sendLink.getAttribute('href')!)
+    expect(href).toContain('Activities: Adventure')
+    expect(href).not.toContain('aventura')
+  })
+
   it('updates form fields on change', () => {
     render(<PersonalizaExperiencia />)
     const textInputs = screen.getAllByRole('textbox')

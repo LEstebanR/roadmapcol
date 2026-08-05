@@ -66,6 +66,14 @@ export default function PersonalizeClient() {
     )
   }
 
+  const selectedActivityLabels = useMemo(
+    () =>
+      selectedActivities
+        .map((id) => activities.find((activity) => activity.id === id)?.label)
+        .filter((label): label is string => Boolean(label)),
+    [selectedActivities]
+  )
+
   const message = useMemo(
     () => `Hello, I want more information about a personalized tour, these are my data:
       Name: ${data?.name}
@@ -77,9 +85,9 @@ export default function PersonalizeClient() {
       End date: ${data?.endDate}
       Budget: ${data?.budget}
       Comments: ${data?.comments}
-      Activities: ${selectedActivities.join(', ')}
+      Activities: ${selectedActivityLabels.join(', ')}
       `,
-    [data, selectedActivities]
+    [data, selectedActivityLabels]
   )
 
   return (
