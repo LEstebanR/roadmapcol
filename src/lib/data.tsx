@@ -745,7 +745,7 @@ export const TESTIMONIALS = [
     author: 'Daniel P.',
     location: 'Ciudad de México, México',
     quote:
-      'El tour al Peñol-Guatapé superó todas mis expectativas. Muy buena organización y un guía que realmente conocía la zona.',
+      'The tour to El Peñol-Guatapé exceeded all my expectations. Great organization and a guide who really knew the area.',
     rating: 5,
   },
   {
@@ -759,7 +759,7 @@ export const TESTIMONIALS = [
     author: 'Andrés V.',
     location: 'Cali, Colombia',
     quote:
-      'Excelente atención desde el primer mensaje de WhatsApp hasta el final del recorrido. Se nota que conocen bien cada destino.',
+      'Excellent service from the first WhatsApp message to the end of the tour. You can tell they know every destination well.',
     rating: 5,
   },
 ]

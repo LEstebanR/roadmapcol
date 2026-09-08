@@ -1,10 +1,19 @@
 import type { NextConfig } from 'next'
 
+const isDevelopment = process.env.NODE_ENV === 'development'
+
 const contentSecurityPolicy = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://va.vercel-scripts.com",
+  [
+    "script-src 'self' 'unsafe-inline'",
+    isDevelopment ? "'unsafe-eval'" : '',
+    'https://www.googletagmanager.com',
+    'https://va.vercel-scripts.com',
+  ]
+    .filter(Boolean)
+    .join(' '),
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: https://res.cloudinary.com https://www.googletagmanager.com https://www.google-analytics.com",
+  "img-src 'self' data: https://res.cloudinary.com https://*.googleusercontent.com https://www.googletagmanager.com https://www.google-analytics.com",
   "media-src 'self' https://res.cloudinary.com",
   "connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com",
   'frame-src https://www.googletagmanager.com',
