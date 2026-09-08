@@ -8,6 +8,13 @@ import type { GoogleReviewsResponse } from '@/lib/google-reviews'
 import { marqueeDuration } from '@/lib/marquee'
 
 const HAPPY_TRAVELERS = 500
+type ReviewItem = {
+  author: string
+  avatarUrl?: string
+  location: string
+  quote: string
+  rating: number
+}
 
 function ReviewAvatar({ author, avatarUrl }: { author: string; avatarUrl?: string }) {
   const [imageFailed, setImageFailed] = useState(false)
@@ -62,10 +69,10 @@ export function Testimonials() {
     }
   }, [])
 
-  const googleTestimonials = googleData?.reviews.filter(
+  const googleTestimonials: ReviewItem[] | undefined = googleData?.reviews.filter(
     (review) => review.rating === 4 || review.rating === 5
   )
-  const testimonials = googleTestimonials?.length
+  const testimonials: ReviewItem[] = googleTestimonials?.length
     ? googleTestimonials
     : TESTIMONIALS.filter(
         (review) => review.rating === 4 || review.rating === 5

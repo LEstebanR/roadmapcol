@@ -1,5 +1,5 @@
 import { Testimonials } from '@/components/testimonials'
-import { render, screen } from '@testing-library/react'
+import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 
 vi.mock('@/lib/data', () => ({
   TESTIMONIALS: [
@@ -19,6 +19,10 @@ vi.mock('@/lib/data', () => ({
 }))
 
 describe('Testimonials', () => {
+  afterEach(() => {
+    vi.unstubAllGlobals()
+  })
+
   it('renders the section heading', () => {
     render(<Testimonials />)
     expect(screen.getByText('What our travelers say')).toBeInTheDocument()
@@ -57,5 +61,74 @@ describe('Testimonials', () => {
 
     const originalCard = quotes[0].closest('div[class*="bg-card"]')
     expect(originalCard).not.toHaveAttribute('aria-hidden')
+  })
+
+  it('loads Google reviews, expands long text, pauses, and falls back from a broken avatar', async () => {
+    vi.stubGlobal(
+      'fetch',
+      vi.fn().mockResolvedValue({
+        ok: true,
+        json: async () => ({
+          googleMapsUri: 'https://maps.google.com/place',
+          reviews: [
+            {
+              author: 'Long Traveler',
+              avatarUrl: 'https://example.com/avatar.jpg',
+              location: 'a month ago',
+              quote: 'A '.repeat(120),
+              rating: 5,
+            },
+          ],
+          userRatingCount: 12,
+        }),
+      })
+    )
+
+    render(<Testimonials />)
+
+    const readMore = await screen.findByRole('button', {
+      name: 'Read full review',
+    })
+    const track = document.querySelector('.animate-marquee')
+    expect(track).toBeInTheDocument()
+
+    fireEvent.mouseEnter(track!)
+    expect(track).toHaveStyle({ animationPlayState: 'paused' })
+    fireEvent.click(readMore)
+    expect(readMore).toHaveAttribute('aria-expanded', 'true')
+    expect(screen.getByRole('button', { name: 'Show less' })).toBeInTheDocument()
+
+    fireEvent.error(document.querySelector('img')!)
+    expect(screen.getAllByText('LT')[0]).toBeInTheDocument()
+
+    fireEvent.click(screen.getByRole('button', { name: 'Show less' }))
+    fireEvent.mouseLeave(track!)
+    await waitFor(() =>
+      expect(track).toHaveStyle({ animationPlayState: 'running' })
+    )
+  })
+
+  it('keeps the fallback reviews when the Google request fails', async () => {
+    const fetchMock = vi.fn().mockResolvedValue({ ok: false })
+    vi.stubGlobal('fetch', fetchMock)
+
+    render(<Testimonials />)
+
+    await waitFor(() =>
+      expect(fetchMock).toHaveBeenCalledWith('/api/google-reviews')
+    )
+    expect(screen.getByText('What our travelers say')).toBeInTheDocument()
+  })
+
+  it('ignores a rejected Google request', async () => {
+    const fetchMock = vi.fn().mockRejectedValue(new Error('network failure'))
+    vi.stubGlobal('fetch', fetchMock)
+
+    render(<Testimonials />)
+
+    await waitFor(() =>
+      expect(fetchMock).toHaveBeenCalledWith('/api/google-reviews')
+    )
+    expect(screen.getByText('What our travelers say')).toBeInTheDocument()
   })
 })
