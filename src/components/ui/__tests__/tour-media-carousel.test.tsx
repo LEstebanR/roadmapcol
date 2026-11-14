@@ -107,14 +107,25 @@ describe('TourMediaCarousel', () => {
     )
   })
 
-  it('renders navigation buttons', () => {
+  it('renders navigation buttons with accessible names', () => {
     render(<TourMediaCarousel items={imageItems} />)
-    expect(screen.getAllByRole('button').length).toBeGreaterThanOrEqual(2)
+    expect(screen.getByRole('button', { name: 'Previous' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Next' })).toBeInTheDocument()
   })
 
-  it('renders dot indicators from scrollSnapList', () => {
+  it('renders labelled dot indicators from scrollSnapList', () => {
     render(<TourMediaCarousel items={imageItems} />)
-    expect(screen.getAllByRole('button').length).toBeGreaterThanOrEqual(2)
+    const first = screen.getByRole('button', { name: 'Go to slide 1' })
+    const second = screen.getByRole('button', { name: 'Go to slide 2' })
+    expect(first).toHaveAttribute('aria-current', 'true')
+    expect(second).not.toHaveAttribute('aria-current')
+  })
+
+  it('gives dot indicators a 44x44px touch target', () => {
+    render(<TourMediaCarousel items={imageItems} />)
+    const dot = screen.getByRole('button', { name: 'Go to slide 1' })
+    expect(dot.className).toContain('h-11')
+    expect(dot.className).toContain('w-11')
   })
 
   it('clicking a dot calls scrollTo', () => {

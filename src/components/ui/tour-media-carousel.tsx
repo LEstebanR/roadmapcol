@@ -104,29 +104,40 @@ export function TourMediaCarousel({
       </div>
 
       <button
+        type="button"
+        aria-label="Previous"
         onClick={scrollPrev}
-        className="absolute top-1/2 left-4 -translate-y-1/2 rounded-full bg-black/50 p-2 text-white transition-colors hover:bg-black/70"
+        className="absolute top-1/2 left-4 -translate-y-1/2 rounded-full bg-black/50 p-2.5 text-white transition-colors hover:bg-black/70"
       >
         <ChevronLeft className="h-6 w-6" />
       </button>
 
       <button
+        type="button"
+        aria-label="Next"
         onClick={scrollNext}
-        className="absolute top-1/2 right-4 -translate-y-1/2 rounded-full bg-black/50 p-2 text-white transition-colors hover:bg-black/70"
+        className="absolute top-1/2 right-4 -translate-y-1/2 rounded-full bg-black/50 p-2.5 text-white transition-colors hover:bg-black/70"
       >
         <ChevronRight className="h-6 w-6" />
       </button>
 
-      <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2">
+      <div className="absolute bottom-0 left-1/2 flex -translate-x-1/2">
         {scrollSnaps.map((_, index) => (
           <button
             key={index}
+            type="button"
+            aria-label={`Go to slide ${index + 1}`}
+            aria-current={index === selectedIndex ? 'true' : undefined}
             onClick={() => emblaApi?.scrollTo(index)}
-            className={cn(
-              'h-2 w-2 rounded-full transition-colors',
-              index === selectedIndex ? 'bg-white' : 'bg-white/50'
-            )}
-          />
+            className="flex h-11 w-11 items-center justify-center"
+          >
+            <span
+              className={cn(
+                'h-2 w-2 rounded-full transition-colors',
+                index === selectedIndex ? 'bg-white' : 'bg-white/50'
+              )}
+            />
+          </button>
         ))}
       </div>
     </div>
