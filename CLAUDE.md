@@ -29,7 +29,7 @@ CI runs lint, typecheck, test, and coverage as parallel jobs on PR to `main`, an
 - **Static data** in `src/lib/data.tsx` — all tour, header link, and contact data lives here (no database/CMS). Images hosted on Cloudinary.
 - **Image URLs** in `src/lib/images.ts` — centralized Cloudinary URLs for logo and social icons. Use Cloudinary transformations (e.g. `w_1200,h_630,c_pad,b_white`) for resizing without uploading new assets.
 - **UI components** in `src/components/ui/` — built on Radix UI primitives + shadcn/ui ("new-york" style) + CVA for variants
-- **Feature components** in `src/components/` — `TourCard`, `TourGallery`, `GTM`
+- **Feature components** in `src/components/` — `TourCard`, `GTM`. Tour detail media uses `TourMediaCarousel` (`ui/tour-media-carousel.tsx`)
 - **Utility** `cn()` in `src/lib/utils.ts` — combines clsx + tailwind-merge
 - **Path alias**: `@/*` maps to `src/*`
 

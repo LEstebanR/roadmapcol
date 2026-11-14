@@ -1,7 +1,7 @@
 import localFont from 'next/font/local'
 
 const oneBrush = localFont({
-  src: './oneBrush.ttf',
+  src: '../../../fonts/oneBrush.ttf',
 })
 
 export function Title({ children }: { children: React.ReactNode }) {
