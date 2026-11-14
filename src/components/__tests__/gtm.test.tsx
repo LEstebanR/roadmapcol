@@ -3,7 +3,9 @@ import { render } from '@testing-library/react'
 import { useSearchParams } from 'next/navigation'
 
 vi.mock('next/script', () => ({
-  default: ({ id }: { id: string }) => <script id={id} />,
+  default: ({ id, strategy }: { id: string; strategy: string }) => (
+    <script data-strategy={strategy} id={id} />
+  ),
 }))
 
 vi.mock('next/navigation', () => ({
@@ -26,6 +28,21 @@ describe('GTM', () => {
   it('renders the GTM script tag', () => {
     render(<GTM />)
     expect(document.getElementById('gtm-script')).toBeInTheDocument()
+  })
+
+  it('loads the GTM script lazily after window load', () => {
+    render(<GTM />)
+    expect(document.getElementById('gtm-script')).toHaveAttribute(
+      'data-strategy',
+      'lazyOnload'
+    )
+  })
+
+  it('queues the pageview when GTM has not created dataLayer yet', () => {
+    render(<GTM />)
+    expect(window.dataLayer).toEqual([
+      expect.objectContaining({ event: 'pageview', page: '/' }),
+    ])
   })
 
   it('pushes a pageview without search params to dataLayer', () => {

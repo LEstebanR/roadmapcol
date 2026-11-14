@@ -1,5 +1,6 @@
 import PersonalizaExperiencia from '@/app/personalize/page'
 import { fireEvent, render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 
 describe('Personalize page', () => {
   it('renders the page title', () => {
@@ -119,5 +120,32 @@ describe('Personalize page', () => {
     dateInputs.forEach((input) => {
       fireEvent.change(input, { target: { value: '2026-01-01' } })
     })
+  })
+
+  it.each([
+    ['Name *', 'INPUT'],
+    ['Email *', 'INPUT'],
+    ['Phone *', 'INPUT'],
+    ['Main destination', 'INPUT'],
+    ['Number of people', 'INPUT'],
+    ['Start date', 'INPUT'],
+    ['End date', 'INPUT'],
+    ['Approximate budget', 'INPUT'],
+    ['Additional comments', 'TEXTAREA'],
+  ])('associates the "%s" label with its field', async (label, tagName) => {
+    render(<PersonalizaExperiencia />)
+    const field = screen.getByLabelText(label)
+    expect(field.tagName).toBe(tagName)
+
+    await userEvent.click(screen.getByText(label))
+    expect(field).toHaveFocus()
+  })
+
+  it('labels the interests button group', () => {
+    render(<PersonalizaExperiencia />)
+    const group = screen.getByRole('group', { name: 'Interests' })
+    expect(group).toContainElement(
+      screen.getByText('Adventure').closest('button')
+    )
   })
 })
