@@ -10,7 +10,9 @@ function GTMPageView() {
 
   useEffect(() => {
     if (pathname) {
-      window.dataLayer?.push({
+      // GTM loads lazily, so queue events until gtm.js drains the dataLayer
+      window.dataLayer = window.dataLayer || []
+      window.dataLayer.push({
         event: 'pageview',
         page:
           pathname +
@@ -27,7 +29,7 @@ export function GTM() {
     <>
       <Script
         id="gtm-script"
-        strategy="afterInteractive"
+        strategy="lazyOnload"
         dangerouslySetInnerHTML={{
           __html: `
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
