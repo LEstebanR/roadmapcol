@@ -40,7 +40,7 @@ Complete end-to-end workflow for developing an existing GitHub issue: read and i
 
 7. **Implement the changes**: write the code needed to satisfy the issue. Follow all project conventions (no semicolons, single quotes, 80-char limit, kebab-case files, sorted keys). Run tests and type-check after implementing:
    ```
-   bun test
+   bun run test
    bun run type-check
    bun run lint
    ```
