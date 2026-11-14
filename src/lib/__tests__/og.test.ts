@@ -12,9 +12,7 @@ describe('ogImageUrl', () => {
 
   it('returns the default logo OG for Cloudinary URLs without a versioned public id', () => {
     expect(
-      ogImageUrl(
-        'https://res.cloudinary.com/lesteban/image/upload/sample.jpg'
-      )
+      ogImageUrl('https://res.cloudinary.com/lesteban/image/upload/sample.jpg')
     ).toBe(DEFAULT_OG_IMAGE)
   })
 
@@ -63,6 +61,10 @@ describe('socialMetadata', () => {
     })
 
     expect(meta.openGraph?.title).toBe('Guatapé')
+    expect(meta.openGraph).toMatchObject({
+      locale: 'en_US',
+      siteName: 'Road Map Col',
+    })
     expect(meta.openGraph?.description).toBe('A trip')
     expect(meta.openGraph?.url).toBe('https://roadmapcol.com/tours/guatape')
     expect(meta.openGraph?.images).toEqual([
@@ -81,13 +83,15 @@ describe('socialMetadata', () => {
     })
   })
 
-  it('uses default OG when imageUrl is omitted', () => {
+  it('uses the generated default OG when imageUrl is omitted', () => {
     const meta = socialMetadata({
       description: 'Site',
       title: 'Road Map Col',
     })
+    expect(DEFAULT_OG_IMAGE).toBe('/opengraph-image')
     expect(meta.openGraph?.images).toEqual([
       expect.objectContaining({ url: DEFAULT_OG_IMAGE }),
     ])
+    expect(meta.twitter).toMatchObject({ images: [DEFAULT_OG_IMAGE] })
   })
 })
