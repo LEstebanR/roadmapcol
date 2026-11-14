@@ -45,7 +45,7 @@ Open a pull request for the current branch targeting `main` with a standardized,
    ## Test plan
    <!-- Step-by-step instructions to verify this PR manually. -->
    - [ ] 
-   - [ ] Run `bun test` — all tests pass
+   - [ ] Run `bun run test` — all tests pass
    - [ ] Run `bun run type-check` — no type errors
 
    ## Screenshots
@@ -60,7 +60,7 @@ Open a pull request for the current branch targeting `main` with a standardized,
 
    Rules:
    - Never leave a section with only a comment inside it — either fill it or delete it.
-   - Never target `main` directly.
+   - Always target `main` (there is no `develop` branch).
    - Keep bullets concise (< 80 chars each).
    - Screenshots are required for any visible UI change.
    - `Closes #<issue-number>` auto-closes the issue when the PR merges — no manual status update needed.
