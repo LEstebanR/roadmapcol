@@ -1,11 +1,13 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
+import { IMG_WIDTH_DETAIL, imgUrl } from '@/lib/cloudinary'
 import { cn } from '@/lib/utils'
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
 } from 'embla-carousel-react'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
+import Image from 'next/image'
 import * as React from 'react'
 
 type CarouselApi = UseEmblaCarouselType[1]
@@ -279,9 +281,13 @@ export function MediaCarousel({ items, className }: MediaCarouselProps) {
             <div key={index} className="relative min-w-0 flex-[0_0_100%]">
               {item.type === 'image' ? (
                 <div className="flex h-[500px] w-full items-center justify-center bg-neutral-900">
-                  <img
-                    src={item.url}
+                  <Image
+                    src={imgUrl(item.url, IMG_WIDTH_DETAIL)}
                     alt={item.alt}
+                    width={IMG_WIDTH_DETAIL}
+                    height={IMG_WIDTH_DETAIL}
+                    priority={index === 0}
+                    sizes="(max-width: 1024px) 100vw, 1024px"
                     className="max-h-[500px] w-full object-contain"
                   />
                 </div>

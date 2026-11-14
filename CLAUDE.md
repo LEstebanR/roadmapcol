@@ -20,11 +20,12 @@ bun run test:ui      # Vitest interactive UI
 bun run test:coverage # Vitest with coverage (100% threshold enforced)
 ```
 
-CI runs lint, typecheck, test, and coverage as parallel jobs on PR to `main`/`develop`, and on push to `main` only (no double-run on merge). The `Coverage (100% required)` job fails the PR if any metric drops below 100%. Branches are auto-deleted after PR close except `develop` and `main`.
+CI runs lint, typecheck, test, and coverage as parallel jobs on PR to `main`, and on push to `main`. The `Coverage (100% required)` job fails the PR if any metric drops below 100%. Branches are auto-deleted after PR close except `main`. There is no `develop` branch: branches start from `main` and PRs target `main`.
 
 ## Architecture
 
-- **App Router pages** at `src/app/` — routes: `/`, `/tours`, `/tours/[name]`, `/personalize`; also `sitemap.ts` and `robots.ts` (Next.js special files serving `/sitemap.xml` and `/robots.txt`)
+- **App Router pages** at `src/app/` — routes: `/`, `/tours`, `/tours/[name]`, `/personalize`, `/blog`, `/blog/[slug]`; also `sitemap.ts` and `robots.ts` (Next.js special files serving `/sitemap.xml` and `/robots.txt`)
+- **Icons & social cards**: `src/app/favicon.ico` + `src/app/icon.png` (app icon). `src/app/opengraph-image.tsx` generates the default 1200×630 share image (logo, oneBrush headline, Guatapé photo) with fonts from `src/fonts/`. oneBrush only has A–Z/a–z/space glyphs — render accents and punctuation in Geist. Pages build OG/Twitter metadata with `socialMetadata()` from `src/lib/og.ts`; tours and blog posts pass their Cloudinary photo, others fall back to `DEFAULT_OG_IMAGE` (`/opengraph-image`). Next.js replaces `openGraph` per page instead of merging, so `socialMetadata()` repeats `siteName`/`locale`.
 - **Static data** in `src/lib/data.tsx` — all tour, header link, and contact data lives here (no database/CMS). Images hosted on Cloudinary.
 - **Image URLs** in `src/lib/images.ts` — centralized Cloudinary URLs for logo and social icons. Use Cloudinary transformations (e.g. `w_1200,h_630,c_pad,b_white`) for resizing without uploading new assets.
 - **UI components** in `src/components/ui/` — built on Radix UI primitives + shadcn/ui ("new-york" style) + CVA for variants
@@ -69,7 +70,7 @@ Common workflows are available as slash commands in `.claude/commands/`:
 - `/start-issue` — create a GitHub issue + branch before starting any change
 - `/dev-issue` — pick up an existing GitHub issue, implement it, and open a PR end-to-end
 - `/ship-issue` — commit and push the current branch
-- `/new-pr` — open a PR to `develop` for the current branch (standardized description)
+- `/new-pr` — open a PR to `main` for the current branch (standardized description)
 - `/new-tour` — add a tour to `src/lib/data.tsx`
 - `/new-page` — add a page/route and nav entry
 - `/new-image` — upload to Cloudinary and wire up in the project

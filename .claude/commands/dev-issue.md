@@ -20,10 +20,10 @@ Complete end-to-end workflow for developing an existing GitHub issue: read and i
    - `bug` → `fix`
    - `tech-debt` / infrastructure / tooling → `chore`
 
-4. **Create a git branch** from an up-to-date `develop` — always pull before branching:
+4. **Create a git branch** from an up-to-date `main` — always pull before branching:
    ```
-   git checkout develop
-   git pull origin develop
+   git checkout main
+   git pull origin main
    git checkout -b <type>/<issue-number>-<short-slug>
    ```
    Slug: lowercase, hyphens, max 5 words derived from the title.
@@ -56,4 +56,4 @@ Complete end-to-end workflow for developing an existing GitHub issue: read and i
 
 ### Open PR
 
-10. **Run `/new-pr`** — follows the full new-pr skill to open a standardized PR targeting `develop` with `Closes #<number>` so the issue auto-closes on merge, and report the PR URL.
+10. **Run `/new-pr`** — follows the full new-pr skill to open a standardized PR targeting `main` with `Closes #<number>` so the issue auto-closes on merge, and report the PR URL.
