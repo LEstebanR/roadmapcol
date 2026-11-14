@@ -17,10 +17,10 @@ Create a GitHub issue and branch ready to start work on a new task.
    ```
    Priority: `priority:high` for bugs, `priority:normal` for features/chores.
 
-3. **Create a git branch** from an up-to-date `develop` — always pull before branching:
+3. **Create a git branch** from an up-to-date `main` — always pull before branching:
    ```
-   git checkout develop
-   git pull origin develop
+   git checkout main
+   git pull origin main
    git checkout -b <type>/<issue-number>-<short-slug>
    ```
    Slug: lowercase, hyphens, max 5 words derived from the title.

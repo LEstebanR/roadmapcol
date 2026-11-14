@@ -1,4 +1,4 @@
-Open a pull request for the current branch targeting `develop` with a standardized, clear description.
+Open a pull request for the current branch targeting `main` with a standardized, clear description.
 
 ## Arguments
 
@@ -9,8 +9,8 @@ Open a pull request for the current branch targeting `develop` with a standardiz
 1. **Infer the issue number** from `$ARGUMENTS` or the branch name (`feat/42-*` → `42`).
 
 2. **Collect context** before writing the PR:
-   - Run `git log develop..HEAD --oneline` to list all commits on this branch.
-   - Run `git diff develop...HEAD --stat` to see which files changed.
+   - Run `git log main..HEAD --oneline` to list all commits on this branch.
+   - Run `git diff main...HEAD --stat` to see which files changed.
    - Fetch the issue title, body, and labels: `gh issue view <number> --json title,body,labels`.
 
 3. **Verify the branch is pushed**:
@@ -19,7 +19,7 @@ Open a pull request for the current branch targeting `develop` with a standardiz
    git push -u origin <branch>   # if not yet pushed
    ```
 
-4. **Open the PR** with `gh pr create` targeting `develop`:
+4. **Open the PR** with `gh pr create --base main`:
 
    **Title format**: `<type>: <issue title> (#<issue-number>)`
    - `type` must match the branch prefix: `feat` | `fix` | `chore`

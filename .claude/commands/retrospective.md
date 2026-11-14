@@ -1,4 +1,4 @@
-Review the current session and update CLAUDE.md and skills to reflect new patterns, conventions, or workflows discovered. Commits and pushes directly to `develop`.
+Review the current session and update CLAUDE.md and skills to reflect new patterns, conventions, or workflows discovered. Commits on a `chore/retrospective-<date>` branch and opens a PR to `main`.
 
 ## Steps
 
@@ -41,15 +41,16 @@ Review the current session and update CLAUDE.md and skills to reflect new patter
    git add CLAUDE.md .claude/commands/<changed>.md   # only what changed
    ```
 
-7. **Commit directly to `develop`** — verify you are on `develop` before committing:
+7. **Commit on a new branch from `main`** — never commit directly to `main`:
    ```
-   git checkout develop
+   git checkout -b chore/retrospective-<YYYY-MM-DD> main
    git commit -m "chore: retrospective — <one-line summary of what changed>"
    ```
 
-8. **Push to `develop`**:
+8. **Push and open a PR to `main`**:
    ```
-   git push origin develop
+   git push -u origin chore/retrospective-<YYYY-MM-DD>
+   gh pr create --base main --fill
    ```
 
 9. **Report** to the user: what was updated and why. If nothing needed changing, say so explicitly.
