@@ -1,7 +1,7 @@
 'use client'
 
-import { HEADER_LINKS } from '@/lib/data'
 import { images } from '@/lib/images'
+import { HEADER_LINKS } from '@/lib/navigation'
 import { cn } from '@/lib/utils'
 import { MenuIcon, XIcon } from 'lucide-react'
 import Image from 'next/image'
