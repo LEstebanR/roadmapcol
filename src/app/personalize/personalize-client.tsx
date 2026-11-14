@@ -99,8 +99,9 @@ export default function PersonalizeClient() {
           <h2 className="text-lg font-bold">Personal information</h2>
           <div className="grid gap-4 md:grid-cols-2">
             <div className="flex flex-col gap-2">
-              <Label>Name *</Label>
+              <Label htmlFor="personalize-name">Name *</Label>
               <Input
+                id="personalize-name"
                 required
                 placeholder="Enter your name"
                 value={data.name}
@@ -108,16 +109,18 @@ export default function PersonalizeClient() {
               />
             </div>
             <div className="flex flex-col gap-2">
-              <Label>Email *</Label>
+              <Label htmlFor="personalize-email">Email *</Label>
               <Input
+                id="personalize-email"
                 placeholder="tu@email.com"
                 value={data.email}
                 onChange={(e) => setData({ ...data, email: e.target.value })}
               />
             </div>
           </div>
-          <Label>Phone *</Label>
+          <Label htmlFor="personalize-phone">Phone *</Label>
           <Input
+            id="personalize-phone"
             placeholder="Enter your phone"
             value={data.phone}
             onChange={(e) => setData({ ...data, phone: e.target.value })}
@@ -129,8 +132,9 @@ export default function PersonalizeClient() {
           <h2 className="text-lg font-bold">Trip details</h2>
           <div className="grid gap-4 md:grid-cols-2">
             <div className="flex flex-col gap-2">
-              <Label>Main destination</Label>
+              <Label htmlFor="personalize-destination">Main destination</Label>
               <Input
+                id="personalize-destination"
                 placeholder="City or place"
                 value={data.destination}
                 onChange={(e) =>
@@ -139,8 +143,9 @@ export default function PersonalizeClient() {
               />
             </div>
             <div className="flex flex-col gap-2">
-              <Label>Number of people</Label>
+              <Label htmlFor="personalize-people">Number of people</Label>
               <Input
+                id="personalize-people"
                 type="number"
                 value={data.people}
                 onChange={(e) =>
@@ -151,8 +156,9 @@ export default function PersonalizeClient() {
           </div>
           <div className="grid gap-4 md:grid-cols-2">
             <div className="flex flex-col gap-2">
-              <Label>Start date</Label>
+              <Label htmlFor="personalize-start-date">Start date</Label>
               <Input
+                id="personalize-start-date"
                 type="date"
                 value={data.startDate}
                 onChange={(e) =>
@@ -161,24 +167,30 @@ export default function PersonalizeClient() {
               />
             </div>
             <div className="flex flex-col gap-2">
-              <Label>End date</Label>
+              <Label htmlFor="personalize-end-date">End date</Label>
               <Input
+                id="personalize-end-date"
                 type="date"
                 value={data.endDate}
                 onChange={(e) => setData({ ...data, endDate: e.target.value })}
               />
             </div>
           </div>
-          <Label>Approximate budget</Label>
+          <Label htmlFor="personalize-budget">Approximate budget</Label>
           <Input
+            id="personalize-budget"
             type="number"
             value={data.budget}
             onChange={(e) =>
               setData({ ...data, budget: Number(e.target.value) })
             }
           />
-          <Label>Interests</Label>
-          <div className="mt-2 grid w-full grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
+          <Label id="personalize-interests">Interests</Label>
+          <div
+            role="group"
+            aria-labelledby="personalize-interests"
+            className="mt-2 grid w-full grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4"
+          >
             {activities.map((activity) => {
               const Icon = activity.icon
               return (
@@ -202,8 +214,9 @@ export default function PersonalizeClient() {
               )
             })}
           </div>
-          <Label>Additional comments</Label>
+          <Label htmlFor="personalize-comments">Additional comments</Label>
           <Textarea
+            id="personalize-comments"
             placeholder="Enter your additional comments"
             value={data.comments}
             onChange={(e) => setData({ ...data, comments: e.target.value })}
