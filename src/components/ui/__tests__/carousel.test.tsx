@@ -12,6 +12,29 @@ import useEmblaCarousel, {
   type EmblaViewportRefType,
 } from 'embla-carousel-react'
 
+// Global next/image mock renders null; expose the props we assert on.
+vi.mock('next/image', () => ({
+  default: ({
+    alt,
+    priority,
+    sizes,
+    src,
+  }: {
+    alt: string
+    priority?: boolean
+    sizes?: string
+    src: string
+  }) => (
+    <span
+      aria-label={alt}
+      data-priority={String(Boolean(priority))}
+      data-sizes={sizes}
+      data-src={src}
+      role="img"
+    />
+  ),
+}))
+
 vi.mock('embla-carousel-react', () => ({
   default: vi.fn(),
 }))
@@ -248,7 +271,40 @@ describe('MediaCarousel', () => {
         ]}
       />
     )
-    expect(screen.getByAltText('Img')).toBeInTheDocument()
+    expect(screen.getByRole('img', { name: 'Img' })).toBeInTheDocument()
+  })
+
+  it('renders images with next/image, Cloudinary width cap and priority on the first', () => {
+    render(
+      <MediaCarousel
+        items={[
+          {
+            alt: 'First',
+            type: 'image',
+            url: 'https://res.cloudinary.com/x/image/upload/v1/a.jpg',
+          },
+          {
+            alt: 'Second',
+            type: 'image',
+            url: 'https://res.cloudinary.com/x/image/upload/v1/b.jpg',
+          },
+        ]}
+      />
+    )
+    const first = screen.getByRole('img', { name: 'First' })
+    expect(first).toHaveAttribute(
+      'data-src',
+      'https://res.cloudinary.com/x/image/upload/f_auto,q_auto,w_1600,c_limit/v1/a.jpg'
+    )
+    expect(first).toHaveAttribute('data-priority', 'true')
+    expect(first).toHaveAttribute(
+      'data-sizes',
+      '(max-width: 1024px) 100vw, 1024px'
+    )
+    expect(screen.getByRole('img', { name: 'Second' })).toHaveAttribute(
+      'data-priority',
+      'false'
+    )
   })
 
   it('renders video items with and without thumbnail', () => {
@@ -319,6 +375,6 @@ describe('MediaCarousel', () => {
         items={[{ alt: 'A', type: 'image', url: 'https://example.com/a.jpg' }]}
       />
     )
-    expect(screen.getByAltText('A')).toBeInTheDocument()
+    expect(screen.getByRole('img', { name: 'A' })).toBeInTheDocument()
   })
 })
