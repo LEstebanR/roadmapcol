@@ -1,22 +1,6 @@
-import { Gift, Home, Info, Map, MapPin } from 'lucide-react'
+import { Gift, Info, MapPin } from 'lucide-react'
 
-export const HEADER_LINKS = [
-  {
-    label: 'Home',
-    href: '/',
-    icon: <Home />,
-  },
-  {
-    label: 'Tours',
-    href: '/tours',
-    icon: <Map />,
-  },
-  {
-    label: 'Personalize your experience',
-    href: '/personalize',
-    icon: <MapPin />,
-  },
-]
+export { HEADER_LINKS } from '@/lib/navigation'
 
 export const LANDING_LINKS = [
   {
