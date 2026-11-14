@@ -1,13 +1,11 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import { IMG_WIDTH_DETAIL, imgUrl } from '@/lib/cloudinary'
 import { cn } from '@/lib/utils'
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
 } from 'embla-carousel-react'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
-import Image from 'next/image'
 import * as React from 'react'
 
 type CarouselApi = UseEmblaCarouselType[1]
@@ -230,112 +228,6 @@ function CarouselNext({
       <ArrowRight />
       <span className="sr-only">Next slide</span>
     </Button>
-  )
-}
-
-// Media Carousel Component
-interface MediaCarouselProps {
-  items: {
-    type: 'image' | 'video'
-    url: string
-    thumbnail?: string
-    alt: string
-  }[]
-  className?: string
-}
-
-export function MediaCarousel({ items, className }: MediaCarouselProps) {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true })
-  const [selectedIndex, setSelectedIndex] = React.useState(0)
-  const [scrollSnaps, setScrollSnaps] = React.useState<number[]>([])
-
-  const scrollPrev = React.useCallback(
-    () => emblaApi && emblaApi.scrollPrev(),
-    [emblaApi]
-  )
-  const scrollNext = React.useCallback(
-    () => emblaApi && emblaApi.scrollNext(),
-    [emblaApi]
-  )
-
-  const onSelect = React.useCallback(() => {
-    /* c8 ignore next */
-    if (!emblaApi) return
-    setSelectedIndex(emblaApi.selectedScrollSnap())
-  }, [emblaApi])
-
-  React.useEffect(() => {
-    if (!emblaApi) return
-    React.startTransition(() => {
-      onSelect()
-      setScrollSnaps(emblaApi.scrollSnapList())
-    })
-    emblaApi.on('select', onSelect)
-  }, [emblaApi, onSelect])
-
-  return (
-    <div className={cn('relative w-full', className)}>
-      <div className="overflow-hidden" ref={emblaRef}>
-        <div className="flex">
-          {items.map((item, index) => (
-            <div key={index} className="relative min-w-0 flex-[0_0_100%]">
-              {item.type === 'image' ? (
-                <div className="flex h-[500px] w-full items-center justify-center bg-neutral-900">
-                  <Image
-                    src={imgUrl(item.url, IMG_WIDTH_DETAIL)}
-                    alt={item.alt}
-                    width={IMG_WIDTH_DETAIL}
-                    height={IMG_WIDTH_DETAIL}
-                    priority={index === 0}
-                    sizes="(max-width: 1024px) 100vw, 1024px"
-                    className="max-h-[500px] w-full object-contain"
-                  />
-                </div>
-              ) : (
-                <div className="flex h-[500px] w-full items-center justify-center bg-neutral-900">
-                  <video
-                    src={item.url}
-                    poster={item.thumbnail}
-                    controls
-                    className="max-h-[500px] w-full object-contain"
-                  >
-                    <source src={item.url} type="video/mp4" />
-                    Tu navegador no soporta el elemento de video.
-                  </video>
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <button
-        onClick={scrollPrev}
-        className="absolute top-1/2 left-4 -translate-y-1/2 rounded-full bg-black/50 p-2 text-white transition-colors hover:bg-black/70"
-      >
-        <ArrowLeft className="h-6 w-6" />
-      </button>
-
-      <button
-        onClick={scrollNext}
-        className="absolute top-1/2 right-4 -translate-y-1/2 rounded-full bg-black/50 p-2 text-white transition-colors hover:bg-black/70"
-      >
-        <ArrowRight className="h-6 w-6" />
-      </button>
-
-      <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2">
-        {scrollSnaps.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => emblaApi?.scrollTo(index)}
-            className={cn(
-              'h-2 w-2 rounded-full transition-colors',
-              index === selectedIndex ? 'bg-white' : 'bg-white/50'
-            )}
-          />
-        ))}
-      </div>
-    </div>
   )
 }
 

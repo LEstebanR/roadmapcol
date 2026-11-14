@@ -4,36 +4,12 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-  MediaCarousel,
 } from '@/components/ui/carousel'
 import { fireEvent, render, screen } from '@testing-library/react'
 import type { EmblaCarouselType } from 'embla-carousel'
 import useEmblaCarousel, {
   type EmblaViewportRefType,
 } from 'embla-carousel-react'
-
-// Global next/image mock renders null; expose the props we assert on.
-vi.mock('next/image', () => ({
-  default: ({
-    alt,
-    priority,
-    sizes,
-    src,
-  }: {
-    alt: string
-    priority?: boolean
-    sizes?: string
-    src: string
-  }) => (
-    <span
-      aria-label={alt}
-      data-priority={String(Boolean(priority))}
-      data-sizes={sizes}
-      data-src={src}
-      role="img"
-    />
-  ),
-}))
 
 vi.mock('embla-carousel-react', () => ({
   default: vi.fn(),
@@ -259,122 +235,5 @@ describe('CarouselPrevious and CarouselNext', () => {
       'useCarousel must be used within a <Carousel />'
     )
     consoleSpy.mockRestore()
-  })
-})
-
-describe('MediaCarousel', () => {
-  it('renders image items', () => {
-    render(
-      <MediaCarousel
-        items={[
-          { alt: 'Img', type: 'image', url: 'https://example.com/a.jpg' },
-        ]}
-      />
-    )
-    expect(screen.getByRole('img', { name: 'Img' })).toBeInTheDocument()
-  })
-
-  it('renders images with next/image, Cloudinary width cap and priority on the first', () => {
-    render(
-      <MediaCarousel
-        items={[
-          {
-            alt: 'First',
-            type: 'image',
-            url: 'https://res.cloudinary.com/x/image/upload/v1/a.jpg',
-          },
-          {
-            alt: 'Second',
-            type: 'image',
-            url: 'https://res.cloudinary.com/x/image/upload/v1/b.jpg',
-          },
-        ]}
-      />
-    )
-    const first = screen.getByRole('img', { name: 'First' })
-    expect(first).toHaveAttribute(
-      'data-src',
-      'https://res.cloudinary.com/x/image/upload/f_auto,q_auto,w_1600,c_limit/v1/a.jpg'
-    )
-    expect(first).toHaveAttribute('data-priority', 'true')
-    expect(first).toHaveAttribute(
-      'data-sizes',
-      '(max-width: 1024px) 100vw, 1024px'
-    )
-    expect(screen.getByRole('img', { name: 'Second' })).toHaveAttribute(
-      'data-priority',
-      'false'
-    )
-  })
-
-  it('renders video items with and without thumbnail', () => {
-    render(
-      <MediaCarousel
-        items={[
-          {
-            alt: 'Vid no thumb',
-            type: 'video',
-            url: 'https://example.com/v.mp4',
-          },
-          {
-            alt: 'Vid thumb',
-            thumbnail: 'https://example.com/t.jpg',
-            type: 'video',
-            url: 'https://example.com/v2.mp4',
-          },
-        ]}
-      />
-    )
-    const videos = document.querySelectorAll('video')
-    expect(videos).toHaveLength(2)
-    expect(videos[1]).toHaveAttribute('poster', 'https://example.com/t.jpg')
-  })
-
-  it('clicking prev/next scrolls media carousel', () => {
-    const mockApi = buildMockApi()
-    vi.mocked(useEmblaCarousel).mockReturnValue([
-      mockRef,
-      mockApi as unknown as EmblaCarouselType,
-    ])
-    render(
-      <MediaCarousel
-        items={[
-          { alt: 'A', type: 'image', url: 'https://example.com/a.jpg' },
-          { alt: 'B', type: 'image', url: 'https://example.com/b.jpg' },
-        ]}
-      />
-    )
-    const buttons = screen.getAllByRole('button')
-    fireEvent.click(buttons[0])
-    fireEvent.click(buttons[1])
-    expect(mockApi.scrollPrev).toHaveBeenCalled()
-    expect(mockApi.scrollNext).toHaveBeenCalled()
-  })
-
-  it('clicking a dot scrolls to that index', () => {
-    const mockApi = buildMockApi()
-    vi.mocked(useEmblaCarousel).mockReturnValue([
-      mockRef,
-      mockApi as unknown as EmblaCarouselType,
-    ])
-    render(
-      <MediaCarousel
-        items={[{ alt: 'A', type: 'image', url: 'https://example.com/a.jpg' }]}
-      />
-    )
-    const buttons = screen.getAllByRole('button')
-    const lastBtn = buttons[buttons.length - 1]
-    fireEvent.click(lastBtn)
-    expect(mockApi.scrollTo).toHaveBeenCalled()
-  })
-
-  it('renders without error when embla api is undefined', () => {
-    vi.mocked(useEmblaCarousel).mockReturnValue([mockRef, undefined])
-    render(
-      <MediaCarousel
-        items={[{ alt: 'A', type: 'image', url: 'https://example.com/a.jpg' }]}
-      />
-    )
-    expect(screen.getByRole('img', { name: 'A' })).toBeInTheDocument()
   })
 })
