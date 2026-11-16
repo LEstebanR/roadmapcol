@@ -73,7 +73,7 @@ export default function TourClient({ tour }: { tour: Tour }) {
                 <p>{tour.duration}</p>
               </div>
             </div>
-            <h2 className="text-2xl font-bold">{tour.title}</h2>
+            <h1 className="text-2xl font-bold">{tour.title}</h1>
             {tour.rating !== undefined && <StarRating rating={tour.rating} />}
             <p className="text-muted-foreground">{tour.description}</p>
             <h3 className="text-xl font-bold">Highlights:</h3>
