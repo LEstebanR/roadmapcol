@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { StarRating } from '@/components/ui/star-rating'
-import { TESTIMONIALS } from '@/lib/data'
+import { TESTIMONIALS } from '@/lib/testimonials'
 import { GOOGLE_MAPS_URL } from '@/lib/google-maps'
 import type { GoogleReviewsResponse } from '@/lib/google-reviews'
 import { marqueeDuration } from '@/lib/marquee'

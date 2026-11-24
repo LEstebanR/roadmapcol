@@ -3,7 +3,7 @@
 import { Button } from '@/components/ui/button'
 import { TitleCard } from '@/components/ui/typography/typography'
 import { imgUrl } from '@/lib/cloudinary'
-import { LANDING_LINKS } from '@/lib/data'
+import { LANDING_LINKS } from '@/lib/landing-links'
 import Autoplay from 'embla-carousel-autoplay'
 import useEmblaCarousel from 'embla-carousel-react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'

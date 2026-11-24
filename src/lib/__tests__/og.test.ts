@@ -88,7 +88,7 @@ describe('socialMetadata', () => {
       description: 'Site',
       title: 'Road Map Col',
     })
-    expect(DEFAULT_OG_IMAGE).toBe('/opengraph-image')
+    expect(DEFAULT_OG_IMAGE).toBe('/opengraph-image.png')
     expect(meta.openGraph?.images).toEqual([
       expect.objectContaining({ url: DEFAULT_OG_IMAGE }),
     ])
