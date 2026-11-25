@@ -67,6 +67,13 @@ describe('Tour detail page', () => {
     expect(screen.getByText('Test Tour')).toBeInTheDocument()
   })
 
+  it('renders the tour title as the only H1', () => {
+    render(<TourClient tour={testTour} />)
+    const headings = screen.getAllByRole('heading', { level: 1 })
+    expect(headings).toHaveLength(1)
+    expect(headings[0]).toHaveTextContent('Test Tour')
+  })
+
   it('all target="_blank" links have rel="noopener noreferrer"', () => {
     render(<TourClient tour={testTour} />)
     const externalLinks = document.querySelectorAll('a[target="_blank"]')
