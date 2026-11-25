@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui/button'
 import { Card, CardHeader } from '@/components/ui/card'
-import { CONTACT } from '@/lib/data'
+import { CONTACT } from '@/lib/contact'
 import { images } from '@/lib/images'
 import Image from 'next/image'
 import Link from 'next/link'

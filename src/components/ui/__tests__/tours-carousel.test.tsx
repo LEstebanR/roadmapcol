@@ -1,5 +1,5 @@
 import { ToursCarousel } from '@/components/ui/tours-carousel'
-import { fireEvent, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 
 vi.mock('@/lib/data', () => ({
   TOURS: [
@@ -50,14 +50,10 @@ describe('ToursCarousel', () => {
     expect(originalCard).toBeNull()
   })
 
-  it('pauses the marquee while the pointer is over the tours', () => {
+  it('pauses the marquee with CSS while the pointer is over the tours', () => {
     const { container } = render(<ToursCarousel />)
     const track = container.querySelector('.animate-marquee')
 
-    fireEvent.mouseEnter(track!)
-    expect(track).toHaveStyle({ animationPlayState: 'paused' })
-
-    fireEvent.mouseLeave(track!)
-    expect(track).toHaveStyle({ animationPlayState: 'running' })
+    expect(track).toHaveClass('hover:[animation-play-state:paused]')
   })
 })

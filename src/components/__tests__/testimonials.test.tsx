@@ -1,7 +1,7 @@
 import { Testimonials } from '@/components/testimonials'
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 
-vi.mock('@/lib/data', () => ({
+vi.mock('@/lib/testimonials', () => ({
   TESTIMONIALS: [
     {
       author: 'Test Author',

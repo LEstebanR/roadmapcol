@@ -21,7 +21,7 @@ vi.mock('embla-carousel-autoplay', () => ({
   })),
 }))
 
-vi.mock('@/lib/data', () => ({
+vi.mock('@/lib/landing-links', () => ({
   LANDING_LINKS: [
     {
       button: 'Learn more',

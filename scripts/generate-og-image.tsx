@@ -1,11 +1,15 @@
 import { LOGO_URL, OG_HEIGHT, OG_WIDTH, SITE_NAME } from '@/lib/og'
 import { ImageResponse } from 'next/og'
-import { readFile } from 'node:fs/promises'
+import { readFile, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 
-export const alt = `${SITE_NAME} — Tours in Medellín & Colombia`
-export const size = { height: OG_HEIGHT, width: OG_WIDTH }
-export const contentType = 'image/png'
+/**
+ * Renders the default share image to `src/app/opengraph-image.png` (served by
+ * Next.js as a static file, so `@vercel/og` stays out of the page functions).
+ * Run with `bun scripts/generate-og-image.tsx` after changing the design.
+ */
+const OUTPUT = join(process.cwd(), 'src/app/opengraph-image.png')
+const size = { height: OG_HEIGHT, width: OG_WIDTH }
 
 // DESIGN.md tokens
 const PRIMARY = '#ff3314'
@@ -23,13 +27,13 @@ const LOGO_RENDER_HEIGHT = 120
 // oneBrush only covers A–Z, a–z and space: keep accents/punctuation in Geist
 const fontPath = (file: string) => join(process.cwd(), 'src/fonts', file)
 
-export default async function OpengraphImage() {
+async function generateOgImage() {
   const [geist, oneBrush] = await Promise.all([
     readFile(fontPath('Geist-Regular.ttf')),
     readFile(fontPath('oneBrush.ttf')),
   ])
 
-  return new ImageResponse(
+  const image = new ImageResponse(
     (
       <div
         style={{
@@ -105,4 +109,8 @@ export default async function OpengraphImage() {
       ],
     }
   )
+  await writeFile(OUTPUT, Buffer.from(await image.arrayBuffer()))
+  console.log(`Wrote ${OUTPUT}`)
 }
+
+generateOgImage()

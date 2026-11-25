@@ -43,6 +43,9 @@ vi.mock('next/font/google', () => ({
   })),
 }))
 
+// `server-only` throws outside the react-server condition (jsdom tests)
+vi.mock('server-only', () => ({}))
+
 // jsdom doesn't implement HTMLMediaElement methods
 window.HTMLMediaElement.prototype.pause = vi.fn()
 window.HTMLMediaElement.prototype.play = vi.fn(() => Promise.resolve())
