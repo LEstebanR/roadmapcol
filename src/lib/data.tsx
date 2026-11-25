@@ -1,3 +1,7 @@
+// Full tour catalog: keep it out of client bundles. Client components import
+// the small modules (contact, testimonials, landing-links) directly.
+import 'server-only'
+
 export { CONTACT } from '@/lib/contact'
 export { LANDING_LINKS } from '@/lib/landing-links'
 export { HEADER_LINKS } from '@/lib/navigation'

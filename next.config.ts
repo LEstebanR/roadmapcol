@@ -58,6 +58,16 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  // The share image used to be generated at /opengraph-image (#72)
+  async redirects() {
+    return [
+      {
+        destination: '/opengraph-image.png',
+        permanent: true,
+        source: '/opengraph-image',
+      },
+    ]
+  },
 }
 
 export default nextConfig
