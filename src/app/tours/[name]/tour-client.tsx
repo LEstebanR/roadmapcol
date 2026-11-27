@@ -90,21 +90,23 @@ export default function TourClient({ tour }: { tour: Tour }) {
             Available activities:
           </h2>
         )}
-        <div className="flex flex-col gap-4">
+        <div className="flex w-full flex-col gap-4">
           {tour.activities.length > 0
             ? tour.activities.map((activity) => (
                 <Card
                   key={activity.title}
-                  className="mx-auto flex w-11/12 flex-col py-0 md:w-full md:flex-row"
+                  className="mx-auto flex w-11/12 flex-col gap-0 overflow-hidden py-0 md:w-full md:flex-row"
                 >
-                  <Image
-                    src={imgUrl(activity.image, IMG_WIDTH_CARD)}
-                    alt={activity.title}
-                    width={200}
-                    height={200}
-                    className="w-full rounded-t-[14px] object-cover md:w-4/12 md:rounded-l-[14px] md:rounded-r-none"
-                  />
-                  <div className="flex flex-col gap-2 p-4">
+                  <div className="relative aspect-[4/3] w-full shrink-0 md:aspect-auto md:min-h-56 md:w-4/12">
+                    <Image
+                      src={imgUrl(activity.image, IMG_WIDTH_CARD)}
+                      alt={activity.title}
+                      fill
+                      sizes="(max-width: 768px) 92vw, 320px"
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="flex min-w-0 flex-1 flex-col gap-2 p-4">
                     <div className="flex w-full items-center justify-between gap-4">
                       <h3 className="text-xl font-bold">{activity.title}</h3>
                       <p className="text-muted-foreground">
