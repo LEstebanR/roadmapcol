@@ -429,7 +429,7 @@ export const TOURS = [
     place: 'Doradal / Hacienda Napoles',
     title: 'Hacienda Napoles',
     description:
-      'Explore Hacienda Nápoles on a 15-hour private day trip from Medellín, with round-trip transport, a guide, and typical snacks. Choose add-ons including the theme park, Rio Claro hiking and rafting, or quad bike and buggy tours. Minimum group size: 3.',
+      'Explore Hacienda Nápoles on a 15-hour private day trip from Medellín, with round-trip transport, a guide, and typical snacks. Choose add-ons including the theme park, Rio Claro hiking and rafting, or quad bike and buggy tours. From $120 USD per person; minimum group size: 3.',
     duration: '15 hours',
     price: 120,
     href: '/tours/hacienda-napoles',
