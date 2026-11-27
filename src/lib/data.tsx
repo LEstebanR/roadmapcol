@@ -429,7 +429,7 @@ export const TOURS = [
     place: 'Doradal / Hacienda Napoles',
     title: 'Hacienda Napoles',
     description:
-      'Hacienda Napoles theme park is a family-friendly destination where you can enjoy a large water park, zoo, and museums—a journey full of culture and nature at what was one of the most cherished properties of the famous drug lord Pablo Escobar. Minimum 3 people required.',
+      'Explore Hacienda Nápoles on a 15-hour private day trip from Medellín, with round-trip transport, a guide, and typical snacks. Choose add-ons including the theme park, Rio Claro hiking and rafting, or quad bike and buggy tours. From $120 USD per person; minimum group size: 3.',
     duration: '15 hours',
     price: 120,
     href: '/tours/hacienda-napoles',
